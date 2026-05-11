@@ -1,7 +1,7 @@
 """
 rank_article_candidates.py
 ==========================
-UAP公開文書 翻訳・要約プロジェクト — 記事化候補ランキングツール
+UAP公開文書 翻訳・要約プロジェクト — 記事化候補ランキングツール  v2
 
 目的:
     取得済みWAR.GOV/UFO公開文書の中から、
@@ -14,6 +14,21 @@ recommended_lane:
     breaking  — 速報版向き。日本関連・時事性・話題性を優先。
     detailed  — 詳細版向き。公開順・資料整理・原文対訳向き。
     hold      — OCR困難・判読困難・記事化優先度が低いもの。
+
+japan_signal_source:
+    file_name         — ファイル名のみに Japan キーワードあり（弱いシグナル）
+    incident_location — incident_location に Japan キーワードあり（強いシグナル）
+    ocr_text          — OCR本文に Japan キーワードあり（強いシグナル）
+    mixed             — 複数ソースで一致
+    conflict          — ファイル名は Japan だが location/OCR は矛盾
+    (空文字)          — Japan 関連シグナルなし
+
+v2 変更点:
+    - ファイル名のみの "japan" は弱いシグナル(+5)に降格
+    - japan_related=true は location または OCR 本文で確認できた場合のみ
+    - location が非日本地域かつファイル名に japan → conflict 検出・notes に警告
+    - "Pacific Time Zone" 等の時間帯表記を地理的 Pacific と区別
+    - japan_signal_source / location_conflict / location_conflict_reason を出力
 
 実行方法:
     python3 scripts/rank_article_candidates.py
@@ -50,21 +65,48 @@ OUTPUT_CSV       = METADATA_DIR / "article_candidates.csv"
 # -------------------------------------------------------
 
 # 日本関連キーワード（小文字で比較）
-JAPAN_BASE_KW = ["japan", "japanese", "nippon", "nihon"]
-JAPAN_BASE_SCORE = 30
+# OCR本文 / incident_location に出現した場合のみ強いシグナルとして扱う
+JAPAN_MILIT_KW    = ["okinawa", "kadena", "yokota", "misawa", "ryukyu"]
+JAPAN_MILIT_SCORE = 40   # 在日米軍基地を直接言及（最強シグナル）
 
-JAPAN_BASE_SCORE = 30  # japan/japanese 一致
-JAPAN_BASE_KW = ["japan", "japanese", "nippon", "nihon"]
+JAPAN_BASE_KW    = ["japan", "japanese", "nippon", "nihon", "tokyo"]
+JAPAN_BASE_SCORE = 30    # Japan 国名・国民の言及
 
-JAPAN_MILIT_KW = ["okinawa", "kadena", "yokota", "misawa", "ryukyu"]
-JAPAN_MILIT_SCORE = 40  # 在日米軍基地直接言及
+PACIFIC_KW    = ["pacific ocean", "pacific theater", "west pacific", "western pacific",
+                 "east asia", "far east", "sea of japan", "japan sea",
+                 "indo-pacific", "indopacom"]
+PACIFIC_SCORE = 20       # 広域太平洋・東アジア（地理的に確実な表記のみ）
 
-PACIFIC_KW = ["pacific", "east asia", "asia", "far east", "sea of japan", "japan sea", "indo-pacific"]
-PACIFIC_SCORE = 20  # 広域太平洋・東アジア関連
+# ファイル名のみに日本キーワードがある場合の弱いシグナル
+JAPAN_FILENAME_WEAK_KW    = ["japan", "japanese", "nippon", "nihon", "okinawa",
+                              "kadena", "yokota", "misawa", "tokyo"]
+JAPAN_FILENAME_WEAK_SCORE = +5  # 弱いシグナル（場所の裏付けなし）
 
-# 地名（incident_location）での日本関連
-JAPAN_LOCATION_KW = ["japan", "okinawa", "pacific", "east asia"]
+# incident_location での日本関連判定
+# ※ "Pacific Time Zone" 等の時間帯名は除外
+JAPAN_LOCATION_KW    = ["japan", "okinawa", "kadena", "yokota", "misawa",
+                         "pacific ocean", "east asia", "far east", "indo-pacific",
+                         "ryukyu", "tokyo"]
 JAPAN_LOCATION_SCORE = 30
+
+# location が明示的に非日本地域であることを示すパターン
+# ファイル名に Japan キーワードがあっても、これらが location に含まれれば conflict
+NON_JAPAN_LOCATION_PATTERNS = [
+    "arabian gulf", "persian gulf", "arabian sea", "gulf of aden", "gulf of oman",
+    "red sea", "indian ocean",
+    "iraq", "syria", "iran", "afghanistan", "kuwait", "bahrain", "qatar",
+    "middle east",
+    "mediterranean", "atlantic",
+    "europe", "africa",
+    "south america", "caribbean", "gulf of mexico",
+    "united states", "western us", "eastern us", "conus",
+]
+
+# "Pacific Time Zone" 等の時間帯表記は地理的 Pacific と区別して除外
+PACIFIC_TIMEZONE_PATTERNS = [
+    "pacific time", "pacific standard time", "pacific daylight",
+    "pacific time zone", "pst", "pdt",
+]
 
 # Agency ボーナス
 AGENCY_SCORE = {
@@ -167,23 +209,135 @@ def get_page_count(pdf_path: Path) -> int:
 
 
 # -------------------------------------------------------
-# キーワード検出
+# キーワード検出（3ソース分離版）
 # -------------------------------------------------------
 
-def detect_japan_keywords(text: str) -> list[str]:
-    """テキストから日本関連キーワードを検出して返す。"""
-    t = text.lower()
+def _kw_hits(text_lower: str, kwlists: list[list[str]]) -> list[str]:
+    """text_lower から複数リストのキーワードを検出してデdup返却する。"""
     found = []
-    for kw in JAPAN_MILIT_KW:
-        if kw in t:
-            found.append(kw)
-    for kw in JAPAN_BASE_KW:
-        if kw in t and kw not in found:
-            found.append(kw)
-    for kw in PACIFIC_KW:
-        if kw in t and kw not in found:
-            found.append(kw)
+    for kwlist in kwlists:
+        for kw in kwlist:
+            if kw in text_lower and kw not in found:
+                found.append(kw)
     return found
+
+
+def _location_is_pacific(location_lower: str) -> bool:
+    """
+    incident_location が地理的 Pacific / 東アジアを示すか判定する。
+    "Pacific Time Zone" 等の時間帯表記は除外する。
+    """
+    # 時間帯表記が含まれている場合は地理的 Pacific ではない
+    for tz in PACIFIC_TIMEZONE_PATTERNS:
+        if tz in location_lower:
+            return False
+    for kw in JAPAN_LOCATION_KW:
+        if kw in location_lower:
+            return True
+    return False
+
+
+def detect_japan_signals(filename: str, location: str, ocr_text: str) -> dict:
+    """
+    ファイル名・incident_location・OCR本文の3ソースでJapan関連シグナルを検出する。
+
+    Returns dict with keys:
+        fn_kw          : list[str]  ファイル名で検出されたキーワード
+        loc_kw         : list[str]  locationで検出されたキーワード
+        ocr_kw         : list[str]  OCR本文で検出されたキーワード
+        all_confirmed_kw: list[str] location/OCRで確認されたキーワード（弱シグナル除く）
+        japan_related  : bool       location or OCR に根拠あり = True
+        signal_source  : str        file_name / incident_location / ocr_text / mixed / conflict / ""
+        location_conflict     : bool
+        location_conflict_reason : str
+    """
+    fn_lower  = filename.lower()
+    loc_lower = location.lower()
+    ocr_lower = ocr_text.lower() if ocr_text else ""
+
+    # ---- ファイル名キーワード ----
+    fn_kw = []
+    for kw in JAPAN_FILENAME_WEAK_KW:
+        if kw in fn_lower and kw not in fn_kw:
+            fn_kw.append(kw)
+
+    # ---- location キーワード（タイムゾーン除外あり） ----
+    loc_kw = []
+    if _location_is_pacific(loc_lower):
+        for kw in JAPAN_LOCATION_KW:
+            if kw in loc_lower and kw not in loc_kw:
+                loc_kw.append(kw)
+    # location が "Pacific Ocean" 等の場合でも個別キーワードを収集
+    for kw in JAPAN_LOCATION_KW:
+        if kw in loc_lower and kw not in loc_kw:
+            # タイムゾーン文脈でないことを確認
+            is_tz = any(tz in loc_lower for tz in PACIFIC_TIMEZONE_PATTERNS)
+            if not is_tz:
+                loc_kw.append(kw)
+
+    # ---- OCR本文キーワード ----
+    ocr_kw = _kw_hits(ocr_lower, [JAPAN_MILIT_KW, JAPAN_BASE_KW, PACIFIC_KW])
+
+    # ---- conflict 検出 ----
+    # ファイル名に Japan キーワードがあるが、location が明示的に非日本地域
+    location_conflict = False
+    location_conflict_reason = ""
+
+    if fn_kw and not loc_kw and not ocr_kw:
+        for pat in NON_JAPAN_LOCATION_PATTERNS:
+            if pat in loc_lower:
+                location_conflict = True
+                location_conflict_reason = (
+                    f"filename has Japan keyword ({', '.join(fn_kw)}) "
+                    f"but incident_location='{location}' indicates non-Japan area ({pat})"
+                )
+                break
+        # "Pacific Time Zone" 等の偽陽性 Pacific
+        if not location_conflict and fn_kw:
+            for tz in PACIFIC_TIMEZONE_PATTERNS:
+                if tz in loc_lower:
+                    location_conflict = True
+                    location_conflict_reason = (
+                        f"filename has Japan keyword ({', '.join(fn_kw)}) "
+                        f"but incident_location='{location}' is a timezone, not a geographic location"
+                    )
+                    break
+
+    # ---- japan_related (confirmed 判定) ----
+    # location または OCR で根拠があるときのみ True
+    japan_related = bool(loc_kw) or bool(ocr_kw)
+
+    # ---- signal_source 文字列 ----
+    sources = []
+    if fn_kw:  sources.append("file_name")
+    if loc_kw: sources.append("incident_location")
+    if ocr_kw: sources.append("ocr_text")
+
+    if location_conflict:
+        signal_source = "conflict"
+    elif not sources:
+        signal_source = ""
+    elif len(sources) == 1:
+        signal_source = sources[0]
+    else:
+        signal_source = "mixed"
+
+    # 確認済みキーワード（location + OCR のみ）
+    all_confirmed: list[str] = []
+    for kw in loc_kw + ocr_kw:
+        if kw not in all_confirmed:
+            all_confirmed.append(kw)
+
+    return {
+        "fn_kw":                  fn_kw,
+        "loc_kw":                 loc_kw,
+        "ocr_kw":                 ocr_kw,
+        "all_confirmed_kw":       all_confirmed,
+        "japan_related":          japan_related,
+        "signal_source":          signal_source,
+        "location_conflict":      location_conflict,
+        "location_conflict_reason": location_conflict_reason,
+    }
 
 
 # -------------------------------------------------------
@@ -238,39 +392,67 @@ def score_pdf(cat: dict, cls_pages: list[dict], ocr_pages: list[dict],
             score += pts
             reasons.append(f"{label}({'+'if pts>=0 else ''}{pts})")
 
-    # --- 日本関連キーワード（ファイル名 + location） ---
-    search_text = filename + " " + location.lower()
-    kw_hits = detect_japan_keywords(search_text)
-
-    # OCRテキストがある場合も検索
-    ocr_kw_hits = []
+    # --- 日本関連シグナル（3ソース分離） ---
+    ocr_full = ""
     if ocr_pages:
-        ocr_full = " ".join(r.get("extracted_text","") for r in ocr_pages[:30])
-        ocr_kw_hits = detect_japan_keywords(ocr_full)
-        for kw in ocr_kw_hits:
-            if kw not in kw_hits:
-                kw_hits.append(kw)
+        ocr_full = " ".join(r.get("extracted_text", "") for r in ocr_pages[:30])
 
-    japan_related = "true" if kw_hits else "false"
+    js = detect_japan_signals(filename, location, ocr_full)
 
-    # キーワード別スコア加算
-    milit_hits  = [k for k in kw_hits if k in JAPAN_MILIT_KW]
-    base_hits   = [k for k in kw_hits if k in JAPAN_BASE_KW and k not in milit_hits]
-    pacific_hits = [k for k in kw_hits if k in PACIFIC_KW and k not in milit_hits and k not in base_hits]
-    loc_hits    = [k for k in kw_hits if k in JAPAN_LOCATION_KW and location]
+    japan_related        = "true" if js["japan_related"] else "false"
+    japan_signal_source  = js["signal_source"]
+    location_conflict    = "true" if js["location_conflict"] else "false"
+    location_conflict_reason = js["location_conflict_reason"]
 
-    if milit_hits:
+    # conflict 警告を notes に追記
+    if js["location_conflict"]:
+        notes.append(f"LOCATION_CONFLICT: {js['location_conflict_reason']}")
+
+    # ---- スコア加算ロジック ----
+    # OCR本文 or incident_location からの確認済みシグナル
+    ocr_milit  = [k for k in js["ocr_kw"] if k in JAPAN_MILIT_KW]
+    ocr_base   = [k for k in js["ocr_kw"] if k in JAPAN_BASE_KW and k not in ocr_milit]
+    ocr_pac    = [k for k in js["ocr_kw"] if k in PACIFIC_KW
+                  and k not in ocr_milit and k not in ocr_base]
+
+    loc_milit  = [k for k in js["loc_kw"] if k in JAPAN_MILIT_KW]
+    loc_base   = [k for k in js["loc_kw"] if k in JAPAN_BASE_KW and k not in loc_milit]
+    loc_pac    = [k for k in js["loc_kw"] if k not in loc_milit and k not in loc_base]
+
+    # OCR本文での日本キーワード（最強シグナル）
+    if ocr_milit:
         score += JAPAN_MILIT_SCORE
-        reasons.append(f"Japan_military_base({','.join(milit_hits)})+{JAPAN_MILIT_SCORE}")
-    if base_hits:
+        reasons.append(f"OCR_Japan_military_base({','.join(ocr_milit)})+{JAPAN_MILIT_SCORE}")
+    if ocr_base:
         score += JAPAN_BASE_SCORE
-        reasons.append(f"Japan_keyword({','.join(base_hits)})+{JAPAN_BASE_SCORE}")
-    if pacific_hits and not base_hits and not milit_hits:
+        reasons.append(f"OCR_Japan_keyword({','.join(ocr_base)})+{JAPAN_BASE_SCORE}")
+    if ocr_pac:
         score += PACIFIC_SCORE
-        reasons.append(f"Pacific_keyword({','.join(pacific_hits)})+{PACIFIC_SCORE}")
-    if location and any(k in location.lower() for k in JAPAN_LOCATION_KW):
-        score += JAPAN_LOCATION_SCORE
-        reasons.append(f"Japan_location({location})+{JAPAN_LOCATION_SCORE}")
+        reasons.append(f"OCR_Pacific_keyword({','.join(ocr_pac)})+{PACIFIC_SCORE}")
+
+    # incident_location での日本関連（強いシグナル）
+    if loc_milit:
+        score += JAPAN_MILIT_SCORE
+        reasons.append(f"location_Japan_military_base({','.join(loc_milit)})+{JAPAN_MILIT_SCORE}")
+    if loc_base:
+        score += JAPAN_BASE_SCORE
+        reasons.append(f"location_Japan_keyword({','.join(loc_base)})+{JAPAN_BASE_SCORE}")
+    if loc_pac:
+        score += PACIFIC_SCORE
+        reasons.append(f"location_Pacific({','.join(loc_pac)})+{PACIFIC_SCORE}")
+
+    # ファイル名のみの弱いシグナル（conflict の場合はスキップ）
+    if js["fn_kw"] and not js["loc_kw"] and not js["ocr_kw"] and not js["location_conflict"]:
+        score += JAPAN_FILENAME_WEAK_SCORE
+        reasons.append(f"filename_Japan_weak_signal({','.join(js['fn_kw'])})+{JAPAN_FILENAME_WEAK_SCORE}")
+
+    # japan_keywords 表示：confirmed のみ、なければ fn のみを weak として表示
+    if js["all_confirmed_kw"]:
+        kw_hits = js["all_confirmed_kw"]
+    elif js["fn_kw"]:
+        kw_hits = [f"{k}(filename-only)" for k in js["fn_kw"]]
+    else:
+        kw_hits = []
 
     # --- ページ数ボーナス ---
     pg_bonus, pg_note = page_score(page_count)
@@ -335,15 +517,18 @@ def score_pdf(cat: dict, cls_pages: list[dict], ocr_pages: list[dict],
         lane = "hold"
 
     return {
-        "page_count":           page_count if page_count > 0 else "",
-        "ocr_success_rate":     ocr_success_rate,
-        "review_required_count": review_required_count,
-        "japan_related":        japan_related,
-        "japan_keywords":       ",".join(kw_hits),
-        "candidate_score":      score,
-        "recommended_lane":     lane,
-        "reasons":              " | ".join(reasons),
-        "notes":                " | ".join(notes),
+        "page_count":              page_count if page_count > 0 else "",
+        "ocr_success_rate":        ocr_success_rate,
+        "review_required_count":   review_required_count,
+        "japan_related":           japan_related,
+        "japan_keywords":          ",".join(kw_hits),
+        "japan_signal_source":     japan_signal_source,
+        "location_conflict":       location_conflict,
+        "location_conflict_reason": location_conflict_reason,
+        "candidate_score":         score,
+        "recommended_lane":        lane,
+        "reasons":                 " | ".join(reasons),
+        "notes":                   " | ".join(notes),
     }
 
 
@@ -354,7 +539,9 @@ def score_pdf(cat: dict, cls_pages: list[dict], ocr_pages: list[dict],
 CSV_FIELDS = [
     "file_name", "agency", "release_date", "incident_date", "incident_location",
     "file_type", "page_count", "ocr_success_rate", "review_required_count",
-    "japan_related", "japan_keywords", "candidate_score", "recommended_lane",
+    "japan_related", "japan_keywords", "japan_signal_source",
+    "location_conflict", "location_conflict_reason",
+    "candidate_score", "recommended_lane",
     "reasons", "notes",
 ]
 
@@ -434,10 +621,18 @@ def main():
         print(f"  [{r['candidate_score']:>3}] {r['file_name'][:55]:<55} {r['agency']}")
 
     print()
-    print("=== 日本関連候補 ===")
+    print("=== 日本関連候補（confirmed: location/OCR根拠あり） ===")
     for r in japan:
         print(f"  [{r['candidate_score']:>3}] [{r['recommended_lane']:<9}] "
-              f"{r['file_name'][:50]}  kw={r['japan_keywords']}")
+              f"{r['file_name'][:48]}  src={r['japan_signal_source']}  kw={r['japan_keywords']}")
+
+    conflicts = [r for r in all_rows if r["location_conflict"] == "true"]
+    if conflicts:
+        print()
+        print("=== 場所矛盾（conflict）検出 ===")
+        for r in conflicts:
+            print(f"  [{r['candidate_score']:>3}] {r['file_name'][:48]}")
+            print(f"       {r['location_conflict_reason']}")
 
     print()
     print(f"CSV 出力: {OUTPUT_CSV}  ({len(all_rows)} 件)")
