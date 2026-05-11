@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+
+# OCR・生成物
+page_images/
+thumbnails/
+
+# 一時ファイル
+*.tmp
+*.log
+
+# OCR途中生成
+extracted_text/*.tmp
+
+# nano backup
+*~
+
+# Raw PDFs
+raw_pdf/
