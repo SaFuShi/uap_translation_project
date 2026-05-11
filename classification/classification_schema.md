@@ -115,3 +115,77 @@ OCR推奨: false
 
 - unreadable:
   処理対象外として記録する
+
+## 自動処理優先ルール
+
+このプロジェクトでは、人間確認を最小化するため、
+分類後すぐに人間確認へ回すのではなく、
+可能なページは一度自動処理を試す。
+
+### 追加出力項目
+
+分類結果には以下も追加する。
+
+- processing_action
+- review_required
+
+### processing_action の種類
+
+- run_ocr:
+  通常OCRを実行する
+
+- try_ocr:
+  OCR可能性があるため一度OCRを試す
+
+- try_layout_ocr:
+  新聞・雑誌切り抜きなど、レイアウトを意識したOCRを試す
+
+- try_vision_or_review:
+  手書き中心など、通常OCRでは難しいためLLM画像理解または人間確認へ回す
+
+- extract_metadata:
+  表紙・管理票からメタデータ抽出を行う
+
+- skip_ocr:
+  OCRせず記録のみ行う
+
+- skip_and_record:
+  判読困難として記録する
+
+### 自動ルーティング方針
+
+- typed_text:
+  processing_action = run_ocr
+  review_required = false
+
+- mixed_annotation:
+  processing_action = try_ocr
+  review_required = true
+
+- newspaper_or_print_clipping:
+  processing_action = try_layout_ocr
+  review_required = true
+
+- handwritten:
+  processing_action = try_vision_or_review
+  review_required = true
+
+- image_or_photo:
+  processing_action = skip_ocr
+  review_required = false
+
+- admin_or_cover:
+  processing_action = extract_metadata
+  review_required = false
+
+- unreadable:
+  processing_action = skip_and_record
+  review_required = true
+
+## 手書き文書の扱い
+
+手書き中心ページは、通常OCRでは精度が低い可能性が高いため、
+最初から通常OCRの主対象にはしない。
+
+ただし、タイプ文書に手書きメモが混在する場合は、
+タイプ本文だけOCRを試し、手書き部分は注釈候補として記録する。
