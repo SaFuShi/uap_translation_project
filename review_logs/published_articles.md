@@ -289,18 +289,159 @@ UAP_TRANSLATION_PROJECT/
 
 ---
 
+### #018 — レーダー捕捉・赤点滅・妨害電波受信（場所不明・2020年10月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | レーダー捕捉・赤点滅・妨害電波受信──場所不明・2020年10月【AI概要版 #018】 |
+| **元PDFファイル名** | dow-uap-d58-range-fouler-debrief-na-october-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n9c1a2459694f |
+| **テーマ分類** | 軍用機ISR・Range Fouler（場所不明・2020年10月） |
+| **ドラフトファイル** | `published_articles/ai_summary_018_d58_range_fouler_na_oct2020_note_version.md` |
+
+**注意点**
+- 発生場所「N/A」。センサーFOV内で1機がもう1機を1/30秒で周回して消えたとの記述あり
+- 赤色点滅ストローブ目視・ノイズジャミング（2本シェブロン）受信を記録
+
+---
+
+### #019 — 速度321ノット・東方向へ加速した不明航空現象（アラビア湾・2020年）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 速度321ノット・東方向へ加速した不明航空現象──アラビア湾・2020年【AI概要版 #019】 |
+| **元PDFファイル名** | dow-uap-d4-mission-report-arabian-gulf-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nd705d6119670 |
+| **テーマ分類** | 軍用機MISREP（アラビア湾・2020年） |
+| **ドラフトファイル** | `published_articles/ai_summary_019_d4_arabian_gulf_2020_note_version.md` |
+
+**注意点**
+- 5ページ大部分黒塗り（SECRET//REL TO USA, FVEY）・有効テキスト約338文字
+- インシデント日付「N/A」・MGRS 34SDG（アラビア湾域）
+- 速度推定321ノットの後、東方向へ加速。短時間観測のため高度推定不可
+
+---
+
+### #020 — SWIRカメラのみに映ったダイヤモンド形UAPと非稼働の「突起物」（地中海・2024年1月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | SWIRカメラのみに映ったダイヤモンド形UAPと非稼働の「突起物」──地中海・2024年1月【AI概要版 #020】 |
+| **元PDFファイル名** | dow-uap-d25-mission-report-greece-january-2024.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/na3cf23f3cf06 |
+| **テーマ分類** | 軍用機MISREP（地中海・2024年1月） |
+| **ドラフトファイル** | `published_articles/ai_summary_020_d25_mediterranean_greece_2024_note_version.md` |
+
+**注意点**
+- SWIRカメラのみ捕捉・EO/IRでは確認されず
+- ダイヤモンド形・非稼働の突起物・約434ノット・2分間
+- ギリシャLGLR（ラリサ空軍基地）付近・observer評価はBenign
+
+---
+
+### #021 — 雲の間に4機のUAPを目視（アラビア湾・2020年）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 雲の間に4機のUAPを目視──アラビア湾・2020年【AI概要版 #021】 |
+| **元PDFファイル名** | dow-uap-d3-mission-report-arabian-gulf-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/na6119fe94348 |
+| **テーマ分類** | 軍用機MISREP（アラビア湾・2020年） |
+| **ドラフトファイル** | `published_articles/ai_summary_021_d3_arabian_gulf_2020_note_version.md` |
+
+**注意点**
+- 7ページ大部分黒塗り（1.4(a)/1.4(c)区分）
+- 3タイムコードで4機を観測・クラウドカバーで追跡困難
+- Advanced Capabilities欄: NO
+
+---
+
+### #022 — テキスト抽出不可（ペルシャ湾・2020年8月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | テキスト抽出不可──ペルシャ湾・2020年8月【AI概要版 #022】 |
+| **元PDFファイル名** | dow-uap-d60-mission-report-persian-gulf-august-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n66824c3adede |
+| **テーマ分類** | 軍用機MISREP（ペルシャ湾・2020年8月）※OCR不可 |
+| **ドラフトファイル** | `published_articles/ai_summary_022_d60_persian_gulf_aug2020_note_version.md` |
+
+**注意点**
+- 6ページ・テキスト層なし（抽出文字数約5文字）・スキャン画像のみ
+- OCR不可のため内容解析不可として記事化
+
+---
+
+### #023 — 安保施設上空で8分間目視された大型青色三角形（太平洋時間帯・2023年3月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 安保施設上空で8分間目視された大型青色三角形──太平洋時間帯・2023年3月【AI概要版 #023】 |
+| **元PDFファイル名** | dow-uap-d51-email-correspondence-pacific-time-zone-march-2023.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n84094afa1a51 |
+| **テーマ分類** | 機密解除メール・民間目撃・AFOSI関与（太平洋時間帯・2023年3月） |
+| **ドラフトファイル** | `published_articles/ai_summary_023_d51_pacific_email_2023_note_version.md` |
+
+**注意点**
+- 民間人による安保施設上空目撃・後退するジャンプ動作の記述
+- AFOSI派生分類審査済み・SECRET//NOFORNから非機密への分類変更承認
+
+---
+
+### #024 — 高高度・高速で複数の不明飛行物体（パプアニューギニア・1985年1月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 高高度・高速で複数の不明飛行物体──パプアニューギニア・1985年1月【AI概要版 #024】 |
+| **元PDFファイル名** | dos-uap-d1-cable-1-papua-new-guinea-january-1985.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n9dc6f10e4146 |
+| **テーマ分類** | 国務省外交電報（パプアニューギニア・1985年） |
+| **ドラフトファイル** | `published_articles/ai_summary_024_dos_d1_papua_new_guinea_1985_note_version.md` |
+
+**注意点**
+- 初の国務省（DoS）外交電報記事
+- Air Niuginiパイロットがレーダー確認・米大使館は該当機なしと回答
+- MRN 85 PORT MORESBY 199・CSP-2025-00040
+
+---
+
+### #025 — 機体より速く飛行したUAP（アデン湾・2024年7月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 機体より速く飛行したUAP──アデン湾・2024年7月【AI概要版 #025】 |
+| **元PDFファイル名** | dow-uap-d75-mission-report-gulf-of-aden-july-2024.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n381bc0b8487a |
+| **テーマ分類** | 軍用機MISREP（アデン湾・2024年7月） |
+| **ドラフトファイル** | `published_articles/ai_summary_025_d75_gulf_of_aden_2024_note_version.md` |
+
+**注意点**
+- 「観測機より速い」UAP・124 ATKS / 132 Wing・低高度NW飛行
+- USCENTCOM MDR 25-0072・2025年6月2日 AARO承認
+- observer評価はBenign・装備影響なし
+
+---
+
 ## 統計サマリー
 
 | 項目 | 値 |
 |---|---|
-| 総記事数 | 16件（#001〜#016） |
-| **公開済み（Git版一致）** | **7件（#010〜#016）** |
+| 総記事数 | 24件（#001〜#025、#017除く） |
+| **公開済み（Git版一致）** | **15件（#010〜#016・#018〜#025）** |
 | **公開済み（Git版は参考ドラフト）** | **4件（#006〜#009）** |
 | 未公開 | 5件（#001〜#005） |
 | テーマ: アポロ計画 | 4件（#004〜#007） |
 | テーマ: FBI/目撃証言 | 3件（#001〜#003） |
-| テーマ: 軍用機ISR/Range Fouler | 5件（#008・#009・#012・#013） |
-| テーマ: 軍用機MISREP | 3件（#011・#014・#016） |
+| テーマ: 軍用機ISR/Range Fouler | 6件（#008・#009・#012・#013・#018） |
+| テーマ: 軍用機MISREP | 4件（#011・#014・#016・#019） |
 | テーマ: ティアライン承認メール | 2件（#010・#015） |
 
 ---
