@@ -1,0 +1,11 @@
+file_name,agency,page_count,text_layer,ocr_success_rate,review_required_count,candidate_score,recommended_reason,risk_notes
+nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf,NASA,2,false,0,0,60,アポロ17号シリーズの連続記事として書きやすい。Evans火球・Schmitt ALFMED光フラッシュ補足あり。2ページで短くまとめられる,Tesseract OCR完全失敗（0文字）。目視確認済みで内容は把握済み。記事作成は画像読み取り対応が必要
+dow-uap-d28-mission-report-east-china-sea-2024.pdf,Department of War,6,true,90,0,35,AC-130がPGM武器投下中にUAPをセンサー捕捉。「物体が主UAP から分離した可能性」言及。テキスト層完全で処理しやすい,SECRET//REL TO USA,FVEY（機密解除済み）。発生場所の座標は黒塗り（38SKC55はMGRS・東シナ海域）
+dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf,Department of War,1,true,85,0,45,「白い球体が海面上で不規則運動」。センサー追跡あり・4倍ズーム取得。1ページで処理が速い,OCR一部乱れあり（読み取り可能レベル）。名前・部隊等は黒塗り
+dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf,Department of War,1,true,80,0,45,3機の未確認飛行体を目視確認（1機→3機に増加）。アラビア海北部。翼・金属反射・丸い形状にチェックあり,OCR一部乱れあり（読み取り可能レベル）。名前・部隊等は黒塗り
+dow-uap-d52-email-correspondance-na-august-2024.pdf,Department of War,2,true,90,0,38,「楕円/オーブ型」2時間以上追跡。UNCLASS tearlineに詳細あり。メール形式で読みやすい,SECRET//NOFORN。発生場所不明（N/A）。31 OCT 2024
+dow-uap-d20-mission-report-southern-united-states-2023.pdf,Department of War,6,true,75,0,35,F-16 2機編隊が「複数の可能性あるUAP」を観察。2023年3月。テキスト層あり,OCR文字化け有（内容把握には概ね影響なし）。武器使用記述あり（DCA任務中）
+dow-uap-d42-range-fouler-debrief-japan-2023.pdf,Department of War,1,true,70,1,45,ファイル名に「japan」含む。実際の発生場所はアラビア湾（MGRS 39RWL）。記事で明示的に誤解を解く価値がある,OCR文字化け多数（読み取りには改善が必要）。ファイル名と発生場所の乖離に関する注意書き必須
+dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf,Department of War,1,true,70,0,45,アラビア海 2020年10月のRange Foulerフォーム。内容詳細は未確認（類似フォーム形式の可能性）,OCR一部乱れあり。内容の詳細確認が必要（記事化可否は読み込み後に判断）
+dow-uap-d50-email-correspondence-indopacom-april-2025.pdf,Department of War,2,true,85,0,38,INDOPACOMエリアのUAP事案に関する分類レベル確認の内部通信。2025年4月。テキスト层あり,SECRET//NOFORN。実際のUAP観察内容は少なく、主にUNCLASS tearlineの確認通信
+nasa-uap-d5-apollo-17-crew-debriefing-for-science-1973.pdf,NASA,3,true,60,1,60,注意：本文書にUAP観察記述が見当たらない。銀河UV天文学（Lyman-alpha水素）の科学発表記録の可能性が高い。記事化の前に必ず人間が内容を確認すること,テキスト層がありp.2-3は読めるが内容はUV天文学。UAP記録として記事化すると誤情報になる可能性が高い。breaking lane再評価を推奨

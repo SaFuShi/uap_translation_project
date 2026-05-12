@@ -1,5 +1,6 @@
-# AI概要版テンプレート（UAP_TRANSLATION_PROJECT）
+# AI概要版テンプレート（UAP_TRANSLATION_PROJECT）【旧版 / 非推奨】
 # 基準：ai_reading_001_composite-sketch_20240430_note_version.md
+# ⚠️ このファイルは旧版です。新規記事には TEMPLATE_ai_summary.md を使用してください（2026-05-12 更新）
 
 ---
 
