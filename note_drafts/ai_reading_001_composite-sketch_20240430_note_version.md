@@ -68,6 +68,7 @@ PDFのメタデータには制作ソフト（Adobe Photoshop 25.6 Windows版）�
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/2024-04-30-composite-sketch.pdf
+- 元PDFファイル名：2024-04-30-composite-sketch.pdf
 
 ---
 

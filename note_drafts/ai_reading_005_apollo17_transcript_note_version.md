@@ -105,6 +105,7 @@ S-IVBロケット段との分離直後、乗組員が多数の破片が漂うの
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/nasa-uap-d2-apollo-17-transcript-1972.pdf
+- 元PDFファイル名：nasa-uap-d2-apollo-17-transcript-1972.pdf
 
 ---
 

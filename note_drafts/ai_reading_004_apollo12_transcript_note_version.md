@@ -96,6 +96,7 @@
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/nasa-uap-d1-apollo-12-transcript-1969.pdf
+- 元PDFファイル名：nasa-uap-d1-apollo-12-transcript-1969.pdf
 
 ---
 

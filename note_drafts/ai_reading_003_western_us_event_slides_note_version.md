@@ -75,6 +75,7 @@ PowerPointで作成されたブリーフィング用スライドですが、誰�
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/western_us_event_slides_5.08.2026.pdf
+- 元PDFファイル名：western_us_event_slides_5.08.2026.pdf
 
 ---
 

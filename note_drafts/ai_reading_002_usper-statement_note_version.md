@@ -84,6 +84,7 @@ FLIRや肉眼で観察された現象の描写であり、物体の正体や技�
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/usper-statement-redacted.pdf
+- 元PDFファイル名：usper-statement-redacted.pdf
 
 ---
 
