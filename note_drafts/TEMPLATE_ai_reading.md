@@ -85,6 +85,7 @@
 
 - WAR.GOV：https://www.war.gov/UFO/
 - 元PDF：https://www.war.gov/medialink/ufo/release_1/{{file_name}}
+- 元PDFファイル名：{{file_name}}
 
 ---
 

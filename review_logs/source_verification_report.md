@@ -1,5 +1,5 @@
 # AI概要版 原文照合チェックレポート
-生成日時: 2026-05-12 09:55
+生成日時: 2026-05-12 10:26
 
 ---
 
@@ -19,235 +19,122 @@
 
 | ファイル | PDF照合 | ERROR | WARNING | INFO | 判定 |
 |---|---|---|---|---|---|
-| ai_reading_001_composite-sketch_20240430.md | 🔍0文字 | 0 | 1 | 0 | ⚠️ 要確認 |
-| ai_reading_001_composite-sketch_20240430_note_version.md | 🔍0文字 | 0 | 0 | 3 | 💬 確認推奨 |
-| ai_reading_002_usper-statement_note_version.md | 📄7242文字 | 0 | 0 | 2 | 💬 確認推奨 |
-| ai_reading_003_western_us_event_slides_note_version.md | 📄5777文字 | 0 | 0 | 2 | 💬 確認推奨 |
-| ai_reading_004_apollo12_transcript_note_version.md | 📄6173文字 | 0 | 0 | 2 | 💬 確認推奨 |
-| ai_reading_005_apollo17_transcript_note_version.md | 📄22061文字 | 0 | 0 | 2 | 💬 確認推奨 |
-| ai_reading_006_apollo11_debriefing_note_version.md | 🔍0文字 | 0 | 0 | 3 | 💬 確認推奨 |
-| ai_reading_007_apollo17_technical_debriefing_note_version.md | 🔍0文字 | 0 | 0 | 4 | 💬 確認推奨 |
-| ai_reading_008_d38_middle_east_isr_note_version.md | 📄3441文字 | 0 | 0 | 3 | 💬 確認推奨 |
-| ai_reading_009_d56_arabian_sea_note_version.md | 📄3569文字 | 0 | 0 | 3 | 💬 確認推奨 |
-| ai_summary_007_apollo17_debriefing_note_version_revised.md | 🔍0文字 | 0 | 0 | 4 | 💬 確認推奨 |
-| ai_summary_008_persian_gulf_range_fouler_note_version_revised.md | 📄3441文字 | 0 | 0 | 3 | 💬 確認推奨 |
-| **合計 (12件)** | | **0** | **1** | **31** | |
+| ai_summary_010_d52_email_uap_orb_note_version.md | 📄779文字 | 0 | 0 | 2 | 💬 確認推奨 |
+| ai_summary_011_d28_armed_overwatch_iraq_note_version.md | 📄9716文字 | 0 | 0 | 3 | 💬 確認推奨 |
+| ai_summary_012_d44_arabian_sea_oct2020_note_version.md | 📄3372文字 | 0 | 0 | 3 | 💬 確認推奨 |
+| ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md | 📄3175文字 | 0 | 0 | 3 | 💬 確認推奨 |
+| ai_summary_014_d20_f16_middle_east_note_version.md | 📄8168文字 | 0 | 0 | 3 | 💬 確認推奨 |
+| ai_summary_015_d50_indopacom_email_note_version.md | 📄1202文字 | 0 | 0 | 2 | 💬 確認推奨 |
+| **合計 (6件)** | | **0** | **0** | **16** | |
 
 ---
 
 ## 詳細レポート
 
-### ai_reading_001_composite-sketch_20240430.md
-
-**判定: ⚠️ 要確認**
-
-- File Name: `(不明)`
-- PDF照合方法: File Name なし
-
-- ⚠️ **[WARNING] File Name**  
-  記事にFile Nameが記載されていません
-
----
-
-### ai_reading_001_composite-sketch_20240430_note_version.md
+### ai_summary_010_d52_email_uap_orb_note_version.md
 
 **判定: 💬 確認推奨**
 
-- File Name: `2024-04-30-composite-sketch.pdf`
-- PDF照合方法: テキスト層なし（スキャン専用PDF）
+- File Name: `dow-uap-d52-email-correspondance-na-august-2024.pdf`
+- PDF照合方法: テキスト層から抽出（779文字）
 
-- 💬 **[INFO] 英文引用照合**  
-  「2024-04-30-composite-sketch.pdf」のテキスト層が取得できないため引用照合をスキップしました
-  → *スキャン専用PDFの場合は目視確認が必要です*
 - 💬 **[INFO] OCRパイプライン**  
-  「2024-04-30-composite-sketch.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  「dow-uap-d52-email-correspondance-na-august-2024.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
   → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
 - 💬 **[INFO] テキスト層レポート**  
-  「2024-04-30-composite-sketch.pdf」の text_layer_report.csv エントリがありません
+  「dow-uap-d52-email-correspondance-na-august-2024.pdf」の text_layer_report.csv エントリがありません
   → *個別処理の場合はこの警告を無視してください*
 
 ---
 
-### ai_reading_002_usper-statement_note_version.md
+### ai_summary_011_d28_armed_overwatch_iraq_note_version.md
 
 **判定: 💬 確認推奨**
 
-- File Name: `usper-statement-redacted.pdf`
-- PDF照合方法: テキスト層から抽出（7242文字）
-
-- 💬 **[INFO] OCRパイプライン**  
-  「usper-statement-redacted.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「usper-statement-redacted.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_003_western_us_event_slides_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `western_us_event_slides_5.08.2026.pdf`
-- PDF照合方法: テキスト層から抽出（5777文字）
-
-- 💬 **[INFO] OCRパイプライン**  
-  「western_us_event_slides_5.08.2026.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「western_us_event_slides_5.08.2026.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_004_apollo12_transcript_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `nasa-uap-d1-apollo-12-transcript-1969.pdf`
-- PDF照合方法: テキスト層から抽出（6173文字）
-
-- 💬 **[INFO] OCRパイプライン**  
-  「nasa-uap-d1-apollo-12-transcript-1969.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「nasa-uap-d1-apollo-12-transcript-1969.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_005_apollo17_transcript_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `nasa-uap-d2-apollo-17-transcript-1972.pdf`
-- PDF照合方法: テキスト層から抽出（22061文字）
-
-- 💬 **[INFO] OCRパイプライン**  
-  「nasa-uap-d2-apollo-17-transcript-1972.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「nasa-uap-d2-apollo-17-transcript-1972.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_006_apollo11_debriefing_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `nasa-uap-d4-apollo-11-technical-crew-debriefing-1969.pdf`
-- PDF照合方法: テキスト層なし（スキャン専用PDF）
-
-- 💬 **[INFO] 英文引用照合**  
-  「nasa-uap-d4-apollo-11-technical-crew-debriefing-1969.pdf」のテキスト層が取得できないため引用照合をスキップしました
-  → *スキャン専用PDFの場合は目視確認が必要です*
-- 💬 **[INFO] OCRパイプライン**  
-  「nasa-uap-d4-apollo-11-technical-crew-debriefing-1969.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「nasa-uap-d4-apollo-11-technical-crew-debriefing-1969.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_007_apollo17_technical_debriefing_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf`
-- PDF照合方法: テキスト層なし（スキャン専用PDF）
-
-- 💬 **[INFO] Incident Date**  
-  年が一致しません（記事: 1972 / カタログ: 1973）（記事原文: 「1972年（アポロ17号ミッション）」 / カタログ原文: 「1973」）
-  → *インシデント日と文書作成日が異なる場合があります。意図的なら注記を*
-- 💬 **[INFO] 英文引用照合**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」のテキスト層が取得できないため引用照合をスキップしました
-  → *スキャン専用PDFの場合は目視確認が必要です*
-- 💬 **[INFO] OCRパイプライン**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_reading_008_d38_middle_east_isr_note_version.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf`
-- PDF照合方法: テキスト層から抽出（3441文字）
+- File Name: `dow-uap-d28-mission-report-east-china-sea-2024.pdf`
+- PDF照合方法: テキスト層から抽出（9716文字）
 
 - 💬 **[INFO] Incident Location**  
-  カタログ「Middle East」と記事「北緯28°31′・東経49°52′付近（ペルシャ湾上）」に共通語なし
+  カタログ「Iraq」と記事「イラク・アイン・アル・アサド空軍基地周辺（MGRS 38SKC55）」に共通語なし
   → *翻訳・詳細化は問題ありませんが、矛盾がないか確認してください*
 - 💬 **[INFO] OCRパイプライン**  
-  「dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  「dow-uap-d28-mission-report-east-china-sea-2024.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
   → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
 - 💬 **[INFO] テキスト層レポート**  
-  「dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf」の text_layer_report.csv エントリがありません
+  「dow-uap-d28-mission-report-east-china-sea-2024.pdf」の text_layer_report.csv エントリがありません
   → *個別処理の場合はこの警告を無視してください*
 
 ---
 
-### ai_reading_009_d56_arabian_sea_note_version.md
+### ai_summary_012_d44_arabian_sea_oct2020_note_version.md
 
 **判定: 💬 確認推奨**
 
-- File Name: `dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf`
-- PDF照合方法: テキスト層から抽出（3569文字）
+- File Name: `dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf`
+- PDF照合方法: テキスト層から抽出（3372文字）
 
 - 💬 **[INFO] Incident Location**  
-  カタログ「Arabian Sea」と記事「アラビア海北部（北緯21°44′付近）」に共通語なし
+  カタログ「Arabian Sea」と記事「アデン湾上空（推定緯度経度・MGRS 40Q付近）」に共通語なし
   → *翻訳・詳細化は問題ありませんが、矛盾がないか確認してください*
 - 💬 **[INFO] OCRパイプライン**  
-  「dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  「dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
   → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
 - 💬 **[INFO] テキスト層レポート**  
-  「dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf」の text_layer_report.csv エントリがありません
+  「dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf」の text_layer_report.csv エントリがありません
   → *個別処理の場合はこの警告を無視してください*
 
 ---
 
-### ai_summary_007_apollo17_debriefing_note_version_revised.md
+### ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md
 
 **判定: 💬 確認推奨**
 
-- File Name: `nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf`
-- PDF照合方法: テキスト層なし（スキャン専用PDF）
-
-- 💬 **[INFO] Incident Date**  
-  年が一致しません（記事: 1972 / カタログ: 1973）（記事原文: 「1972年（アポロ17号ミッション）」 / カタログ原文: 「1973」）
-  → *インシデント日と文書作成日が異なる場合があります。意図的なら注記を*
-- 💬 **[INFO] 英文引用照合**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」のテキスト層が取得できないため引用照合をスキップしました
-  → *スキャン専用PDFの場合は目視確認が必要です*
-- 💬 **[INFO] OCRパイプライン**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
-  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
-- 💬 **[INFO] テキスト層レポート**  
-  「nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf」の text_layer_report.csv エントリがありません
-  → *個別処理の場合はこの警告を無視してください*
-
----
-
-### ai_summary_008_persian_gulf_range_fouler_note_version_revised.md
-
-**判定: 💬 確認推奨**
-
-- File Name: `dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf`
-- PDF照合方法: テキスト層から抽出（3441文字）
+- File Name: `dow-uap-d57-mission-report-gulf-of-aden-september-2020.pdf`
+- PDF照合方法: テキスト層から抽出（3175文字）
 
 - 💬 **[INFO] Incident Location**  
-  カタログ「Middle East」と記事「北緯28°31′・東経49°52′付近（ペルシャ湾上）」に共通語なし
+  カタログ「Gulf of Aden」と記事「アデン湾上空（推定・MGRS 38P付近）」に共通語なし
   → *翻訳・詳細化は問題ありませんが、矛盾がないか確認してください*
 - 💬 **[INFO] OCRパイプライン**  
-  「dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  「dow-uap-d57-mission-report-gulf-of-aden-september-2020.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
   → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
 - 💬 **[INFO] テキスト層レポート**  
-  「dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf」の text_layer_report.csv エントリがありません
+  「dow-uap-d57-mission-report-gulf-of-aden-september-2020.pdf」の text_layer_report.csv エントリがありません
+  → *個別処理の場合はこの警告を無視してください*
+
+---
+
+### ai_summary_014_d20_f16_middle_east_note_version.md
+
+**判定: 💬 確認推奨**
+
+- File Name: `dow-uap-d20-mission-report-southern-united-states-2023.pdf`
+- PDF照合方法: テキスト層から抽出（8168文字）
+
+- 💬 **[INFO] Incident Location**  
+  カタログ「Iraq」と記事「中東・サウジアラビア周辺（ESSA空域、プリンス・スルタン空軍基地出発）」に共通語なし
+  → *翻訳・詳細化は問題ありませんが、矛盾がないか確認してください*
+- 💬 **[INFO] OCRパイプライン**  
+  「dow-uap-d20-mission-report-southern-united-states-2023.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
+- 💬 **[INFO] テキスト層レポート**  
+  「dow-uap-d20-mission-report-southern-united-states-2023.pdf」の text_layer_report.csv エントリがありません
+  → *個別処理の場合はこの警告を無視してください*
+
+---
+
+### ai_summary_015_d50_indopacom_email_note_version.md
+
+**判定: 💬 確認推奨**
+
+- File Name: `dow-uap-d50-email-correspondence-indopacom-april-2025.pdf`
+- PDF照合方法: テキスト層から抽出（1202文字）
+
+- 💬 **[INFO] OCRパイプライン**  
+  「dow-uap-d50-email-correspondence-indopacom-april-2025.pdf」の OCR パイプライン実行記録が ocr_results.csv にありません
+  → *個別処理（手動OCR）で対応した場合はこの警告を無視してください*
+- 💬 **[INFO] テキスト層レポート**  
+  「dow-uap-d50-email-correspondence-indopacom-april-2025.pdf」の text_layer_report.csv エントリがありません
   → *個別処理の場合はこの警告を無視してください*
 
 ---

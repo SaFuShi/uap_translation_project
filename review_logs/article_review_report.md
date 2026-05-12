@@ -1,5 +1,5 @@
 # AI概要版 品質チェックレポート
-生成日時: 2026-05-12 09:39
+生成日時: 2026-05-12 10:26
 
 ---
 
@@ -7,64 +7,19 @@
 
 | ファイル | ERROR | WARNING | INFO | 判定 |
 |---|---|---|---|---|
-| ai_reading_001_composite-sketch_20240430.md | 0 | 4 | 1 | ⚠️ 要確認 |
-| ai_reading_001_composite-sketch_20240430_note_version.md | 0 | 1 | 1 | ⚠️ 要確認 |
-| ai_reading_002_usper-statement_note_version.md | 0 | 0 | 2 | 💬 参考情報あり |
-| ai_reading_003_western_us_event_slides_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
-| ai_reading_004_apollo12_transcript_note_version.md | 0 | 1 | 0 | ⚠️ 要確認 |
-| ai_reading_005_apollo17_transcript_note_version.md | 0 | 1 | 0 | ⚠️ 要確認 |
-| ai_reading_006_apollo11_debriefing_note_version.md | 0 | 1 | 0 | ⚠️ 要確認 |
-| ai_reading_007_apollo17_technical_debriefing_note_version.md | 0 | 1 | 1 | ⚠️ 要確認 |
-| ai_reading_008_d38_middle_east_isr_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
-| ai_reading_009_d56_arabian_sea_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
-| ai_summary_007_apollo17_debriefing_note_version_revised.md | 0 | 0 | 1 | 💬 参考情報あり |
-| ai_summary_008_persian_gulf_range_fouler_note_version_revised.md | 0 | 0 | 1 | 💬 参考情報あり |
-| **合計 (12件)** | **0** | **9** | **8** | |
+| ai_summary_010_d52_email_uap_orb_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_011_d28_armed_overwatch_iraq_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_012_d44_arabian_sea_oct2020_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_014_d20_f16_middle_east_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_015_d50_indopacom_email_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| **合計 (6件)** | **0** | **0** | **3** | |
 
 ---
 
 ## 詳細レポート
 
-### ai_reading_001_composite-sketch_20240430.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 行数**  
-  171行（目標上限: 90行）
-- ⚠️ **[WARNING] 出典**  
-  「元PDF：」の行が出典セクションにありません
-- ⚠️ **[WARNING] 免責事項**  
-  免責事項に以下が見当たりません: AI概要版
-- ⚠️ **[WARNING] 注意点セクション**  
-  「## 注意点」セクションが見当たりません
-- 💬 **[INFO] 自然説明**  
-  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
-
----
-
-### ai_reading_001_composite-sketch_20240430_note_version.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 免責事項**  
-  免責事項に以下が見当たりません: AI概要版
-- 💬 **[INFO] 自然説明**  
-  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
-
----
-
-### ai_reading_002_usper-statement_note_version.md
-
-**判定: 💬 参考情報あり**
-
-- 💬 **[INFO] 行数**  
-  96行（目標上限: 90行）
-- 💬 **[INFO] 自然説明**  
-  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
-
----
-
-### ai_reading_003_western_us_event_slides_note_version.md
+### ai_summary_010_d52_email_uap_orb_note_version.md
 
 **判定: ✅ 問題なし**
 
@@ -72,45 +27,7 @@
 
 ---
 
-### ai_reading_004_apollo12_transcript_note_version.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 行数**  
-  108行（目標上限: 90行）
-
----
-
-### ai_reading_005_apollo17_transcript_note_version.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 行数**  
-  117行（目標上限: 90行）
-
----
-
-### ai_reading_006_apollo11_debriefing_note_version.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 行数**  
-  101行（目標上限: 90行）
-
----
-
-### ai_reading_007_apollo17_technical_debriefing_note_version.md
-
-**判定: ⚠️ 要確認**
-
-- ⚠️ **[WARNING] 強い表現** （行33）  
-  「直接的な証拠」という強い表現 → 「暗順応中に継続的に見えていた光フラッシュが、ALFMED実験でアイマスクを装着した時間帯だけ消えたとシュミットは報告して」
-- 💬 **[INFO] 行数**  
-  98行（目標上限: 90行）
-
----
-
-### ai_reading_008_d38_middle_east_isr_note_version.md
+### ai_summary_011_d28_armed_overwatch_iraq_note_version.md
 
 **判定: ✅ 問題なし**
 
@@ -118,7 +35,7 @@
 
 ---
 
-### ai_reading_009_d56_arabian_sea_note_version.md
+### ai_summary_012_d44_arabian_sea_oct2020_note_version.md
 
 **判定: 💬 参考情報あり**
 
@@ -127,16 +44,24 @@
 
 ---
 
-### ai_summary_007_apollo17_debriefing_note_version_revised.md
+### ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md
 
-**判定: 💬 参考情報あり**
+**判定: ✅ 問題なし**
 
-- 💬 **[INFO] 行数**  
-  94行（目標上限: 90行）
+チェック項目に問題は見当たりませんでした。
 
 ---
 
-### ai_summary_008_persian_gulf_range_fouler_note_version_revised.md
+### ai_summary_014_d20_f16_middle_east_note_version.md
+
+**判定: 💬 参考情報あり**
+
+- 💬 **[INFO] 自然説明**  
+  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
+
+---
+
+### ai_summary_015_d50_indopacom_email_note_version.md
 
 **判定: 💬 参考情報あり**
 
