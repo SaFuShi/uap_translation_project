@@ -1,14 +1,29 @@
 # 公開済み・作成済み記事一覧
 
-最終更新：2026-05-12
+最終更新：2026-05-12（ディレクトリ整理実施）
+
+---
+
+## ディレクトリ構成
+
+```
+UAP_TRANSLATION_PROJECT/
+├── published_articles/   # 公開済み記事（正本 or 参考ドラフト）
+├── note_drafts/          # 未公開の作業ドラフト＋テンプレート
+├── archive_drafts/       # 旧版・問題あり・廃止ドラフト
+└── review_logs/          # 品質チェック・管理ログ
+```
 
 ---
 
 ## ステータス凡例
 
-- **公開済み**：noteへの投稿が完了したもの
-- **未公開**：ドラフト作成済みだが未投稿
-- **旧版**：内容が更新版に置き換えられたドラフト（参照用に保持）
+| ステータス | 格納先 | 説明 |
+|---|---|---|
+| **published（正本）** | `published_articles/` | Git版 = note公開版。正本はGit側 |
+| **published（参考ドラフト）** | `published_articles/` | note公開済みだが、ChatGPT・人間の修正を経て投稿。**正本はnote側**。Git版は参考用 |
+| **draft（未公開）** | `note_drafts/` | 作成済みだが未投稿の作業ドラフト |
+| **archived** | `archive_drafts/` | 旧版・問題のある表現を含む廃止ドラフト |
 
 ---
 
@@ -22,7 +37,7 @@
 | **元PDFファイル名** | 2024-04-30-composite-sketch.pdf |
 | **公開状況** | 未公開 |
 | **テーマ分類** | FBI目撃証言・スケッチ |
-| **ドラフトファイル** | `ai_reading_001_composite-sketch_20240430_note_version.md` |
+| **ドラフトファイル** | `note_drafts/ai_reading_001_composite-sketch_20240430_note_version.md` |
 
 **注意点**
 - 旧バージョン（`ai_reading_001_composite-sketch_20240430.md`）が別途存在。公開は note_version を使用すること
@@ -39,7 +54,7 @@
 | **元PDFファイル名** | usper-statement-redacted.pdf |
 | **公開状況** | 未公開 |
 | **テーマ分類** | 個人目撃証言（上級情報官） |
-| **ドラフトファイル** | `ai_reading_002_usper-statement_note_version.md` |
+| **ドラフトファイル** | `note_drafts/ai_reading_002_usper-statement_note_version.md` |
 
 **注意点**
 - 黒塗り多数。場所・日付・組織名は特定不可
@@ -55,7 +70,7 @@
 | **元PDFファイル名** | western_us_event_slides_5.08.2026.pdf |
 | **公開状況** | 未公開 |
 | **テーマ分類** | FBI複数目撃・ブリーフィング資料 |
-| **ドラフトファイル** | `ai_reading_003_western_us_event_slides_note_version.md` |
+| **ドラフトファイル** | `note_drafts/ai_reading_003_western_us_event_slides_note_version.md` |
 
 **注意点**
 - チェック結果：問題なし（review_ai_summary.py より）
@@ -70,7 +85,7 @@
 | **元PDFファイル名** | nasa-uap-d1-apollo-12-transcript-1969.pdf |
 | **公開状況** | 未公開 |
 | **テーマ分類** | アポロ計画・宇宙目撃（NASA） |
-| **ドラフトファイル** | `ai_reading_004_apollo12_transcript_note_version.md` |
+| **ドラフトファイル** | `note_drafts/ai_reading_004_apollo12_transcript_note_version.md` |
 
 **注意点**
 - 行数超過（108行）。公開前に圧縮を推奨
@@ -86,7 +101,7 @@
 | **元PDFファイル名** | nasa-uap-d2-apollo-17-transcript-1972.pdf |
 | **公開状況** | 未公開 |
 | **テーマ分類** | アポロ計画・宇宙目撃（NASA） |
-| **ドラフトファイル** | `ai_reading_005_apollo17_transcript_note_version.md` |
+| **ドラフトファイル** | `note_drafts/ai_reading_005_apollo17_transcript_note_version.md` |
 
 **注意点**
 - 行数超過（117行）。公開前に圧縮を強く推奨
@@ -99,12 +114,13 @@
 |---|---|
 | **タイトル** | 「それは円筒形ではなかった」──アポロ11号3名が語った不明物体の形状論争【AI概要版 #006】 |
 | **元PDFファイル名** | nasa-uap-d4-apollo-11-technical-crew-debriefing-1969.pdf |
-| **公開状況** | 未公開 |
+| **公開状況** | **公開済み（Git版は参考ドラフト）** |
 | **テーマ分類** | アポロ計画・宇宙目撃（NASA） |
-| **ドラフトファイル** | `ai_reading_006_apollo11_debriefing_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_reading_006_apollo11_debriefing_note_version.md`（参考ドラフト） |
 
 **注意点**
-- 行数超過（101行）。公開前に圧縮を推奨
+- **Gitドラフトと公開版は完全一致しない。** Claude Code生成後、ChatGPTと人間が修正して投稿。正本はnote側。
+- Gitドラフトは削除せず参考ドラフトとして保持
 - スキャンのみPDF・Tesseract OCR使用
 
 ---
@@ -115,12 +131,14 @@
 |---|---|
 | **タイトル** | アポロ17号帰還時に記録された「トンネルのような光」【AI概要版 #007】 |
 | **元PDFファイル名** | nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf |
-| **公開状況** | 未公開 |
+| **公開状況** | **公開済み（Git版は参考ドラフト）** |
 | **テーマ分類** | アポロ計画・宇宙目撃（NASA） |
-| **ドラフトファイル** | `ai_summary_007_apollo17_debriefing_note_version_revised.md`（改訂版） |
+| **ドラフトファイル** | `published_articles/ai_summary_007_apollo17_debriefing_note_version_revised.md`（参考ドラフト・改訂版） |
 
 **注意点**
-- 旧版（`ai_reading_007_apollo17_technical_debriefing_note_version.md`）は「直接的な証拠」という強い表現を含む → **公開には改訂版を使用すること**
+- **Gitドラフトと公開版は完全一致しない。** Claude Code生成後、ChatGPTと人間が修正して投稿。正本はnote側。
+- Gitドラフトは削除せず参考ドラフトとして保持
+- 旧版（`archive_drafts/ai_reading_007_apollo17_technical_debriefing_note_version.md`）は「直接的な証拠」という強い表現を含む（archive済み）
 - #005の補足記事として位置づけ
 
 ---
@@ -131,12 +149,14 @@
 |---|---|
 | **タイトル** | ISR任務中にセンサーをよぎった白い物体──ペルシャ湾上空、2020年5月【AI概要版 #008】 |
 | **元PDFファイル名** | dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf |
-| **公開状況** | 未公開 |
+| **公開状況** | **公開済み（Git版は参考ドラフト）** |
 | **テーマ分類** | 軍用機ISR・Range Fouler（中東） |
-| **ドラフトファイル** | `ai_summary_008_persian_gulf_range_fouler_note_version_revised.md`（改訂版） |
+| **ドラフトファイル** | `published_articles/ai_summary_008_persian_gulf_range_fouler_note_version_revised.md`（参考ドラフト・改訂版） |
 
 **注意点**
-- 旧版（`ai_reading_008_d38_middle_east_isr_note_version.md`）は「IRSセンサー」誤記・Black Hot断定表現を含む → **公開には改訂版を使用すること**
+- **Gitドラフトと公開版は完全一致しない。** Claude Code生成後、ChatGPTと人間が修正して投稿。正本はnote側。
+- Gitドラフトは削除せず参考ドラフトとして保持
+- 旧版（`archive_drafts/ai_reading_008_d38_middle_east_isr_note_version.md`）は「IRSセンサー」誤記・Black Hot断定表現を含む（archive済み）
 
 ---
 
@@ -146,12 +166,13 @@
 |---|---|
 | **タイトル** | 1機が雲の後ろに消えたら3機になっていた──アラビア海北部、2020年8月【AI概要版 #009】 |
 | **元PDFファイル名** | dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf |
-| **公開状況** | 未公開 |
+| **公開状況** | **公開済み（Git版は参考ドラフト）** |
 | **テーマ分類** | 軍用機ISR・Range Fouler（アラビア海） |
-| **ドラフトファイル** | `ai_reading_009_d56_arabian_sea_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_reading_009_d56_arabian_sea_note_version.md`（参考ドラフト） |
 
 **注意点**
-- チェック結果：問題なし（review_ai_summary.py より）
+- **Gitドラフトと公開版は完全一致しない。** Claude Code生成後、ChatGPTと人間が修正して投稿。正本はnote側。
+- Gitドラフトは削除せず参考ドラフトとして保持
 
 ---
 
@@ -163,7 +184,7 @@
 | **元PDFファイル名** | dow-uap-d52-email-correspondance-na-august-2024.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 機密解除メール・ティアライン承認手続き |
-| **ドラフトファイル** | `ai_summary_010_d52_email_uap_orb_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_010_d52_email_uap_orb_note_version.md` |
 
 **注意点**
 - ファイル名「august-2024」だがインシデントは2024年10月31日（記事内で明記済み）
@@ -179,7 +200,7 @@
 | **元PDFファイル名** | dow-uap-d28-mission-report-east-china-sea-2024.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 軍用機MISREP・武器運用中（イラク・USCENTCOM） |
-| **ドラフトファイル** | `ai_summary_011_d28_armed_overwatch_iraq_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_011_d28_armed_overwatch_iraq_note_version.md` |
 
 **注意点**
 - ファイル名「east-china-sea」だが実際はイラク（Ayn al-Asad）（記事内で明記済み）
@@ -195,7 +216,7 @@
 | **元PDFファイル名** | dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 軍用機ISR・Range Fouler（アデン湾） |
-| **ドラフトファイル** | `ai_summary_012_d44_arabian_sea_oct2020_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_012_d44_arabian_sea_oct2020_note_version.md` |
 
 **注意点**
 - ファイル名「Arabian Sea」だが本文はアデン湾（記事内で明記済み）
@@ -211,7 +232,7 @@
 | **元PDFファイル名** | dow-uap-d57-mission-report-gulf-of-aden-september-2020.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 軍用機ISR・Range Fouler（アデン湾） |
-| **ドラフトファイル** | `ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md` |
 
 **注意点**
 - 速度277 mph（時速約446km）・夜間8分間追跡
@@ -227,7 +248,7 @@
 | **元PDFファイル名** | dow-uap-d20-mission-report-southern-united-states-2023.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 軍用機MISREP・DCA任務中（中東・USCENTCOM） |
-| **ドラフトファイル** | `ai_summary_014_d20_f16_middle_east_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_014_d20_f16_middle_east_note_version.md` |
 
 **注意点**
 - ファイル名「southern-united-states」だが実際はプリンス・スルタン空軍基地（サウジアラビア）（記事内で明記済み）
@@ -243,7 +264,7 @@
 | **元PDFファイル名** | dow-uap-d50-email-correspondence-indopacom-april-2025.pdf |
 | **公開状況** | **公開済み** |
 | **テーマ分類** | 機密解除メール・ティアライン承認手続き（INDOPACOM） |
-| **ドラフトファイル** | `ai_summary_015_d50_indopacom_email_note_version.md` |
+| **ドラフトファイル** | `published_articles/ai_summary_015_d50_indopacom_email_note_version.md` |
 
 **注意点**
 - 12秒・23秒の短時間観測2件のみ
@@ -256,8 +277,9 @@
 | 項目 | 値 |
 |---|---|
 | 総記事数 | 15件（#001〜#015） |
-| **公開済み** | **6件（#010〜#015）** |
-| 未公開 | 9件（#001〜#009） |
+| **公開済み（Git版一致）** | **6件（#010〜#015）** |
+| **公開済み（Git版は参考ドラフト）** | **4件（#006〜#009）** |
+| 未公開 | 5件（#001〜#005） |
 | テーマ: アポロ計画 | 4件（#004〜#007） |
 | テーマ: FBI/目撃証言 | 3件（#001〜#003） |
 | テーマ: 軍用機ISR/Range Fouler | 5件（#008・#009・#012・#013） |
@@ -266,14 +288,15 @@
 
 ---
 
-## 公開前確認が必要な旧版ドラフト
+## archive_drafts/ に格納された旧版ドラフト
 
-以下のドラフトは **改訂版が存在するため、公開には改訂版を使用すること**。
+以下のドラフトは問題のある表現を含むため `archive_drafts/` へ移動済み。参照のみ可。
 
-| 旧版ファイル | 問題点 | 公開用ファイル |
+| ファイル | 問題点 | 代替ファイル |
 |---|---|---|
-| `ai_reading_007_apollo17_technical_debriefing_note_version.md` | 「直接的な証拠」という強い表現あり | `ai_summary_007_apollo17_debriefing_note_version_revised.md` |
-| `ai_reading_008_d38_middle_east_isr_note_version.md` | 「IRSセンサー」誤記・Black Hot断定 | `ai_summary_008_persian_gulf_range_fouler_note_version_revised.md` |
+| `archive_drafts/ai_reading_001_composite-sketch_20240430.md` | #001旧速報版。フォーマット基準未適用 | `note_drafts/ai_reading_001_composite-sketch_20240430_note_version.md` |
+| `archive_drafts/ai_reading_007_apollo17_technical_debriefing_note_version.md` | 「直接的な証拠」という強い表現あり | `published_articles/ai_summary_007_apollo17_debriefing_note_version_revised.md` |
+| `archive_drafts/ai_reading_008_d38_middle_east_isr_note_version.md` | 「IRSセンサー」誤記・Black Hot断定表現 | `published_articles/ai_summary_008_persian_gulf_range_fouler_note_version_revised.md` |
 
 ---
 
@@ -293,6 +316,37 @@ article_candidates.csvより、未使用かつスコア上位のものを選定�
 > - `nasa-uap-d5`：UAP記録ではなくUV天文学（Lyman-alpha）。記事化不適（nightly_reportで確認済み）
 > - `nasa-uap-d6`：#007で使用済み
 > - `dow-uap-d38/d44/d52/d56/d57/d28/d20/d50`：#008〜#015で使用済み
+
+---
+
+---
+
+## 運用ルール：公開後のGit同期について
+
+### 基本方針
+
+記事公開後、可能な範囲でnote公開版の内容をGitドラフトへ反映することを推奨します。
+
+### 同期の優先度
+
+| 優先度 | 状況 | 対応 |
+|---|---|---|
+| **高** | 公開版でERROR・WARNINGに相当する修正が行われた場合 | Gitドラフトを公開版に合わせて更新し、再コミット |
+| **中** | 文章の改善・表現変更など軽微な修正が行われた場合 | 余裕があれば反映。難しければ本ファイルの注意点欄に変更概要を記録 |
+| **低** | 体裁調整・誤字修正のみの場合 | 対応不要。正本はnote側と明記するにとどめる |
+
+### 同期できない場合の記録方法
+
+Gitドラフトをnote公開版に合わせられない場合は、本ファイルの該当記事の「注意点」欄に以下を記録してください。
+
+```
+- 公開版との主な差分：[変更の概要を1〜2文で記述]
+```
+
+### 正本の所在
+
+- **Git未同期の公開記事（#006〜#009）**：正本はnote側
+- **Git同期済みの公開記事（#010〜）**：Git版・note版が一致
 
 ---
 
