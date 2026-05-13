@@ -76,6 +76,42 @@ UAP_TRANSLATION_PROJECT/
 - 要約作成
 - note下書き生成
 
+## 三層運用体制（2026-05-13 以降）
+
+### 役割分担
+
+| 役割 | 担当 | 主な責務 |
+|------|------|---------|
+| **制作** | Claude Code | ドラフト生成・Phase 1/2 自己レビュー・修正 |
+| **監査** | Codex | 独立監査・レポート出力（`review_reports/` に保存） |
+| **編集長** | 人間 ＋ ChatGPT | 最終確認・note 公開判断 |
+
+### Codex の操作権限
+
+- ✅ 読み取り: すべてのファイル
+- ✅ 書き込み: `review_reports/` のみ
+- ❌ 編集禁止: `note_drafts/`, `published_articles/`, `review_logs/source_registry.csv`
+
+詳細は `docs/codex_audit_role.md` および `docs/audit_checklist_v1.md` を参照。
+
+### 公開フロー（三層）
+
+```
+[Claude Code] ドラフト生成 → Phase 1/2 自己レビュー
+      ↓
+[Codex] 独立監査 → review_reports/ にレポート出力
+      ↓
+[人間 + ChatGPT] レポート確認 → 各指摘を Accepted/Rejected/Deferred で判断
+      ↓
+[人間] 判断結果を review_logs/codex_feedback_log.md に記録
+      ↓
+[人間 + ChatGPT] 最終編集長レビュー → note 公開
+```
+
+Codex監査結果に対する人間判断は `review_logs/codex_feedback_log.md` に蓄積し、同じWARNが繰り返されないよう監査精度のチューニングに利用する。詳細は `docs/codex_audit_role.md` セクション7を参照。
+
+---
+
 ## 次の実装候補
 
 最初に自動化する対象は以下。
