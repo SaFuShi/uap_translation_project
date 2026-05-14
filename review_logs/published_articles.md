@@ -1,6 +1,6 @@
 # 公開済み・作成済み記事一覧
 
-最終更新：2026-05-12（ディレクトリ整理実施）
+最終更新：2026-05-13（#036 d16版公開済み）
 
 ---
 
@@ -430,12 +430,165 @@ UAP_TRANSLATION_PROJECT/
 
 ---
 
+### #026 — 気球状UAP、高度31,000フィートで目視確認（アラビア湾・2020年）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 気球状UAP、高度31,000フィートで目視確認──アラビア湾・2020年【AI概要版 #026】 |
+| **元PDFファイル名** | dow-uap-d7-mission-report-arabian-gulf-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n1bd8fd18b12e |
+| **テーマ分類** | 軍用機MISREP（アラビア湾・2020年） |
+| **ドラフトファイル** | `published_articles/ai_summary_026_d7_arabian_gulf_note_version.md` |
+
+---
+
+### #027 — 2機のUAPが速度・方向変更（アラビア湾・2020年）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 2機のUAPが速度・方向変更──アラビア湾・2020年【AI概要版 #027】 |
+| **元PDFファイル名** | dow-uap-d5-mission-report-arabian-gulf-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nf990eb4258d7 |
+| **テーマ分類** | 軍用機MISREP（アラビア湾・2020年） |
+| **ドラフトファイル** | `published_articles/ai_summary_027_d5_arabian_gulf_note_version.md` |
+
+---
+
+### #028 — 砂嵐の中で5機のUAPを確認（イラク上空・2022年5月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 砂嵐の中で5機のUAPを確認──イラク上空・2022年5月【AI概要版 #028】 |
+| **元PDFファイル名** | dow-uap-d10-mission-report-middle-east-may-2022.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n7dbc29ccede7 |
+| **テーマ分類** | 軍用機MISREP（イラク・2022年5月） |
+| **ドラフトファイル** | `published_articles/ai_summary_028_d10_iraq_may2022_note_version.md` |
+
+---
+
+### #029 — P-8哨戒機が高速飛翔体を確認（シリア沖東地中海・2016年11月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | P-8哨戒機が高速飛翔体を確認──シリア沖東地中海・2016年11月【AI概要版 #029】 |
+| **元PDFファイル名** | dow-uap-d55-mission-report-syria-november-2016.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nc48565388654 |
+| **テーマ分類** | 軍用機MISREP（東地中海・2016年11月） |
+| **ドラフトファイル** | `published_articles/ai_summary_029_d55_syria_2016_note_version.md` |
+| **備考** | contrail・100,000フィート hallucination 検出・修正後に公開 |
+
+---
+
+### #030 — 雲に隠れた飛翔体の編隊（アラビア湾・2020年8月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 雲に隠れた飛翔体の編隊──アラビア湾・2020年8月【AI概要版 #030】 |
+| **元PDFファイル名** | dow-uap-d61-mission-report-persian-gulf-august-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n8a957409ec0b |
+| **テーマ分類** | 軍用機MISREP（アラビア湾・2020年8月） |
+| **ドラフトファイル** | `published_articles/ai_summary_030_d61_persian_gulf_aug2020_note_version.md` |
+| **備考** | review_standard_v1適用第1号。時刻表記・PID補足・Guard周波数補足を修正後に公開 |
+
+---
+
+### #031 — ホルムズ海峡上空でUAPを確認、EMI事象も2件記録（2020年9月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | ホルムズ海峡上空でUAPを確認、EMI事象も2件記録──2020年9月【AI概要版 #031】 |
+| **元PDFファイル名** | dow-uap-d62-mission-report-strait-of-hormuz-september-2020.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/n7b7855544c81 |
+| **テーマ分類** | 軍用機MISREP（ホルムズ海峡・2020年9月） |
+| **ドラフトファイル** | `published_articles/ai_summary_031_d62_hormuz_sep2020_note_version.md` |
+
+---
+
+### #032 — 90度ターンを繰り返す円形UAP（エーゲ海・2023年10月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 90度ターンを繰り返す円形UAP──エーゲ海・2023年10月【AI概要版 #032】 |
+| **元PDFファイル名** | dow-uap-d33-mission-report-greece-october-2023.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nb7df16627a21 |
+| **テーマ分類** | 軍用機MISREP（エーゲ海・2023年10月） |
+| **ドラフトファイル** | `published_articles/ai_summary_032_d33_greece_oct2023_note_version.md` |
+| **備考** | Phase2概念補足追加基準の適用（Misrep番号・FMV/SIGINT/VEO定型補足・km/h換算）。note側も人間が修正済み。 |
+
+---
+
+### #033 — 「バウンシーボール状」のUAPが424ノットで7分間飛行（シリア上空・2023年11月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 「バウンシーボール状」のUAPが424ノットで7分間飛行──シリア上空・2023年11月【AI概要版 #033】 |
+| **元PDFファイル名** | dow-uap-d74-mission-report-syria-november-2023.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/na47a4f90eb7c |
+| **テーマ分類** | 軍用機MISREP（シリア・2023年11月）SECRET//NOFORN |
+| **ドラフトファイル** | `published_articles/ai_summary_033_d74_syria_nov2023_note_version.md` |
+
+---
+
+### #034 — ボーイング747機長がカザフスタン上空で40分間UFOを目撃（1994年1月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | ボーイング747機長がカザフスタン上空で40分間UFOを目撃──1994年1月【AI概要版 #034】 |
+| **元PDFファイル名** | dos-uap-d2-cable-2-kazakhstan-january-1994.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nfdcc2ed34a65 |
+| **テーマ分類** | 国務省外交電報（カザフスタン・1994年1月）UNCLASSIFIED |
+| **ドラフトファイル** | `published_articles/ai_summary_034_dos_d2_kazakhstan_1994_note_version.md` |
+| **備考** | Phase1 HIGH/MEDIUM/LOW 0件。MRN電報参照番号補足・高度km換算・知的制御言い換え適用。 |
+
+---
+
+### #035 — 2機の白熱円形UAPが南方向へ240ノットで飛行（ジブチ沖・2025年）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 2機の白熱円形UAP、南方向へ240ノットで飛行──ジブチ沖・2025年【AI概要版 #035】 |
+| **元PDFファイル名** | dow-uap-d8-mission-report-djibouti-2025.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/nd9ad6ba36588 |
+| **テーマ分類** | 軍用機MISREP（ジブチ沖・2025年）SECRET//REL TO USA, FIN, SWE, FVEY, NATO |
+| **ドラフトファイル** | `published_articles/ai_summary_035_d8_djibouti_2025_note_version.md` |
+| **備考** | 大部分が1.4(a)非公開。GENTEXTのみ読み取り可能（477文字）。ファイル名とCSVメタデータの場所不一致（djibouti vs Mediterranean Sea）を注意点に明記。 |
+
+---
+
+### #036 — 武装偵察任務中に1分未満で通過したUAP（シリア上空・2022年7月）
+
+| 項目 | 内容 |
+|---|---|
+| **タイトル** | 武装偵察任務中に1分未満で通過したUAP──シリア上空・2022年7月【AI概要版 #036】 |
+| **元PDFファイル名** | dow-uap-d16-mission-report-syria-july-2022.pdf |
+| **公開状況** | **公開済み** |
+| **note URL** | https://note.com/deft_ibis3303/n/na96bd813a8e5 |
+| **テーマ分類** | 軍用機MISREP（シリア・2022年7月）SECRET |
+| **ドラフトファイル** | `note_drafts/ai_summary_036_d16_syria_july2022_note_version.md` |
+| **備考** | 旧#036（d56）はwithdrawn_duplicate。同URLで d16 内容へ更新・再公開。Phase1 HIGH=0 / Phase2 軽微修正5件適用済み。番号・コード類説明基準（#036以降）初適用。 |
+
+**旧#036（withdrawn_duplicate）**
+- 旧PDF: dow-uap-d56-range-fouler-debrief-arabian-sea-august-2020.pdf（#009と同一のため撤回）
+- 旧ドラフト: `archive_drafts/ai_summary_036_d56_arabian_sea_aug2020_WITHDRAWN.md`
+
+---
+
 ## 統計サマリー
 
 | 項目 | 値 |
 |---|---|
-| 総記事数 | 24件（#001〜#025、#017除く） |
-| **公開済み（Git版一致）** | **15件（#010〜#016・#018〜#025）** |
+| 総記事数 | 36件（#001〜#036、#017除く） |
+| **公開済み（Git版一致）** | **27件（#010〜#016・#018〜#036）** |
 | **公開済み（Git版は参考ドラフト）** | **4件（#006〜#009）** |
 | 未公開 | 5件（#001〜#005） |
 | テーマ: アポロ計画 | 4件（#004〜#007） |

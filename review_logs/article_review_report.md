@@ -1,5 +1,5 @@
 # AI概要版 品質チェックレポート
-生成日時: 2026-05-12 10:26
+生成日時: 2026-05-12 15:57
 
 ---
 
@@ -7,19 +7,23 @@
 
 | ファイル | ERROR | WARNING | INFO | 判定 |
 |---|---|---|---|---|
-| ai_summary_010_d52_email_uap_orb_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
-| ai_summary_011_d28_armed_overwatch_iraq_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
-| ai_summary_012_d44_arabian_sea_oct2020_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
-| ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
-| ai_summary_014_d20_f16_middle_east_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
-| ai_summary_015_d50_indopacom_email_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
-| **合計 (6件)** | **0** | **0** | **3** | |
+| ai_summary_026_d7_arabian_gulf_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_027_d5_arabian_gulf_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_028_d10_iraq_may2022_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_029_d55_syria_2016_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_030_d61_persian_gulf_aug2020_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_031_d62_hormuz_sep2020_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_032_d33_greece_oct2023_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_033_d74_syria_nov2023_note_version.md | 0 | 0 | 0 | ✅ 問題なし |
+| ai_summary_034_dos_d2_kazakhstan_1994_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| ai_summary_035_d8_djibouti_2025_note_version.md | 0 | 0 | 1 | 💬 参考情報あり |
+| **合計 (10件)** | **0** | **0** | **6** | |
 
 ---
 
 ## 詳細レポート
 
-### ai_summary_010_d52_email_uap_orb_note_version.md
+### ai_summary_026_d7_arabian_gulf_note_version.md
 
 **判定: ✅ 問題なし**
 
@@ -27,15 +31,7 @@
 
 ---
 
-### ai_summary_011_d28_armed_overwatch_iraq_note_version.md
-
-**判定: ✅ 問題なし**
-
-チェック項目に問題は見当たりませんでした。
-
----
-
-### ai_summary_012_d44_arabian_sea_oct2020_note_version.md
+### ai_summary_027_d5_arabian_gulf_note_version.md
 
 **判定: 💬 参考情報あり**
 
@@ -44,15 +40,7 @@
 
 ---
 
-### ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md
-
-**判定: ✅ 問題なし**
-
-チェック項目に問題は見当たりませんでした。
-
----
-
-### ai_summary_014_d20_f16_middle_east_note_version.md
+### ai_summary_028_d10_iraq_may2022_note_version.md
 
 **判定: 💬 参考情報あり**
 
@@ -61,7 +49,58 @@
 
 ---
 
-### ai_summary_015_d50_indopacom_email_note_version.md
+### ai_summary_029_d55_syria_2016_note_version.md
+
+**判定: 💬 参考情報あり**
+
+- 💬 **[INFO] 自然説明**  
+  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
+
+---
+
+### ai_summary_030_d61_persian_gulf_aug2020_note_version.md
+
+**判定: 💬 参考情報あり**
+
+- 💬 **[INFO] 自然説明**  
+  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
+
+---
+
+### ai_summary_031_d62_hormuz_sep2020_note_version.md
+
+**判定: ✅ 問題なし**
+
+チェック項目に問題は見当たりませんでした。
+
+---
+
+### ai_summary_032_d33_greece_oct2023_note_version.md
+
+**判定: ✅ 問題なし**
+
+チェック項目に問題は見当たりませんでした。
+
+---
+
+### ai_summary_033_d74_syria_nov2023_note_version.md
+
+**判定: ✅ 問題なし**
+
+チェック項目に問題は見当たりませんでした。
+
+---
+
+### ai_summary_034_dos_d2_kazakhstan_1994_note_version.md
+
+**判定: 💬 参考情報あり**
+
+- 💬 **[INFO] 自然説明**  
+  本文中に自然説明・留保表現が見当たりません。目撃者の自己解説がある場合は記載を検討してください
+
+---
+
+### ai_summary_035_d8_djibouti_2025_note_version.md
 
 **判定: 💬 参考情報あり**
 
