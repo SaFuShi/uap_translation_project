@@ -1,0 +1,9 @@
+- Article ID: #064
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - Record Group 255の推定を弱める
+  - 防衛政策文書という推定をタイトル由来に限定
+  - OCR不可の範囲を維持

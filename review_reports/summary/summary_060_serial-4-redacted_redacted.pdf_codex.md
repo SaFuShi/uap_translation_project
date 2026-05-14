@@ -1,0 +1,9 @@
+- Article ID: #060
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 3
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - Page 1未確認を冒頭で明示
+  - 悪夢・TV障害の因果関係をタイトルでも弱める
+  - 制限空域の主体推定を弱める

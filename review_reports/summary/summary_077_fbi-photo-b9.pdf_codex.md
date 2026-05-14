@@ -1,0 +1,9 @@
+- Article ID: #077
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 1
+- UNVERIFIABLE件数: 2
+- 最優先確認点3つ
+  - 「全24フレーム」の根拠を確認
+  - 暗点移動を物体運動として断定しない
+  - 画像解釈を人間目視で確認

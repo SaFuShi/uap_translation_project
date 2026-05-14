@@ -1,0 +1,9 @@
+- Article ID: #086
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 3
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - 「全24フレーム」またはb23/b24参照の根拠を確認
+  - 追跡・継続確認表現を視覚観察に限定
+  - ズーム倍率表現を弱める

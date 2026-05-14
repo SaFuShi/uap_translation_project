@@ -1,0 +1,9 @@
+- Article ID: #075
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - ヘリコプター様機体の移動表現を弱める
+  - 2物体継続を人間目視で確認
+  - 時系列説明が別PDF比較であることを明示

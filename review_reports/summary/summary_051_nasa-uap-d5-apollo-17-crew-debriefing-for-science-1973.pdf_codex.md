@@ -1,0 +1,9 @@
+- Article ID: #051
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 3
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - OCR限定資料であることを冒頭から明確化
+  - WAR.GOV収録理由を編集部推定として分離
+  - 科学史評価の断定を弱める

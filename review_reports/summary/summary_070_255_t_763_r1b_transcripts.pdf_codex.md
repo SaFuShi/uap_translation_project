@@ -1,0 +1,9 @@
+- Article ID: #070
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - Record Group 255推定を弱める
+  - R1Bの版種推定を弱める
+  - 会議・通信等の内容推定を削除または外部化

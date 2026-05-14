@@ -1,0 +1,9 @@
+- Article ID: #071
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - b2との比較による移動表現を弱める
+  - 暗点位置・地形シルエットを人間目視で確認
+  - 時系列説明が別PDF比較であることを明示

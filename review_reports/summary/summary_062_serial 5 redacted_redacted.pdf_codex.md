@@ -1,0 +1,9 @@
+- Article ID: #062
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 3
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - Page 1欠落を冒頭ヘッダーでも強調
+  - 方向感覚の解釈を弱める
+  - 241文字のみの断片資料であることを要点に反映

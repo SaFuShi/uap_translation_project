@@ -1,0 +1,9 @@
+- Article ID: #067
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - 画像解釈を人間が確認
+  - b3/b5への言及を確認済み資料に限定
+  - EO/IR・撮影方向の推定を弱める

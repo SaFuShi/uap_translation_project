@@ -1,0 +1,9 @@
+- Article ID: #061
+- Overall Status: BLOCK
+- BLOCK件数: 2
+- WARN件数: 1
+- UNVERIFIABLE件数: 0
+- 最優先確認点3つ
+  - serial-4/#060とserial-5/#062の具体内容をOCR不可本文から外す
+  - FD-302推定をファイル名由来でない可能性として弱める
+  - serialシリーズ説明をファイル名上の番号に限定

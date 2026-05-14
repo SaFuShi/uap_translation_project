@@ -1,0 +1,9 @@
+- Article ID: #090
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 1
+- UNVERIFIABLE件数: 3
+- 最優先確認点3つ
+  - b23/b24参照と全24フレーム表現の根拠を確認
+  - 2暗点・単一暗点の変化を断定しない
+  - 追跡・ズーム表現を視覚観察に限定

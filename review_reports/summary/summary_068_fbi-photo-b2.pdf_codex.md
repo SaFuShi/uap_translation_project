@@ -1,0 +1,9 @@
+- Article ID: #068
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - b3/b5参照のソース確認
+  - 「初出現」「追跡対象物」を弱める
+  - 暗点解釈を視覚観察に限定

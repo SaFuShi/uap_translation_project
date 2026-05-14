@@ -1,0 +1,9 @@
+- Article ID: #056
+- Overall Status: WARN
+- BLOCK件数: 0
+- WARN件数: 2
+- UNVERIFIABLE件数: 1
+- 最優先確認点3つ
+  - MDR初出補足を前倒し
+  - JS番号の未確認性を明記
+  - PR20対象6件と記事番号の対応確認
