@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:32.889423",
+    "draft_file": "note_drafts/ai_reading_003_western_us_event_slides_note_version.md",
+    "pdf_file": "western_us_event_slides_5.08.2026.pdf",
+    "pdf_stem": "western_us_event_slides_5.08.2026",
+    "pdf_page_count": 4,
+    "pdf_char_count": 5777,
+    "claims_total": 11,
+    "warning_count": 1,
+    "ok_count": 10,
+    "high_count": 1,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "HIGH"
+  },
+  "claims": [
+    {
+      "type": "altitude",
+      "raw_text": "18メートル",
+      "search_term": "18",
+      "context": "きさ」と感じましたが、事後のAAROによる測定では直径12〜18メートルと評価されています。また目撃者の感覚では約500〜600メー",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "bject to have been between 12-18 meters in diameter. artist re",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "600メートル",
+      "search_term": "600",
+      "context": "8メートルと評価されています。また目撃者の感覚では約500〜600メートル先にありましたが、AARoの測定では約1050メートルと算出",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "istance of “approximately 500-600 meters,”* where it was perche",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "1050メートル",
+      "search_term": "1050",
+      "context": "500〜600メートル先にありましたが、AARoの測定では約1050メートルと算出されています。  音は聞こえなかったとされており、US",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "sess the object to have been ~1050 meters away from the observer",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "100メートル",
+      "search_term": "100",
+      "context": "方向へ横移動し、高さを変えずに時速約25〜32kmで移動して100メートル先で停車・消灯したと記録されています。文書には「抵抗がまった",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "ce.” the object stopped about 100 meters off the side of the ro",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "6メートル",
+      "search_term": "6",
+      "context": "した。USPER5（NVG使用）とUSPER6（肉眼）が地上6メートルほどの高さに右下から左上に傾いた凧型の物体を観察したと記録さ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "nts each (usper1 through usper6) independently describe seein",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "45メートル",
+      "search_term": "45",
+      "context": "トで物体を再探索した際、「ある地点でビームが遠くまで届かず約45メートル先で止まったが、その後は再び遠くまで届いた」との証言も記録さ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "HIGH"
+    },
+    {
+      "type": "duration",
+      "raw_text": "2秒",
+      "search_term": "2",
+      "context": "されたとされています。オレンジ色の「母オーブ」は出現から1〜2秒で消え、放出された赤いオーブは水平方向に移動するものが多かっ",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "object to have been between 12-18 meters in diameter. artist",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "30分",
+      "search_term": "30",
+      "context": "te（透明なカイト）」**  「Dark Kite」目撃の約30分後、同じ区域でUSPER5・USPER6に加えてUSPER7",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "f day: pre-dawn hours • about 30 minutes after the “dark kite”",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USPER1",
+      "search_term": "USPER1",
+      "context": "の要点  **1. 連邦法執行機関の捜査官7名が目撃者** USPER1〜USPER7と表記された7名は、いずれも「federal ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "orcement special agents each (usper1 through usper6) independently",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AARO",
+      "search_term": "AARO",
+      "context": "類の現象を1枚ずつまとめた構成になっています。  **3. AARO（全領域異常解決局）が事後測定を実施** 2つのスライドには",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "easurements later gathered by aaro assess the object to have bee",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USPER5",
+      "search_term": "USPER5",
+      "context": "PER6に加えてUSPER7も加わり再度捜索が行われました。USPER5（NVG使用）とUSPER6（肉眼）が地上6メートルほどの高",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "w enforcement special agents (usper5 and usper6) witness a glowing",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.152723",
+    "draft_file": "published_articles/ai_summary_016_d6_arabian_gulf_2020_note_version.md",
+    "pdf_file": "dow-uap-d6-mission-report-arabian-gulf-2020.pdf",
+    "pdf_stem": "dow-uap-d6-mission-report-arabian-gulf-2020",
+    "pdf_page_count": 7,
+    "pdf_char_count": 208,
+    "claims_total": 12,
+    "warning_count": 5,
+    "ok_count": 7,
+    "high_count": 0,
+    "medium_count": 5,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "46分",
+      "search_term": "46",
+      "context": "*1. 単機のUAP目視記録** 2020年、UTC 12時46分ごろ、乗組員が MGRS グリッド 3SKT42558995",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "• description: (s//rel) at 1246z, 1.4(a) 1.4(a) observed 1x p",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（PROB UAP）",
+      "search_term": "PROB UAP",
+      "context": "が MGRS グリッド 3SKT4255899519 付近で1機の「確率的UAP（PROB UAP）」を目視したと記録されています。  **2. 任務への影響なし** 記録によれば",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "6z, 1.4(a) 1.4(a) observed 1x prob uap ivo 3skt4255899519. no missio",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（NO MISSION IMPACT）",
+      "search_term": "NO MISSION IMPACT",
+      "context": "なし** 記録によれば、UAP目視後も元の任務を継続しており、「任務への影響なし（NO MISSION IMPACT）」と明記されています。  **3. 大部分が機密区分で非開示** 本文書の7ペー",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "prob uap ivo 3skt4255899519. no mission impact, continued original tasking.",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "質と背景**  本文書は米空軍・USCENTCOM が運用するミッションレポート（MISREP）形式の報告書です。アラビア湾上空での作戦飛行中に不明航空現象が観測されたとして提",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "UTC",
+      "search_term": "UTC",
+      "context": "料の要点  **1. 単機のUAP目視記録** 2020年、UTC 12時46分ごろ、乗組員が MGRS グリッド 3SKT4",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MGRS",
+      "search_term": "MGRS",
+      "context": "視記録** 2020年、UTC 12時46分ごろ、乗組員が MGRS グリッド 3SKT4255899519 付近で1機の「確率",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "PROB UAP",
+      "search_term": "PROB UAP",
+      "context": " 3SKT4255899519 付近で1機の「確率的UAP（PROB UAP）」を目視したと記録されています。  **2. 任務への影響",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "6z, 1.4(a) 1.4(a) observed 1x prob uap ivo 3skt4255899519. no missio",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISSION IMPACT",
+      "search_term": "MISSION IMPACT",
+      "context": "P目視後も元の任務を継続しており、「任務への影響なし（NO MISSION IMPACT）」と明記されています。  **3. 大部分が機密区分で非開",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "ob uap ivo 3skt4255899519. no mission impact, continued original tasking.",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM",
+      "search_term": "USCENTCOM",
+      "context": "# AI読解  **記録の性質と背景**  本文書は米空軍・USCENTCOM が運用するミッションレポート（MISREP）形式の報告書で",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "は米空軍・USCENTCOM が運用するミッションレポート（MISREP）形式の報告書です。アラビア湾上空での作戦飛行中に不明航空現",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "PROB UAP IVO",
+      "search_term": "PROB UAP IVO",
+      "context": "内容**  開示されたテキストには「AT 1246Z、1X PROB UAP IVO 3SKT4255899519. NO MISSION IM",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "6z, 1.4(a) 1.4(a) observed 1x prob uap ivo 3skt4255899519. no mission im",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CONTINUED ORIGINAL TASKING",
+      "search_term": "CONTINUED ORIGINAL TASKING",
+      "context": "255899519. NO MISSION IMPACT, CONTINUED ORIGINAL TASKING.」と記録されています。UAP 1機が指定グリッド付近で目撃",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "255899519. no mission impact, continued original tasking. 1.4(a)",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.840389",
+    "draft_file": "published_articles/ai_summary_011_d28_armed_overwatch_iraq_note_version.md",
+    "pdf_file": "dow-uap-d28-mission-report-east-china-sea-2024.pdf",
+    "pdf_stem": "dow-uap-d28-mission-report-east-china-sea-2024",
+    "pdf_page_count": 6,
+    "pdf_char_count": 9716,
+    "claims_total": 12,
+    "warning_count": 0,
+    "ok_count": 12,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "ク上空、2024年9月【AI概要版 #011】  この文書は元機密の任務完了報告（MISREP）です。兵器運用中に乗員がセンサー内で未確認の航空現象を観測した経緯が記録されてい",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "lassified on: 24 october 2025 misrep undefined-10431840 narrative",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "【AI概要版 #011】  この文書は元機密の任務完了報告（MISREP）です。兵器運用中に乗員がセンサー内で未確認の航空現象を観測",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "lassified on: 24 october 2025 misrep undefined-10431840 narrative",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AGM-",
+      "search_term": "AGM-",
+      "context": "れています。  ---  ## この資料の要点  **1. AGM-176発射とほぼ同時にUAPがセンサー内を高速通過** 兵器",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "eleased 20x105mm, 101x30mm, 1xagm-176. 's crew observed an unide",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MX-",
+      "search_term": "MX-",
+      "context": "の視野を高速で通過したと報告されています。物体はMX-20・MX-25センサーにIRレンズフレアを生じさせており、相当な熱源で",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "• tgt pod name or designator: mx-25 • additional avionics: gps/",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "BENIGN",
+      "search_term": "BENIGN",
+      "context": "ていたように見えた」と記録しています。乗員による観測評価は「BENIGN（無害）」です。  ---  ## AI読解  **任務の背",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "• observer assessment of uap: benign • friendly aircraft speed: 17",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SOTU",
+      "search_term": "SOTU",
+      "context": " AI読解  **任務の背景**  本文書は、特殊作戦部隊（SOTU 016、16 SOS）のAC-130が、2024年9月20",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "riginator (unit or squadron): sotu 016 • submit date: 3.5c, foia",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SOS",
+      "search_term": "SOS",
+      "context": "背景**  本文書は、特殊作戦部隊（SOTU 016、16 SOS）のAC-130が、2024年9月20日にオペレーション・イ",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": ")(3), 130b, (b)(6) • unit: 16 sos • wing: 27 sow • phone number",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AAAB",
+      "search_term": "AAAB",
+      "context": "・リゾルブの一環としてイラク・アイン・アル・アサド空軍基地（AAAB）周辺で実施した武装監視任務の報告書です。任務はOKASを1",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "ntered ayn al asad airbase's (aaab) restricted operating zone (r",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "PGM",
+      "search_term": "PGM",
+      "context": "出発し、武器較正を完了後、AGM-176による精密誘導兵器（PGM）射撃を実施しました。  ---  **UAPの観測内容**",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "d aerial phenomena during its pgm shot (see uap 1). gfc intent",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "WSO",
+      "search_term": "WSO",
+      "context": "UAPの観測内容**  兵器投下後、武器システムオフィサー（WSO）と戦闘システムオフィサー（CSO）がセンサー上で未確認物体",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "the weapons systems officer (wso) and combat systems officer (",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CSO",
+      "search_term": "CSO",
+      "context": "、武器システムオフィサー（WSO）と戦闘システムオフィサー（CSO）がセンサー上で未確認物体を観測しました。物体はMX-20・",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": ") and combat systems officer (cso) observed an unidentified obj",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM MDR",
+      "search_term": "USCENTCOM MDR",
+      "context": "*AI解析メモ：** 6ページ・テキスト層あり・OCR成功・USCENTCOM MDR 25-0100〜25-0103・2025年10月28日AA",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": ")(6) secret//rel to usa, fvey uscentcom mdr 25-0100 thru 25-0103 / js-250",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

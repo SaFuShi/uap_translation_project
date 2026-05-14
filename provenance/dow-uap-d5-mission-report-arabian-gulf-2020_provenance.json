@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.478575",
+    "draft_file": "published_articles/ai_summary_027_d5_arabian_gulf_note_version.md",
+    "pdf_file": "dow-uap-d5-mission-report-arabian-gulf-2020.pdf",
+    "pdf_stem": "dow-uap-d5-mission-report-arabian-gulf-2020",
+    "pdf_page_count": 6,
+    "pdf_char_count": 424,
+    "claims_total": 9,
+    "warning_count": 3,
+    "ok_count": 6,
+    "high_count": 0,
+    "medium_count": 3,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "speed",
+      "raw_text": "40ノット",
+      "search_term": "40",
+      "context": "の要点  **1. 高度FL160〜170を飛行するUAPが40ノットの一定速度で観測された** 1機のUAPが飛行高度FL160",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "34sce7566990098. velocity was 40 knots at fl160 to fl170. uap",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "speed",
+      "raw_text": "278ノット",
+      "search_term": "278",
+      "context": "いると記録されています。  **2. 別の観測では2機が速度278ノットへ急加速し、方向を南へ変更** その後の記録では、2機の「可",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "57. velocity was estimated at 278 knots. uaps increased speed a",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（POSS UAPS）",
+      "search_term": "POSS UAPS",
+      "context": "測定方法や精度については公開情報では確認できません。  **「可能性のあるUAP（POSS UAPS）」という表現に注意** 記録は断定的ではなく「可能性のある（POSS）」という留",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "at 2243z, 1.4(a) observed 2x poss uaps ivo 35tqk1580995057. velocity",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "FL160",
+      "search_term": "FL160",
+      "context": "、1機のUAPが座標「34SCE7566990098」付近（FL160〜170）を速度40ノットで一定に飛行していたと記録されてい",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "098. velocity was 40 knots at fl160 to fl170. uap speed remained",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SECRET",
+      "search_term": "SECRET",
+      "context": ".4(a)による大幅非公開・GENTEXTのみ読み取り可能・SECRET//REL TO USA, FVEYとして分類  ---  ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "REL TO USA",
+      "search_term": "REL TO USA",
+      "context": "大幅非公開・GENTEXTのみ読み取り可能・SECRET//REL TO USA, FVEYとして分類  ---  ## 注意点  **ファ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CSV",
+      "search_term": "CSV",
+      "context": "ian-gulf（アラビア湾）」ですが、カタログメタデータ（CSV）では事件発生地が「Mediterranean Sea（地中",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "POSS UAPS",
+      "search_term": "POSS UAPS",
+      "context": "は公開情報では確認できません。  **「可能性のあるUAP（POSS UAPS）」という表現に注意** 記録は断定的ではなく「可能性のある",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "at 2243z, 1.4(a) observed 2x poss uaps ivo 35tqk1580995057. velocity",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "POSS",
+      "search_term": "POSS",
+      "context": "」という表現に注意** 記録は断定的ではなく「可能性のある（POSS）」という留保付きの表現を使用しています。  --- ",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "at 2243z, 1.4(a) observed 2x poss uaps ivo 35tqk1580995057. vel",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

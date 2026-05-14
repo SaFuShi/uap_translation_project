@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.103290",
+    "draft_file": "published_articles/ai_summary_014_d20_f16_middle_east_note_version.md",
+    "pdf_file": "dow-uap-d20-mission-report-southern-united-states-2023.pdf",
+    "pdf_stem": "dow-uap-d20-mission-report-southern-united-states-2023",
+    "pdf_page_count": 6,
+    "pdf_char_count": 8168,
+    "claims_total": 9,
+    "warning_count": 1,
+    "ok_count": 8,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "20秒間",
+      "search_term": "20",
+      "context": "されています。ターゲティングポッドのTV（可視光）モードで約20秒間捉えた後、物体は暗くなって消えています。  ---  ## ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "d. fl3,','rel lfoufh\\:, pffl1}20072-! 1.4a !flt entered i2 air",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "東上空、2023年3月【AI概要版 #014】  この文書は元機密の任務完了報告（MISREP）です。DCA（防空制空）任務中のF-16CM 2機が、複数の未確認発光体を観測し",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "8tleb'fll:n8ifefflf misrep undefined-8584059 narrative (",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "【AI概要版 #014】  この文書は元機密の任務完了報告（MISREP）です。DCA（防空制空）任務中のF-16CM 2機が、複数",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "8tleb'fll:n8ifefflf misrep undefined-8584059 narrative (",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "DCA",
+      "search_term": "DCA",
+      "context": "4】  この文書は元機密の任務完了報告（MISREP）です。DCA（防空制空）任務中のF-16CM 2機が、複数の未確認発光体",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "! flt was fragged to conduct dca in the essa (2100-0000). miss",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "EFS",
+      "search_term": "EFS",
+      "context": "-  ## AI読解  **任務の背景**  本文書は77 EFS（第77戦闘飛行隊）所属のF-16CM 2機が2023年3月",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "inator (unit or squadron): 77 efs • submit date: msnid • taskin",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "OEPS",
+      "search_term": "OEPS",
+      "context": " 2機が2023年3月31日夜にプリンス・スルタン空軍基地（OEPS）から出撃し、オペレーション・インヒアレント・リゾルブのDC",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "from prince sultan air base (oeps) iso operation inherent resol",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AEW",
+      "search_term": "AEW",
+      "context": "層あり（一部OCR文字化けあり）・77 EFS / 378 AEW・USCENTCOM MDR 25-0094〜25-0099",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "6) • unit: 77 efs • wing: 378 aew • phone numlt.er;!,...fo_i_a-",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM MDR",
+      "search_term": "USCENTCOM MDR",
+      "context": "一部OCR文字化けあり）・77 EFS / 378 AEW・USCENTCOM MDR 25-0094〜25-0099・2025年10月17日AA",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "POSS",
+      "search_term": "POSS",
+      "context": "りとみられます。  **「10〜20機」は目視推定値** \"POSS 10X-20X\"という記述は乗員の推定です。光点が複数に見",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "23022 -~flt observed multiple poss uaps. (see uap) • tf,,1r1ms '",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

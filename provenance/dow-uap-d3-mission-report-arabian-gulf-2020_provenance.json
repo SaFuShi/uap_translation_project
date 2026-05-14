@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.282697",
+    "draft_file": "published_articles/ai_summary_021_d3_arabian_gulf_2020_note_version.md",
+    "pdf_file": "dow-uap-d3-mission-report-arabian-gulf-2020.pdf",
+    "pdf_stem": "dow-uap-d3-mission-report-arabian-gulf-2020",
+    "pdf_page_count": 7,
+    "pdf_char_count": 5740,
+    "claims_total": 11,
+    "warning_count": 1,
+    "ok_count": 10,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "36分",
+      "search_term": "36",
+      "context": ". センサーの視野内で4機のUAPを観察** UTC 17時36分台、センサー視野（FOV）内に4機の UAP が飛行している",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "ent description): at approx 1736z 4 uap were observed beneath",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "**  本文書は AFCENT（米空軍中央コマンド）が管轄するミッションレポート（MISREP）であり、Misrep 番号は 8799515 です。文書の大部分は 1.4(a)",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "(b)(1)1.4a misrep 8799515 narrative (b)(1)1.4a,",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "UTC",
+      "search_term": "UTC",
+      "context": "要点  **1. センサーの視野内で4機のUAPを観察** UTC 17時36分台、センサー視野（FOV）内に4機の UAP ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "FOV",
+      "search_term": "FOV",
+      "context": "機のUAPを観察** UTC 17時36分台、センサー視野（FOV）内に4機の UAP が飛行しているのを記録したと述べていま",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "observed flying in (b)(1)1.4a fov. cloud coverage obstructed (b",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AFCENT",
+      "search_term": "AFCENT",
+      "context": "  ## AI読解  **記録の性質と背景**  本文書は AFCENT（米空軍中央コマンド）が管轄するミッションレポート（MISR",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": ".4a • major command (majcom): afcent • combatant command (cocom):",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "CENT（米空軍中央コマンド）が管轄するミッションレポート（MISREP）であり、Misrep 番号は 8799515 です。文書の",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "(b)(1)1.4a misrep 8799515 narrative (b)(1)1.4a,",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MAJCOM",
+      "search_term": "MAJCOM",
+      "context": "・タスキングオーダーなど多くの情報が非開示です。指揮系統は MAJCOM が AFCENT とのみ確認できます。INGEST 欄・気",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": ": (b)(1)1.4a • major command (majcom): afcent • combatant command",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "INGEST",
+      "search_term": "INGEST",
+      "context": "系統は MAJCOM が AFCENT とのみ確認できます。INGEST 欄・気象欄・タイムライン全般は黒塗りです。  ---  *",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "ingest (b)(1)1.4a • rank: • full nam",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "GENTEXT",
+      "search_term": "GENTEXT",
+      "context": "ムライン全般は黒塗りです。  ---  **観察内容**  GENTEXT/UAP セクションには「4X UAP OBSERVED F",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "(b)(1)1.4a • data link: • gentext: timeline takeoff • callsign:",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CLOUD COVERAGE OBSTRUCTED",
+      "search_term": "CLOUD COVERAGE OBSTRUCTED",
+      "context": "UAP OBSERVED FLYING IN [FOV]. CLOUD COVERAGE OBSTRUCTED [センサー] FROM FOLLOWING AND GET",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "ved flying in (b)(1)1.4a fov. cloud coverage obstructed (b)(1)1.4a from following and",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CLEAR VISUAL",
+      "search_term": "CLEAR VISUAL",
+      "context": " FROM FOLLOWING AND GETTING A CLEAR VISUAL.（4機のUAPがセンサー視野内で飛行しているのを観察したが",
+      "is_conversion": false,
+      "found": true,
+      "page": 7,
+      "excerpt": "from following and getting a clear visual. (see isr 1). • gentext (uap",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

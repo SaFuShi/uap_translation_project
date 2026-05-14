@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.755730",
+    "draft_file": "published_articles/ai_summary_010_d52_email_uap_orb_note_version.md",
+    "pdf_file": "dow-uap-d52-email-correspondance-na-august-2024.pdf",
+    "pdf_stem": "dow-uap-d52-email-correspondance-na-august-2024",
+    "pdf_page_count": 2,
+    "pdf_char_count": 779,
+    "claims_total": 2,
+    "warning_count": 0,
+    "ok_count": 2,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "DET",
+      "search_term": "DET",
+      "context": "I読解  **メールのやり取りの流れ**  15 AF / DET 1のPAROC（特別報告調整）情報解析技術者が、UAP目撃",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "a analysis technician 15 af / det 1 (b) (6) //unclassified// 31",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "PAROC",
+      "search_term": "PAROC",
+      "context": "テキスト層あり・OCR成功・15 AF / DET 1作成・PAROC Intel  ---  ## 注意点  **この文書は目撃",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ents or concerns. v/r (b) (6) paroc intel data analysis technicia",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

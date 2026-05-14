@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "generated_at": "2026-05-13T20:29:58.342760",
+    "draft_file": "note_drafts/ai_summary_050_d49_vandenberg_launch_2000_note_version.md",
+    "pdf_file": "dow-uap-d49-launch-summary-february-2000.pdf",
+    "pdf_stem": "dow-uap-d49-launch-summary-february-2000",
+    "pdf_page_count": 113,
+    "pdf_char_count": 184202,
+    "claims_total": 7,
+    "warning_count": 1,
+    "ok_count": 6,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "WAR",
+      "search_term": "WAR",
+      "context": "デンバーグ空軍基地打ち上げ実績集 1958〜2000年──【WAR.GOV公開資料・AI概要版 #050】  ---  ## ",
+      "is_conversion": false,
+      "found": true,
+      "page": 11,
+      "excerpt": "flight research facility at edwards afb, california. they were",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "GOV",
+      "search_term": "GOV",
+      "context": "作成した公式歴史文書です。  本記事では、この資料がWAR.GOV UAP公開コレクションの一部として公開された背景資料として",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AFB",
+      "search_term": "AFB",
+      "context": "0th Space Wing）歴史局、Vandenberg AFB - **配布先**：HQ USAF、HQ AFSPC、Bo",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "• vandenb.erg afb launch summary 1958 - 2000 30",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USAF",
+      "search_term": "USAF",
+      "context": "局、Vandenberg AFB - **配布先**：HQ USAF、HQ AFSPC、Boeing、TRW、NASA、Aero",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "w as of: 3 february 2000 1 hq usaf/xofs 1 hq afspc/ho 1 hq afspc",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AFSPC",
+      "search_term": "AFSPC",
+      "context": "berg AFB - **配布先**：HQ USAF、HQ AFSPC、Boeing、TRW、NASA、Aerospace Cor",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "uary 2000 1 hq usaf/xofs 1 hq afspc/ho 1 hq afspc/dosl 1 hq usspa",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "TRW",
+      "search_term": "TRW",
+      "context": "配布先**：HQ USAF、HQ AFSPC、Boeing、TRW、NASA、Aerospace Corporation等 -",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "ederal services corporation 2 trw as of: 3 february 2000 1 hq u",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "NASA",
+      "search_term": "NASA",
+      "context": "*：HQ USAF、HQ AFSPC、Boeing、TRW、NASA、Aerospace Corporation等 - **作成",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "ol 1 45th sw/ho 1 smc/ho 1 ho nasa 1 ho afmc/ors 2 ogden alc/lmi",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:28.098716",
+    "draft_file": "note_drafts/ai_summary_017_d42_range_fouler_japan_note_version.md",
+    "pdf_file": "dow-uap-d42-range-fouler-debrief-japan-2023.pdf",
+    "pdf_stem": "dow-uap-d42-range-fouler-debrief-japan-2023",
+    "pdf_page_count": 1,
+    "pdf_char_count": 3264,
+    "claims_total": 9,
+    "warning_count": 2,
+    "ok_count": 7,
+    "high_count": 0,
+    "medium_count": 2,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "speed",
+      "raw_text": "230ノット",
+      "search_term": "230",
+      "context": ",000フィート（約36km）、移動方向・速度は 150°/230ノットと記録されています。  ---  ## AI読解  **記録",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "x. 090/15) wind speed yes 150/230 please check all that apply:",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "118,000フィート",
+      "search_term": "118000",
+      "context": "# 高度118,000フィートで複数の不明物体を目視──アラビア湾・2020年8月【AI概",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ption (gas, bfm, etc) no lfe? 118000 contact altitude ( x: 22000)",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "large_number",
+      "raw_text": "118,000",
+      "search_term": "118000",
+      "context": "# 高度118,000フィートで複数の不明物体を目視──アラビア湾・2020年8月",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ption (gas, bfm, etc) no lfe? 118000 contact altitude ( x: 22000)",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Range Fouler Debrief Form）",
+      "search_term": "Range Fouler Debrief Form",
+      "context": "8月【AI概要版 #017】  本文書はレンジ・ファウラー・デブリーフ・フォーム（Range Fouler Debrief Form）と呼ばれる、飛行訓練・作戦空域での不明接触物を報告するための標準記録様式です。フ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "lirh, j,1 ltl r'wri,' g: b if range fouler debrief form f- 1uol1;<l!!'j\"1el_\u0015 o)\u0016q\u0017\u0018p",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SPEAR",
+      "search_term": "SPEAR",
+      "context": "## AI読解  **記録の性質と背景**  本フォームは SPEAR（Special Program for Electroni",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ormation is for contact only. spear sanitizes all rĉports of iden",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "O-2",
+      "search_term": "O-2",
+      "context": "ウラー）を後日記録したものと読み取れます。提出者のランクは O-2（中尉）、所属は 482 ATKS（第482攻撃飛行隊）とさ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ATKS",
+      "search_term": "ATKS",
+      "context": "取れます。提出者のランクは O-2（中尉）、所属は 482 ATKS（第482攻撃飛行隊）とされています。  ---  **観察",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "st name rank 0-2 squadron j482atks sf pr email address crew posi",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MGRS",
+      "search_term": "MGRS",
+      "context": "ページ・テキスト層あり（OCR精度低め・フォント崩れあり）・MGRS 39RWL（アラビア湾域）・USCENTCOM MDR 2",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "nc/ i ded in questions above. mgrs grid of initial contact: 39rw",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM MDR",
+      "search_term": "USCENTCOM MDR",
+      "context": "・フォント崩れあり）・MGRS 39RWL（アラビア湾域）・USCENTCOM MDR 26-0028・AARO承認済み  ---  ## 注意点",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

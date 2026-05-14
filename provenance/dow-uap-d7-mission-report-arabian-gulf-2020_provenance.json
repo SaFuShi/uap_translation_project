@@ -1,0 +1,163 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.457178",
+    "draft_file": "published_articles/ai_summary_026_d7_arabian_gulf_note_version.md",
+    "pdf_file": "dow-uap-d7-mission-report-arabian-gulf-2020.pdf",
+    "pdf_stem": "dow-uap-d7-mission-report-arabian-gulf-2020",
+    "pdf_page_count": 6,
+    "pdf_char_count": 453,
+    "claims_total": 12,
+    "warning_count": 3,
+    "ok_count": 9,
+    "high_count": 0,
+    "medium_count": 3,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "altitude",
+      "raw_text": "31,000フィート",
+      "search_term": "31000",
+      "context": "# 気球状UAP、高度31,000フィートで目視確認──アラビア湾・2020年【AI概要版 #026】",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "p traveling with the winds at 31,000 ft msl ivo 323's. 1.4(a) was",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "large_number",
+      "raw_text": "31,000",
+      "search_term": "31000",
+      "context": "# 気球状UAP、高度31,000フィートで目視確認──アラビア湾・2020年【AI概要版 #",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "p traveling with the winds at 31,000 ft msl ivo 323's. 1.4(a) was",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "*  本資料はUSCENTCOM（米中央軍）管轄下で作成されたミッションレポート（MISREP）です。6ページ構成のうち、テキストとして読み取れた内容はGENTEXT（一般テキ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（NEXT TO SHOOT）",
+      "search_term": "NEXT TO SHOOT",
+      "context": "付近を飛行していたと述べています。また、TFLIRセンサーを使用して接近射撃位置（NEXT TO SHOOT）から目視でIDを試みたことが記録されています。外観については「以前48FWから報",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "'s. 1.4(a) was able to make a next to shoot on the track and visually id",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "TFLIR",
+      "search_term": "TFLIR",
+      "context": "m）付近で気球に似た形状のUAPを目視および赤外線センサー（TFLIR）で捉えたと記録されています。  **2. 同ユニットの過去",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "nd visually id the uap in the tflir. 1.4(a)",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "NTCOM（米中央軍）管轄下で作成されたミッションレポート（MISREP）です。6ページ構成のうち、テキストとして読み取れた内容はG",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "WEAPONS QUALITY",
+      "search_term": "WEAPONS QUALITY",
+      "context": "ているUAP観測の要点は以下のとおりです。観測者はUAPを「WEAPONS QUALITY 1 TRACK」（高精度の追尾トラック）として捉え、対象が",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "ription): (secret) observed a weapons quality 1 track of a uap traveling wi",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "TRACK",
+      "search_term": "TRACK",
+      "context": "です。観測者はUAPを「WEAPONS QUALITY 1 TRACK」（高精度の追尾トラック）として捉え、対象が風向きに沿って高",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "observed a weapons quality 1 track of a uap traveling with the w",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "NEXT TO SHOOT",
+      "search_term": "NEXT TO SHOOT",
+      "context": "べています。また、TFLIRセンサーを使用して接近射撃位置（NEXT TO SHOOT）から目視でIDを試みたことが記録されています。外観について",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "'s. 1.4(a) was able to make a next to shoot on the track and visually id",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM",
+      "search_term": "USCENTCOM",
+      "context": "4(a)で非公開・GENTEXTセクションのみ読み取り可能・USCENTCOM MDRシリーズ  ---  ## 注意点  **本資料は大",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "LOOKS LIKE",
+      "search_term": "LOOKS LIKE",
+      "context": "す。  **「気球状」は観測者自身の評価です** 記録中の「LOOKS LIKE A BALLOON」は観測者による外見の描写であり、実際に",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "ings, recognizable features): looks like a balloon, similar to previou",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "BALLOON",
+      "search_term": "BALLOON",
+      "context": "測者自身の評価です** 記録中の「LOOKS LIKE A BALLOON」は観測者による外見の描写であり、実際に気球であるとの確認や",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "zable features): looks like a balloon, similar to previously report",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

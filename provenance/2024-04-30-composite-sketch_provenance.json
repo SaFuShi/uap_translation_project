@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:32.821114",
+    "draft_file": "note_drafts/ai_reading_001_composite-sketch_20240430_note_version.md",
+    "pdf_file": "2024-04-30-composite-sketch.pdf",
+    "pdf_stem": "2024-04-30-composite-sketch",
+    "pdf_page_count": 1,
+    "pdf_char_count": 0,
+    "claims_total": 1,
+    "warning_count": 1,
+    "ok_count": 0,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "WAR",
+      "search_term": "WAR",
+      "context": "P事案の物体外観再現に使われました。  2026年5月8日、WAR.GOVで他のUAP文書とともに一括公開されました。  --",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

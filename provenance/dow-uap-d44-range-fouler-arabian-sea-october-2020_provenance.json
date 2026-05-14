@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.882171",
+    "draft_file": "published_articles/ai_summary_012_d44_arabian_sea_oct2020_note_version.md",
+    "pdf_file": "dow-uap-d44-range-fouler-arabian-sea-october-2020.pdf",
+    "pdf_stem": "dow-uap-d44-range-fouler-arabian-sea-october-2020",
+    "pdf_page_count": 1,
+    "pdf_char_count": 3372,
+    "claims_total": 7,
+    "warning_count": 0,
+    "ok_count": 7,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "distance",
+      "raw_text": "4.06NM",
+      "search_term": "4.06",
+      "context": "触中に数回の急激な方向転換を行った。センサーはスラントレンジ4.06NM、グラウンドレンジ4.78KMに照準していた。IRセンサーは",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ltitude with a slant range of 4.06nm and ground range of 4. 78km",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "19,073フィート",
+      "search_term": "19073",
+      "context": "ンサーが丸い物体を1分間追跡** 現地時間14時18分、高度19,073フィートのISR任務中に、IR（赤外線）センサーが円形の物体を検知し",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ed lat/long! 1.4a 1- while at 19,073 hat o'1,er the gulf of aden w",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "1分間",
+      "search_term": "1",
+      "context": "# ISR任務中に1分間追跡した丸い未識別物体──アデン湾上空、2020年10月【A",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "decl\"'ss,fied bv mt:, ric1ard har•,sori • sa::ar , shi •",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "18分",
+      "search_term": "18",
+      "context": ". 赤外線センサーが丸い物体を1分間追跡** 現地時間14時18分、高度19,073フィートのISR任務中に、IR（赤外線）セ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ded for analysis. 10/15/20 14:18:39 day isr date (mmlddlyy) ti",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "large_number",
+      "raw_text": "19,073",
+      "search_term": "19073",
+      "context": "ンサーが丸い物体を1分間追跡** 現地時間14時18分、高度19,073フィートのISR任務中に、IR（赤外線）センサーが円形の物体",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ed lat/long! 1.4a 1- while at 19,073 hat o'1,er the gulf of aden w",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ATKS",
+      "search_term": "ATKS",
+      "context": "されたRange Fouler報告書です。報告者は1172 ATKS（攻撃飛行隊）所属のO-2（中尉相当）です。同飛行隊はアデン",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "t name rank 0-2 squadron 1172 atks sipr e:mail address crew posi",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AIM-",
+      "search_term": "AIM-",
+      "context": "り、問題の物体は明るい白として映っていた。  レーダー追跡・AIM-9Xの自動追尾・ATFLIRのオートトラック・目視確認のいず",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "trac:kfiles oij1erl ambiguous aim-9x self-track: a tflir autotra",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

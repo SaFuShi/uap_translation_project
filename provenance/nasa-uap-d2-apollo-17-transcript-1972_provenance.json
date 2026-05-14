@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:32.995653",
+    "draft_file": "note_drafts/ai_reading_005_apollo17_transcript_note_version.md",
+    "pdf_file": "nasa-uap-d2-apollo-17-transcript-1972.pdf",
+    "pdf_stem": "nasa-uap-d2-apollo-17-transcript-1972",
+    "pdf_page_count": 16,
+    "pdf_char_count": 22061,
+    "claims_total": 10,
+    "warning_count": 0,
+    "ok_count": 10,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（NOUN 20）",
+      "search_term": "NOUN 20",
+      "context": "距離感から見てはっきり物理的な何かだ」と強調しました。ヒューストンは機体の姿勢角（NOUN 20）を報告させ、光学機器で確認しようとしています。  サーナンが「MARK」を送信し",
+      "is_conversion": false,
+      "found": true,
+      "page": 8,
+      "excerpt": "y, gene. if you can call up a noun 20 so we know the spacecraft att",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（ALFMED）",
+      "search_term": "ALFMED",
+      "context": "たことの意味は、文書内では説明されていません。  **「宇宙線フラッシュ」の実験（ALFMED）とUAP観察は別物です。** ページ5（Tape 46/4）でサーナンが「目を閉",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "- to show the position of the alfmed, and one of them of each set",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Tape 46/4）",
+      "search_term": "Tape 46/4",
+      "context": "「宇宙線フラッシュ」の実験（ALFMED）とUAP観察は別物です。** ページ5（Tape 46/4）でサーナンが「目を閉じた状態で見えた光」を報告している部分があります。これはAL",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "tape 46/4 02 18 4111 cdr cmp 02 18 41 5",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "S-IVB",
+      "search_term": "S-IVB",
+      "context": "規則的に点滅する物体についてヒューストンが「第3段ロケット（S-IVB）だろう」と説明しました。しかし乗組員、特にシュミットとサー",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "ight be - off the side of the s-ivb. and that's a wild guess cdr",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CDR",
+      "search_term": "CDR",
+      "context": " ## AI読解  **アポロ17号の乗組員**  - **CDR**：ジーン・サーナン（司令官、月に最後に足を踏み入れた人間",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "-ivb. and that's a wild guess cdr okay. rcs logic is ... - - cm",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CMP",
+      "search_term": "CMP",
+      "context": "・サーナン（司令官、月に最後に足を踏み入れた人間） - **CMP**：ロン・エヴァンス（司令船パイロット、月軌道に待機） -",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "pying cabin press of 5.9 this cmp roger. we - we just got it, b",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "LMP",
+      "search_term": "LMP",
+      "context": "ロン・エヴァンス（司令船パイロット、月軌道に待機） - **LMP**：ジャック・シュミット（月着陸船パイロット、唯一の地質学",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ill be at 03 plus 33 plus 27. lmp okay, we got you. maneuver at",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "NOUN",
+      "search_term": "NOUN",
+      "context": "物理的な何かだ」と強調しました。ヒューストンは機体の姿勢角（NOUN 20）を報告させ、光学機器で確認しようとしています。  サ",
+      "is_conversion": false,
+      "found": true,
+      "page": 8,
+      "excerpt": "y, gene. if you can call up a noun 20 so we know the spacecraft",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MARK",
+      "search_term": "MARK",
+      "context": "報告させ、光学機器で確認しようとしています。  サーナンが「MARK」を送信して位置確定後、「明るいフラッシュとそれに続く鈍いフ",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "... okay, stand by. 3, 2, 1 ­ mark it. power switch off. say, bo",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ALFMED",
+      "search_term": "ALFMED",
+      "context": "では説明されていません。  **「宇宙線フラッシュ」の実験（ALFMED）とUAP観察は別物です。** ページ5（Tape 46/4",
+      "is_conversion": false,
+      "found": true,
+      "page": 6,
+      "excerpt": "- to show the position of the alfmed, and one of them of each set",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

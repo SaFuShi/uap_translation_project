@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "generated_at": "2026-05-13T20:29:57.779942",
+    "draft_file": "note_drafts/ai_summary_049_d48_rocket_failure_1996_note_version.md",
+    "pdf_file": "dow-uap-d48-report-september-1996.pdf",
+    "pdf_stem": "dow-uap-d48-report-september-1996",
+    "pdf_page_count": 181,
+    "pdf_char_count": 384404,
+    "claims_total": 7,
+    "warning_count": 2,
+    "ok_count": 5,
+    "high_count": 0,
+    "medium_count": 2,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "WAR",
+      "search_term": "WAR",
+      "context": "ペースブースター失敗確率モデリング研究報告書──1996年【WAR.GOV公開資料・AI概要版 #049】  ---  ## ",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "l report prepared by james a. ward, jr. robert m. montgomery of",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "GOV",
+      "search_term": "GOV",
+      "context": "モデルで推計する内容です。  本記事では、この資料がWAR.GOV UAP公開コレクションの一部として公開された背景資料として",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "distribution authorized to us government agencies and their con",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "RTI",
+      "search_term": "RTI",
+      "context": "*：Research Triangle Institute（RTI）、ノースカロライナ州 - **委託機関**：米空軍第45宇",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "research triangle institute /rti contract no■-fo4703-91-c-0112",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AFB",
+      "search_term": "AFB",
+      "context": " **委託機関**：米空軍第45宇宙航空団（Patrick AFB、フロリダ州）および第30宇宙航空団（Vandenberg ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ety office - 45 sw/se patrick afb, fl 32925 and department of t",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "F04703-91-C-0112",
+      "search_term": "F04703-91-C-0112",
+      "context": "berg AFB、カリフォルニア州） - **契約番号**：F04703-91-C-0112 - **報告番号**：RTI/5180/77-43F - ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "C-0112",
+      "search_term": "C-0112",
+      "context": "8文字）・技術研究報告書・RTI契約番号F04703-91-C-0112・1996年9月10日作成  ---  ## 注意点  **",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "e /rti contract no■-fo4703-91-c-0112 rti report no. rtl/5180/77-43",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AARO",
+      "search_term": "AARO",
+      "context": "開コレクションのアーカイブ化」の一環として作成されています。AARO（米国防総省のUAP調査組織）の公開コレクションにこのような",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

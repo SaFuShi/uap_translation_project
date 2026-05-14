@@ -1,0 +1,139 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.733551",
+    "draft_file": "published_articles/ai_summary_008_persian_gulf_range_fouler_note_version_revised.md",
+    "pdf_file": "dow-uap-d38-range-fouler-debrief-middle-east-may-2020.pdf",
+    "pdf_stem": "dow-uap-d38-range-fouler-debrief-middle-east-may-2020",
+    "pdf_page_count": 1,
+    "pdf_char_count": 3441,
+    "claims_total": 10,
+    "warning_count": 2,
+    "ok_count": 8,
+    "high_count": 0,
+    "medium_count": 2,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（Intermittent）",
+      "search_term": "Intermittent",
+      "context": "断続的** 接触高度は約2万フィートで一定。レーダーのトラックファイルは「断続的（Intermittent）」と記載されており、継続的な捕捉はできていません。  ---  ## AI読解 ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "equipped: stable trackfile?: intermittent # of contacts in \"group\": 1 e",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（UL TN / Black Hot / Linear）",
+      "search_term": "UL TN / Black Hot / Linear",
+      "context": "5月14日 20:40 UTC（夜間） - 任務：ISR、センサー設定：FLIR（UL TN / Black Hot / Linear） - 接触数：1件、形状チェック：丸（Round）・金属的（Metallic）・",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Metallic）",
+      "search_term": "Metallic",
+      "context": "t / Linear） - 接触数：1件、形状チェック：丸（Round）・金属的（Metallic）・反射あり（Reflective）・翼/機体構造（Wings/Airframe）",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "propulsion:□ moving parts: d metallic: d markings: d translucent: d",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Reflective）",
+      "search_term": "Reflective",
+      "context": "触数：1件、形状チェック：丸（Round）・金属的（Metallic）・反射あり（Reflective）・翼/機体構造（Wings/Airframe） - レーダー：装備あり、トラック",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "s: d translucent: d opaque: d reflective: d please use the field below",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Wings/Airframe）",
+      "search_term": "Wings/Airframe",
+      "context": "d）・金属的（Metallic）・反射あり（Reflective）・翼/機体構造（Wings/Airframe） - レーダー：装備あり、トラックファイルは断続的、ATFLIRオートトラック取",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "] square: d balloon-shaped: d wings/airframe: d other shape:o apparent pro",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SPEAR",
+      "search_term": "SPEAR",
+      "context": "rief Form」という報告様式について** この文書は「SPEAR（米軍のUAP報告プログラム）」が運用する標準様式です。「R",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ormation is for contact only. spear sanitizes all r ports of iden",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ISR",
+      "search_term": "ISR",
+      "context": "サーの視野を横切る白い物体を目撃** 情報収集・監視・偵察（ISR）任務中、FLIRセンサーの視野に白い球状の物体が出現しまし",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "4 contact latitute (dd:mm:ss) isr side no. buno mission descrip",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "UTC",
+      "search_term": "UTC",
+      "context": "の通りです。  - 日時：2020年5月14日 20:40 UTC（夜間） - 任務：ISR、センサー設定：FLIR（UL T",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "FLIR",
+      "search_term": "FLIR",
+      "context": "20:40 UTC（夜間） - 任務：ISR、センサー設定：FLIR（UL TN / Black Hot / Linear） -",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "mbiguous aim-9x self-track: atflir autotrack: tally achieved: □",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM MDR",
+      "search_term": "USCENTCOM MDR",
+      "context": "---  **AI解析メモ：** 1ページ・テキスト層あり（USCENTCOM MDR 26-0019 / AARO向け公開承認 2026年1月）",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "t this link. i 3.5c, (b)(b) i uscentcom mdr 26-0019 approved for release",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.906373",
+    "draft_file": "published_articles/ai_summary_013_d57_gulf_of_aden_sep2020_note_version.md",
+    "pdf_file": "dow-uap-d57-mission-report-gulf-of-aden-september-2020.pdf",
+    "pdf_stem": "dow-uap-d57-mission-report-gulf-of-aden-september-2020",
+    "pdf_page_count": 1,
+    "pdf_char_count": 3175,
+    "claims_total": 9,
+    "warning_count": 1,
+    "ok_count": 8,
+    "high_count": 1,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "HIGH"
+  },
+  "claims": [
+    {
+      "type": "distance",
+      "raw_text": "6.17NM",
+      "search_term": "6.17",
+      "context": "触中に数回の急激な方向転換を行った。センサーはスラントレンジ6.17NM、グラウンドレンジ8.81KMに照準していた。IRセンサーは",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "HIGH"
+    },
+    {
+      "type": "speed",
+      "raw_text": "20 mph",
+      "search_term": "20",
+      "context": "に報告した事例（#012）と比較すると、速度（277 vs 20 mph）および接触継続時間（8分 vs 1分）が大幅に異なっていま",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "recorded for analysis. 09/04/20 21 :09:00 night isr date {mml",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "altitude",
+      "raw_text": "23,819フィート",
+      "search_term": "23819",
+      "context": "わたって丸い物体を追跡** 現地時間21時09分（Z）、高度23,819フィートの夜間ISR任務中に、IRセンサーが円形の物体を検知しました",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "m. etc) lfe? (hh:mm:ss z) n e 23819 contact won,-ing area contact",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "8分間",
+      "search_term": "8",
+      "context": "# 夜間ISR任務中に8分間追跡した丸い未識別物体──アデン湾上空、2020年9月【AI",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "etc) lfe? (hh:mm:ss z) n e 23819 contact won,-ing area conta",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "09分",
+      "search_term": "09",
+      "context": "センサーが8分間にわたって丸い物体を追跡** 現地時間21時09分（Z）、高度23,819フィートの夜間ISR任務中に、IRセ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ill be recorded for analysis. 09/04/20 21 :09:00 night isr dat",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "1分",
+      "search_term": "1",
+      "context": "277 vs 20 mph）および接触継続時間（8分 vs 1分）が大幅に異なっています。  ---  ## AI読解  *",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ail address crew position 0-3 1172 atks other this informatio",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "large_number",
+      "raw_text": "23,819",
+      "search_term": "23819",
+      "context": "わたって丸い物体を追跡** 現地時間21時09分（Z）、高度23,819フィートの夜間ISR任務中に、IRセンサーが円形の物体を検知",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "m. etc) lfe? (hh:mm:ss z) n e 23819 contact won,-ing area contact",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ATKS",
+      "search_term": "ATKS",
+      "context": "イム事例（#012）と大きく異なる** 同飛行隊（1172 ATKS）が2020年10月に報告した事例（#012）と比較すると、",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ddress crew position 0-3 1172 atks other this information is for",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AIM-",
+      "search_term": "AIM-",
+      "context": "り、問題の物体は明るい白として映っていた。  レーダー追跡・AIM-9Xの自動追尾・ATFLIRのオートトラック・目視確認のいず",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "(ex. 090/15) radar equipped: aim-9x self-track: please check al",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

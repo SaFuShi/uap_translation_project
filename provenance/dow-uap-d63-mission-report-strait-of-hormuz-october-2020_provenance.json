@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "generated_at": "2026-05-13T20:29:56.913635",
+    "draft_file": "note_drafts/ai_summary_046_d63_hormuz_oct2020_note_version.md",
+    "pdf_file": "dow-uap-d63-mission-report-strait-of-hormuz-october-2020.pdf",
+    "pdf_stem": "dow-uap-d63-mission-report-strait-of-hormuz-october-2020",
+    "pdf_page_count": 8,
+    "pdf_char_count": 7,
+    "claims_total": 3,
+    "warning_count": 3,
+    "ok_count": 0,
+    "high_count": 1,
+    "medium_count": 2,
+    "low_count": 0,
+    "article_risk": "HIGH"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "（ファイル名から推定できる情報）  - **推定任務種別**：ミッションレポート（MISREP） - **推定地域**：ホルムズ海峡（Strait of Hormuz） - *",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Strait of Hormuz）",
+      "search_term": "Strait of Hormuz",
+      "context": "種別**：ミッションレポート（MISREP） - **推定地域**：ホルムズ海峡（Strait of Hormuz） - **推定時期**：2020年10月 - **文書番号**：dow-uap-",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "HIGH"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "きる情報）  - **推定任務種別**：ミッションレポート（MISREP） - **推定地域**：ホルムズ海峡（Strait of ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

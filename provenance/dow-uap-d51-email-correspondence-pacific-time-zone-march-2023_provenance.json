@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.332686",
+    "draft_file": "published_articles/ai_summary_023_d51_pacific_email_2023_note_version.md",
+    "pdf_file": "dow-uap-d51-email-correspondence-pacific-time-zone-march-2023.pdf",
+    "pdf_stem": "dow-uap-d51-email-correspondence-pacific-time-zone-march-2023",
+    "pdf_page_count": 6,
+    "pdf_char_count": 3064,
+    "claims_total": 11,
+    "warning_count": 1,
+    "ok_count": 10,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "8分間",
+      "search_term": "8",
+      "context": "# 安保施設上空で8分間目視された大型青色三角形──太平洋時間帯・2023年3月【A",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "day: night duration: approx. 8 minutes reporter type: civili",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "3分間",
+      "search_term": "3",
+      "context": "ングアップ（後退）」するような不規則な動き** 物体は最初約3分間静止（ホバリング）し、その後「バッキングアップ（後退する）」",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "ific time zone date: march 2023 time of day: night duration:",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（derivative classification review）",
+      "search_term": "derivative classification review",
+      "context": " AFOSI（空軍特別捜査局）の CI 収集・作戦 PM が「派生的分類変更審査（derivative classification review）」として処理し、提供された非機密要約での使用を承認したと記録されています。  -",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "uthority to process this as a derivative classification review, instead of a declassificatio",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Intelligence Information Report）",
+      "search_term": "Intelligence Information Report",
+      "context": "（情報・安全保障）の情報開示アナリストが AFOSI に対し、機密指定の IIR（Intelligence Information Report）の非機密要約を公開製品で使用することの承認を求めたものです。AFOSI 側は通常",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Event Summary）",
+      "search_term": "Event Summary",
+      "context": "ています。  ---  **目撃概要の内容**  メール内に添付された非機密要約（Event Summary）には以下が記録されています。報告者は太平洋時間帯にある国家安全保障施設の上空また",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "rate \"cloaking capabilities.\" event summary: location: pacific time zone",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（whitish blue）",
+      "search_term": "whitish blue",
+      "context": "告者は太平洋時間帯にある国家安全保障施設の上空または付近で、強い「白みがかった青（whitish blue）」の光を複数の周縁部から放射する大型三角形物体を目撃したと述べています。物体は「",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "silhouette emitting powerful \"whitish blue\" light from multiple points a",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（national security facility）",
+      "search_term": "national security facility",
+      "context": "帯」のみ** 施設名・具体的な住所・地域は開示されていません。「国家安全保障施設（national security facility）」の詳細は非開示です。  **民間人の目撃報告** 本報告は軍人・当局者ではなく",
+      "is_conversion": false,
+      "found": true,
+      "page": 4,
+      "excerpt": "g\" stationary above or near a national security facility for approximately three minut",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AFOSI",
+      "search_term": "AFOSI",
+      "context": "な「滑らか」な動きとは異なるとも述べています。  **3. AFOSI のメール承認で非機密要約として公開が認められた** AFO",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "iirs is lengthy and requires afosi commander signature so i'm ex",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "IIR",
+      "search_term": "IIR",
+      "context": "障）の情報開示アナリストが AFOSI に対し、機密指定の IIR（Intelligence Information Repo",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "our process for declassifying iirs is lengthy and requires afos",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SECRET",
+      "search_term": "SECRET",
+      "context": "OCR 良好・メール連鎖文書・目撃は2023年3月（夜間）・SECRET//NOFORN から非機密への分類変更承認済み  --- ",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": "st (b) (6) office of the undersecretary of defense for intelligenc",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "NOFORN",
+      "search_term": "NOFORN",
+      "context": "ール連鎖文書・目撃は2023年3月（夜間）・SECRET//NOFORN から非機密への分類変更承認済み  ---  ## 注意点 ",
+      "is_conversion": false,
+      "found": true,
+      "page": 5,
+      "excerpt": ") (6) classification: secret//noforn classification: secret//nofor",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

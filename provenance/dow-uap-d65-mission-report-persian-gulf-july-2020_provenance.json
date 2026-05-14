@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "generated_at": "2026-05-13T20:29:57.005117",
+    "draft_file": "note_drafts/ai_summary_048_d65_persian_gulf_jul2020_note_version.md",
+    "pdf_file": "dow-uap-d65-mission-report-persian-gulf-july-2020.pdf",
+    "pdf_stem": "dow-uap-d65-mission-report-persian-gulf-july-2020",
+    "pdf_page_count": 8,
+    "pdf_char_count": 7,
+    "claims_total": 3,
+    "warning_count": 3,
+    "ok_count": 0,
+    "high_count": 1,
+    "medium_count": 2,
+    "low_count": 0,
+    "article_risk": "HIGH"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（MISREP）",
+      "search_term": "MISREP",
+      "context": "（ファイル名から推定できる情報）  - **推定任務種別**：ミッションレポート（MISREP） - **推定地域**：ペルシャ湾（Persian Gulf） - **推定時期",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Persian Gulf）",
+      "search_term": "Persian Gulf",
+      "context": "務種別**：ミッションレポート（MISREP） - **推定地域**：ペルシャ湾（Persian Gulf） - **推定時期**：2020年7月 - **文書番号**：dow-uap-d",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "HIGH"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "きる情報）  - **推定任務種別**：ミッションレポート（MISREP） - **推定地域**：ペルシャ湾（Persian Gul",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

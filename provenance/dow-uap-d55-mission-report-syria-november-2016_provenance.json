@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:28.120603",
+    "draft_file": "note_drafts/ai_summary_029_d55_syria_2016_note_version.md",
+    "pdf_file": "dow-uap-d55-mission-report-syria-november-2016.pdf",
+    "pdf_stem": "dow-uap-d55-mission-report-syria-november-2016",
+    "pdf_page_count": 1,
+    "pdf_char_count": 1602,
+    "claims_total": 11,
+    "warning_count": 1,
+    "ok_count": 10,
+    "high_count": 0,
+    "medium_count": 1,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "distance",
+      "raw_text": "86海里",
+      "search_term": "86",
+      "context": "た** 2016年11月18日、P-8A哨戒機がラタキア北西86海里の海上で、未識別の低空飛行物体をEO/IR（電子光学・赤外線",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "nidentified low-ftylng object 86 nm northweet of latakla from",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "distance",
+      "raw_text": "40海里",
+      "search_term": "40",
+      "context": "間は約2分間（1310Z〜1312Z）、その後ラタキア北西約40海里付近で視認を失いました。飛行軌道はシリア方向から南東方向への",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "he object ivo ~ 1.4a iapprox. 40 nm northwest of latakia. the",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "distance",
+      "raw_text": "55 NM",
+      "search_term": "55",
+      "context": "**文書内の距離表記の不一致について** 文書タイトルには「55 NM northwest of Latakia」と記されています",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "nidentified low-flying object 55 nm northwest of latakia, syri",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "speed",
+      "raw_text": "500ノット",
+      "search_term": "500",
+      "context": "光学・赤外線）センサーで確認したと記録されています。速度は約500ノットと推定されています。  **2. 物体は「海面スキム（sea",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "de traveling at approximately 500kts on a southeasterly heading",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "2分間",
+      "search_term": "2",
+      "context": "O/IRセンサーで飛翔体を検出しました。飛翔体の飛行時間は約2分間（1310Z〜1312Z）、その後ラタキア北西約40海里付近",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ief of staff declassified on: 20 m~ 67.1 p-8a observes uniden",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（sea skim）",
+      "search_term": "sea skim",
+      "context": "います。速度は約500ノットと推定されています。  **2. 物体は「海面スキム（sea skim）モード」で南東方向へ飛行していた** 資料の記述では、飛翔体は海面すれすれを飛行",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ble missile appeared to be in sea skim mode traveling at approximate",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（INGUL ARS）",
+      "search_term": "INGUL ARS",
+      "context": "は海面すれすれを飛行する「シースキミング」軌道で南東方向に移動し、ロシア海軍艦艇（INGUL ARS）と不明艦の間を通過して視認を失ったと述べられています。  **3. ミッションコ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "bserved to pass between (rus) ingul ars and 1 x u/1 vessel. weather:",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "INGUL ARS",
+      "search_term": "INGUL ARS",
+      "context": "る「シースキミング」軌道で南東方向に移動し、ロシア海軍艦艇（INGUL ARS）と不明艦の間を通過して視認を失ったと述べられています。  ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "bserved to pass between (rus) ingul ars and 1 x u/1 vessel. weather:",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CTG",
+      "search_term": "CTG",
+      "context": "安全かつ「標準的な活動」と評価した** 事件概要の末尾では、CTG 67.1のミッションコマンダーが「相互作用は安全だった」と",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "ath j!!jlf: whtie monitoring kctg activity in the ea•tem medite",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "KCTG",
+      "search_term": "KCTG",
+      "context": "1のミッションコマンダーが「相互作用は安全だった」と述べ、「KCTG（クルーズタスクグループ）の既知の活動と一致した標準的な活動",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "path j!!jlf: whtie monitoring kctg activity in the ea•tem medite",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "USCENTCOM MDR",
+      "search_term": "USCENTCOM MDR",
+      "context": "一部に認識乱れあり（「Hamson」→Harrison等）・USCENTCOM MDR 26-038 to 26-046  ---  ## 注意点",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

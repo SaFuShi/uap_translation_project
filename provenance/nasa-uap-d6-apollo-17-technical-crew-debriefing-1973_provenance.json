@@ -1,0 +1,79 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:43.703299",
+    "draft_file": "published_articles/ai_summary_007_apollo17_debriefing_note_version_revised.md",
+    "pdf_file": "nasa-uap-d6-apollo-17-technical-crew-debriefing-1973.pdf",
+    "pdf_stem": "nasa-uap-d6-apollo-17-technical-crew-debriefing-1973",
+    "pdf_page_count": 2,
+    "pdf_char_count": 1,
+    "claims_total": 5,
+    "warning_count": 5,
+    "ok_count": 0,
+    "high_count": 1,
+    "medium_count": 4,
+    "low_count": 0,
+    "article_risk": "HIGH"
+  },
+  "claims": [
+    {
+      "type": "paren_english",
+      "raw_text": "（MSC-07631）",
+      "search_term": "MSC-07631",
+      "context": "ract OCR出力0文字のため目視読み取りで内容把握・CONFIDENTIAL（MSC-07631）・Training Office / Crew Training and Sim",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "HIGH"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CONT",
+      "search_term": "CONT",
+      "context": "粋のため前後の文脈が欠落している** エヴァンスの発言は「(CONT'D)」で始まっており、この1ページの前の発言が含まれていま",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "ALFMED",
+      "search_term": "ALFMED",
+      "context": "had the blindfolds on for the ALFMED experiment there were just no",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CONFIDENTIAL",
+      "search_term": "CONFIDENTIAL",
+      "context": "seract OCR出力0文字のため目視読み取りで内容把握・CONFIDENTIAL（MSC-07631）・Training Office / ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "MSC-07631",
+      "search_term": "MSC-07631",
+      "context": "文字のため目視読み取りで内容把握・CONFIDENTIAL（MSC-07631）・Training Office / Crew Train",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

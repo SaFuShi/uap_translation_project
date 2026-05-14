@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.310111",
+    "draft_file": "published_articles/ai_summary_022_d60_persian_gulf_aug2020_note_version.md",
+    "pdf_file": "dow-uap-d60-mission-report-persian-gulf-august-2020.pdf",
+    "pdf_stem": "dow-uap-d60-mission-report-persian-gulf-august-2020",
+    "pdf_page_count": 6,
+    "pdf_char_count": 5,
+    "claims_total": 3,
+    "warning_count": 3,
+    "ok_count": 0,
+    "high_count": 0,
+    "medium_count": 3,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "MISREP",
+      "search_term": "MISREP",
+      "context": "020年8月に関する飛行作戦報告書（ミッションレポート / MISREP）とされていますが、PDF からテキストを抽出できませんでし",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "WAR",
+      "search_term": "WAR",
+      "context": "DFを参照のこと** 本記事では文書内容を解説できないため、WAR.GOV の原文 PDF を直接参照することを推奨します。 ",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "GOV",
+      "search_term": "GOV",
+      "context": "照のこと** 本記事では文書内容を解説できないため、WAR.GOV の原文 PDF を直接参照することを推奨します。  ---",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}

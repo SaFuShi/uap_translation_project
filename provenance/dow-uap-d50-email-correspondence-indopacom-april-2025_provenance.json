@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:19:44.131985",
+    "draft_file": "published_articles/ai_summary_015_d50_indopacom_email_note_version.md",
+    "pdf_file": "dow-uap-d50-email-correspondence-indopacom-april-2025.pdf",
+    "pdf_stem": "dow-uap-d50-email-correspondence-indopacom-april-2025",
+    "pdf_page_count": 2,
+    "pdf_char_count": 1202,
+    "claims_total": 6,
+    "warning_count": 0,
+    "ok_count": 6,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "12秒",
+      "search_term": "12",
+      "context": "# INDOPACOM域内で報告された12秒・23秒のUAP観測──2025年4月【AI概要版 #015",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "analysis technician team lead 12 af / det 3 (b) (6) 1.4(a) (b)",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "23秒",
+      "search_term": "23",
+      "context": "# INDOPACOM域内で報告された12秒・23秒のUAP観測──2025年4月【AI概要版 #015】  こ",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "1x poss uap for 12 seconds at 2353z, flying at unk altitude an",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "UNCLASSIFIED",
+      "search_term": "UNCLASSIFIED",
+      "context": "P目撃情報の非機密ティアライン（公開可能サマリー）の記述が「UNCLASSIFIED（非機密）」レベルであることを確認した手続き記録です。目撃の",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "e two lines listed are on the unclassified level and that adding in the",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "INDOPACOM",
+      "search_term": "INDOPACOM",
+      "context": "測機器・装備への干渉はなかったとされています。  **2. INDOPACOM AORという地域情報の承認が焦点** 本メールは目撃詳細で",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "and that adding in the aor as indopacom is also at the unclassified l",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "DET",
+      "search_term": "DET",
+      "context": "I読解  **メールのやり取りの流れ**  12 AF / DET 3のPAROC（特別報告調整）情報解析技術者チームリードが",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "technician team lead 12 af / det 3 (b) (6) 1.4(a) (b) (6) clas",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "PAROC",
+      "search_term": "PAROC",
+      "context": "テキスト層あり・OCR成功・12 AF / DET 3作成・PAROC Intel・国防次官室情報開示部門承認  ---  ## ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "e unclassified level. (b) (6) paroc intel data analysis technicia",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}

@@ -1,0 +1,151 @@
+{
+  "meta": {
+    "generated_at": "2026-05-12T21:20:32.928986",
+    "draft_file": "note_drafts/ai_reading_004_apollo12_transcript_note_version.md",
+    "pdf_file": "nasa-uap-d1-apollo-12-transcript-1969.pdf",
+    "pdf_stem": "nasa-uap-d1-apollo-12-transcript-1969",
+    "pdf_page_count": 4,
+    "pdf_char_count": 6173,
+    "claims_total": 11,
+    "warning_count": 0,
+    "ok_count": 11,
+    "high_count": 0,
+    "medium_count": 0,
+    "low_count": 0,
+    "article_risk": "LOW"
+  },
+  "claims": [
+    {
+      "type": "duration",
+      "raw_text": "27分",
+      "search_term": "27",
+      "context": "。たとえば `05 19 27 25` は「5日目・19時・27分・25秒」を意味します。発言者の表記は以下の通りです。  -",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "19 20 14 05 19 20 22 05 19 20 27 05 19 21.j 31 05 19 20 36 05",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "25秒",
+      "search_term": "25",
+      "context": "ば `05 19 27 25` は「5日目・19時・27分・25秒」を意味します。発言者の表記は以下の通りです。  - **C",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "05 19 24 43 05 19 24 52 05 19 25 33 05 19 25 40 05 19 25 41 05",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "duration",
+      "raw_text": "1秒",
+      "search_term": "1",
+      "context": "頃）**  ビーンがAGS（中止誘導システム）の表示パネルに1秒ごとに点滅する「8の字」が現れているという報告をしています。",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "05 19 14 58 05 19 16 31 05 19 16 3",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "paren_english",
+      "raw_text": "（Intrepid）",
+      "search_term": "Intrepid",
+      "context": "C**：ヒューストン管制センター - **-LM** の suffix：月着陸船（Intrepid）からの発言  ---  **1〜2ページ目の文脈（ミッション5日目）**  着陸",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "e. we're ready for the e-mod. intrepid, houston. go. if you will giv",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CDR",
+      "search_term": "CDR",
+      "context": "秒」を意味します。発言者の表記は以下の通りです。  - **CDR**：司令官（ピート・コンラッド） - **LMP**：月着",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "19 23 57 05 19 24 05 ) cc cc cdr-i.m cc cdr-i.m cmp cc cmp cc",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "LMP",
+      "search_term": "LMP",
+      "context": " - **CDR**：司令官（ピート・コンラッド） - **LMP**：月着陸船パイロット（アル・ビーン） - **CMP**",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "05 20 12 11 05 20 12 14 ) cc lmp-im cc imp-1..m cc lmp-im lmp-",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "CMP",
+      "search_term": "CMP",
+      "context": "**LMP**：月着陸船パイロット（アル・ビーン） - **CMP**：司令船パイロット（ディック・ゴードン、月軌道に待機） ",
+      "is_conversion": false,
+      "found": true,
+      "page": 1,
+      "excerpt": "05 ) cc cc cdr-i.m cc cdr-i.m cmp cc cmp cc cmp cc cmp cc cmp c",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "AOT",
+      "search_term": "AOT",
+      "context": "した。  > \"When you look out the AOT in the dark quadrant? You can",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "roger. when you look out the aot in the dark quadrant? you can",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "EMI",
+      "search_term": "EMI",
+      "context": "いう報告をしています。ヒューストンは地上での検証事例を示し「EMI（電磁干渉）の可能性が高い」と返答。ビーンも「自分たちもそう",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "ethpage, and it's probably an emi. that's what ve' ve been talk",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "IMP-LM",
+      "search_term": "IMP-LM",
+      "context": " OCR処理済み・テキスト抽出成功・一部OCR誤認識あり（\"IMP-LM\" → \"LMP-LM\"、\"co\" → \"00\" 等）・ty",
+      "is_conversion": false,
+      "found": true,
+      "page": 2,
+      "excerpt": "c cmp cc cmp cc cmp cdr-im cc imp-lm cc cc cmp cc cmp tape 90/4 pa",
+      "status": "OK",
+      "risk": "OK"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "LMP-LM",
+      "search_term": "LMP-LM",
+      "context": "スト抽出成功・一部OCR誤認識あり（\"IMP-LM\" → \"LMP-LM\"、\"co\" → \"00\" 等）・typed_text分類・",
+      "is_conversion": false,
+      "found": true,
+      "page": 3,
+      "excerpt": "lmp-im cc imp-1..m cc lmp-im lmp-lm cc cdr-lm cc lmp-lm cc cdr-lm",
+      "status": "OK",
+      "risk": "OK"
+    }
+  ]
+}
