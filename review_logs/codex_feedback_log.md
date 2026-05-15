@@ -51,6 +51,37 @@ Open / Reflected / Closed
 
 ---
 
+### [20260514-007] Article ID: #091以降 — 軽量レビュー方式へ移行
+
+#### Article ID
+#091以降
+
+#### Codex Finding
+（該当なし。人間からのレビュー出力方式更新として記録）
+
+#### Codex Severity
+N/A（レビュー運用ルール）
+
+#### Human Decision
+Accepted
+
+#### Reason
+#071〜#090までの画像連番記事レビューで、同種指摘の長文反復が増えた。#091以降は人間レビュー負荷を下げるため、PASSは1行、WARNは記事番号・問題種別・一言、BLOCKのみ詳細出力とする。既知ルール違反はコード単位で集約し、全文レビューや修正不要箇所説明は行わない。
+
+#### Rule Update Needed
+Yes
+
+#### Suggested Rule Update
+`docs/review_standard_v1.md` と `docs/audit_checklist_v1.md` に「#091以降：軽量レビュー方式」を追加。OCR不可記事はファイル名外情報・Record Group断定・歴史背景混入・系列構成断定を重点確認。画像記事は EO/IR断定・追跡対象・捕捉・ロック・軍用IR を重点確認する。
+
+#### Follow-up Owner
+Codex（#091以降のレビューで軽量レビュー方式を適用）
+
+#### Status
+Reflected
+
+---
+
 ### [20260514-006] Article ID: 今後の Codexレビュー全体 — OCR不可・画像記事・note投稿互換・反復違反の監査強化
 
 #### Article ID
@@ -175,6 +206,37 @@ Reflected
 
 ---
 
+### [20260515-001] Article ID: General — 軍事略語・専門語の標準補足を更新
+
+#### Article ID
+General
+
+#### Codex Finding
+（該当なし。人間指示による標準補足更新）
+
+#### Codex Severity
+N/A
+
+#### Human Decision
+Accepted
+
+#### Reason
+一般向けUAP記事では、軍事略語・専門語の直訳よりも意味が伝わる補足が必要。初出時に短い標準補足を入れ、2回目以降は略語のみとする。ただし、資料から確認できない具体化は避ける。
+
+#### Rule Update Needed
+Yes
+
+#### Suggested Rule Update
+AARO は `AARO（全領域異常解決局／米国防総省のUAP調査組織）`、USCENTCOM は `USCENTCOM（米国中央軍。中東・中央アジア周辺を担当する米軍の統合軍）`、MISREP は `MISREP（軍の任務報告書）`、GENTEXT は `GENTEXT（報告書内の自由記述欄）`、FMV は `FMV（フルモーション映像。静止画ではなく短い動画クリップとして記録された映像）`、positive identification は `対象を明確に識別すること` と補足する。`platform` は、具体的な機種・車両・装置が未確認の場合 `米軍側の機材・システム` と訳し、航空機・車両・ドローン等に断定しない。
+
+#### Follow-up Owner
+Codex（今後のドラフト生成・レビューで初出補足不足、意味不足、platformの根拠なき具体化にWARN/BLOCKを出す）
+
+#### Status
+Reflected
+
+---
+
 ### [20260513-002] Article ID: #041 — 基本軍事略語は記事ごとに初出補足が必要
 
 #### Article ID
@@ -271,3 +333,5 @@ Reflected
 | v1.4 | 2026-05-14 | Source URL直接URL化・MGRS初出補足を標準フォーマットルールとして記録（#048〜一括修正済み） |
 | v1.5 | 2026-05-14 | 今後の note_drafts 全記事に note投稿互換フォーマット制約（Markdown table・引用ブロック・Codex注釈ブロック・複雑なネスト箇条書き禁止）を記録 |
 | v1.6 | 2026-05-14 | OCR不可記事・画像記事・長い英文引用・短い修正指摘・反復違反明示のレビュー方針を記録 |
+| v1.7 | 2026-05-14 | #091以降の軽量レビュー方式（PASS一行、WARN集約、BLOCKのみ詳細）を記録 |
+| v1.8 | 2026-05-15 | AARO・USCENTCOM・MISREP・GENTEXT・FMV・positive identification・platform の標準補足を更新 |
