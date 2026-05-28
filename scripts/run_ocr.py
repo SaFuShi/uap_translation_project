@@ -28,6 +28,7 @@ OCR非対象:
     pip3 install pytesseract pillow
 """
 
+import argparse
 import csv
 import re
 import sys
@@ -219,23 +220,23 @@ def run_ocr_page(img_path: Path, classification: str, cls_review: str) -> dict:
 # CSV ロード
 # -------------------------------------------------------
 
-def load_classification_csv() -> dict[tuple[str, int], dict]:
+def load_classification_csv(path: Path) -> dict[tuple[str, int], dict]:
     """page_classification.csv を (pdf_stem, page_num) キーの dict に変換。"""
     rows = {}
-    with open(CLASSIFICATION_CSV, encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             key = (r["pdf_file"], int(r["page_number"]))
             rows[key] = r
     return rows
 
 
-def load_text_layer_csv() -> dict[tuple[str, int], dict]:
+def load_text_layer_csv(path: Path) -> dict[tuple[str, int], dict]:
     """
     text_layer_report.csv を (pdf_stem, page_num) キーの dict に変換。
     pdf_file 列には .pdf 拡張子が含まれているため除去してキーに使う。
     """
     rows = {}
-    with open(TEXT_LAYER_CSV, encoding="utf-8") as f:
+    with open(path, encoding="utf-8") as f:
         for r in csv.DictReader(f):
             stem = Path(r["pdf_file"]).stem
             key  = (stem, int(r["page_number"]))
@@ -299,22 +300,42 @@ CSV_FIELDS = [
 
 
 def main():
+    parser = argparse.ArgumentParser(description="OCR実行ツール（UAP_TRANSLATION_PROJECT）")
+    parser.add_argument(
+        "--classification-csv", type=Path, default=None,
+        help="分類CSV のパス（デフォルト: classification/page_classification.csv）",
+    )
+    parser.add_argument(
+        "--input-root", type=Path, default=None,
+        help="ページ画像ディレクトリ（デフォルト: page_images/）",
+    )
+    parser.add_argument(
+        "--output-dir", type=Path, default=None,
+        help="OCR結果出力ディレクトリ（デフォルト: extracted_text/）",
+    )
+    args = parser.parse_args()
+
+    classification_csv = args.classification_csv or CLASSIFICATION_CSV
+    page_img_dir       = args.input_root         or PAGE_IMG_DIR
+    extracted_dir      = args.output_dir         or EXTRACTED_DIR
+    output_csv         = extracted_dir / "ocr_results.csv"
+
     print("=" * 60)
     print("OCR実行ツール（UAP_TRANSLATION_PROJECT）")
     print("=" * 60)
-    print(f"  分類CSV   : {CLASSIFICATION_CSV}")
+    print(f"  分類CSV   : {classification_csv}")
     print(f"  テキスト検出: {TEXT_LAYER_CSV}")
-    print(f"  出力先    : {OUTPUT_CSV}")
+    print(f"  出力先    : {output_csv}")
     print()
 
-    for path, label in [(CLASSIFICATION_CSV, "page_classification.csv"),
+    for path, label in [(classification_csv, "page_classification.csv"),
                          (TEXT_LAYER_CSV, "text_layer_report.csv")]:
         if not path.exists():
             print(f"[エラー] {label} が見つかりません: {path}")
             sys.exit(1)
 
-    cls_rows = load_classification_csv()
-    tl_rows  = load_text_layer_csv()
+    cls_rows = load_classification_csv(classification_csv)
+    tl_rows  = load_text_layer_csv(TEXT_LAYER_CSV)
 
     targets = select_ocr_targets(cls_rows, tl_rows)
 
@@ -339,13 +360,13 @@ def main():
         print(f"  {cls:<35} {cnt:>4} ページ")
     print()
 
-    EXTRACTED_DIR.mkdir(parents=True, exist_ok=True)
+    extracted_dir.mkdir(parents=True, exist_ok=True)
 
     # 既存CSVがあれば読み込んで差分スキップ
     done_keys: set[tuple[str, int]] = set()
     existing_rows: list[dict] = []
-    if OUTPUT_CSV.exists():
-        with open(OUTPUT_CSV, encoding="utf-8") as f:
+    if output_csv.exists():
+        with open(output_csv, encoding="utf-8") as f:
             for r in csv.DictReader(f):
                 done_keys.add((r["pdf_file"], int(r["page_number"])))
                 existing_rows.append(r)
@@ -369,7 +390,7 @@ def main():
         if (pdf_stem, page_num) in done_keys:
             continue
 
-        img_path = PAGE_IMG_DIR / pdf_stem / image_file
+        img_path = page_img_dir / pdf_stem / image_file
         if not img_path.exists():
             print(f"  [警告] 画像が見つかりません: {img_path}")
             error_count += 1
@@ -416,7 +437,7 @@ def main():
 
     # 既存 + 新規をマージして書き出し
     all_rows = existing_rows + new_rows
-    with open(OUTPUT_CSV, "w", newline="", encoding="utf-8") as f:
+    with open(output_csv, "w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_FIELDS)
         writer.writeheader()
         writer.writerows(all_rows)
@@ -428,7 +449,7 @@ def main():
     print(f"  成功        : {success_count} ページ")
     print(f"  エラー      : {error_count} ページ")
     print(f"  要レビュー  : {review_count} ページ")
-    print(f"CSV 出力: {OUTPUT_CSV}")
+    print(f"CSV 出力: {output_csv}")
     print("=" * 60)
 
 
