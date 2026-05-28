@@ -8,6 +8,12 @@ UAP公開文書 翻訳・要約プロジェクト — WAR.GOV/UFO カタログ�
     metadata/files_catalog.csv へ保存する。
     また、未取得のPDFファイルをダウンロードして raw_pdf/ へ保存する。
 
+metadata v2 追加列（Release 02 対応）:
+    content_category, media_available, ocr_status, article_priority,
+    reader_interest, risk_level, note_series, download_scope,
+    human_review_required
+    → 初期値は保守的な自動推定のみ。article_priority 等の判断は人間レビューが必要。
+
 ページ構造調査結果（2026-05-11）:
     - ページ本体は Akamai WAF で保護。通常の User-Agent では 403。
     - Sec-Fetch-* ヘッダーと Accept-Encoding を含めることで200が返る。
@@ -124,9 +130,10 @@ SRC_COL = {
 }
 
 # -------------------------------------------------------
-# 出力CSVの列
+# 出力CSVの列（metadata v2 列を末尾に追加）
 # -------------------------------------------------------
 CSV_FIELDS = [
+    # --- 既存列（変更なし）---
     "file_name",
     "agency",
     "release_date",
@@ -138,7 +145,82 @@ CSV_FIELDS = [
     "downloaded",
     "downloaded_at",
     "notes",
+    # --- metadata v2 追加列（Release 02 対応）---
+    "content_category",         # 機密分類（初期値: unclassified）
+    "media_available",          # メディア種別（file_type から自動推定）
+    "ocr_status",               # OCR処理状況（PDFのみ対象、その他は not_applicable）
+    "article_priority",         # 記事化優先度（人間レビューが必要。初期値: unreviewed）
+    "reader_interest",          # 読者関心度（人間レビューが必要。初期値: unreviewed）
+    "risk_level",               # リスク判定（人間レビューが必要。初期値: unreviewed）
+    "note_series",              # noteシリーズ割当（初期値: unassigned）
+    "download_scope",           # ダウンロード方針（file_type から自動推定）
+    "human_review_required",    # 人間レビュー必須フラグ（常に true）
 ]
+
+
+# -------------------------------------------------------
+# metadata v2 自動推定
+# -------------------------------------------------------
+
+def infer_metadata_v2(file_type: str) -> dict:
+    """
+    file_type 文字列（大文字）から metadata v2 の各列の初期値を返す。
+
+    自動判断しすぎないよう保守的な初期値を設定する。
+    article_priority / reader_interest / risk_level は人間レビューまで unreviewed のまま。
+    """
+    ft = file_type.upper()
+
+    # war.gov CSV では VIDEO → VID、IMAGE → IMG と省略されている場合がある
+    # 両形式を同等に扱う
+    is_pdf   = ft == "PDF"
+    is_video = ft in ("VIDEO", "VID")
+    is_audio = ft in ("AUDIO", "AUD")
+    is_image = ft in ("IMAGE", "IMG")
+
+    # media_available: どのメディア形式が利用可能か
+    if is_pdf:
+        media_available = "pdf"
+    elif is_video:
+        media_available = "video"
+    elif is_audio:
+        media_available = "audio"
+    elif is_image:
+        media_available = "image"
+    else:
+        media_available = "unknown"
+
+    # ocr_status: PDFのみ処理対象（動画・音声・画像はOCR非対象）
+    if is_pdf:
+        ocr_status = "unknown"
+    elif is_video:
+        ocr_status = "not_applicable_video"
+    elif is_audio:
+        ocr_status = "not_applicable_audio"
+    elif is_image:
+        ocr_status = "not_applicable_image"
+    else:
+        ocr_status = "unknown"
+
+    # download_scope: PDFと画像はダウンロード候補、動画・音声はメタデータのみ
+    if is_pdf or is_image:
+        download_scope = "candidate"
+    elif is_video or is_audio:
+        download_scope = "metadata_only"
+    else:
+        download_scope = "metadata_only"
+
+    return {
+        "content_category":      "unclassified",
+        "media_available":       media_available,
+        "ocr_status":            ocr_status,
+        "article_priority":      "unreviewed",
+        "reader_interest":       "unreviewed",
+        "risk_level":            "unreviewed",
+        "note_series":           "unassigned",
+        "download_scope":        download_scope,
+        "human_review_required": "true",
+    }
 
 
 # -------------------------------------------------------
@@ -230,7 +312,11 @@ def fetch_catalog_csv() -> list[dict]:
             title_raw = col(SRC_COL["title"]).strip()
             file_name = title_raw + ("." + raw_type.lower() if raw_type else "")
 
+        # metadata v2 列を file_type から自動推定する（断定しすぎない保守的な初期値）
+        meta_v2 = infer_metadata_v2(raw_type)
+
         records.append({
+            # 既存列（変更なし）
             "file_name":         file_name,
             "agency":            col(SRC_COL["agency"]),
             "release_date":      col(SRC_COL["release_date"]),
@@ -242,6 +328,8 @@ def fetch_catalog_csv() -> list[dict]:
             "downloaded":        "true" if is_already_downloaded(file_name) else "false",
             "downloaded_at":     now_jst() if is_already_downloaded(file_name) else "",
             "notes":             "",
+            # metadata v2 列
+            **meta_v2,
         })
 
     return records
@@ -389,12 +477,19 @@ def main():
     # --- サマリ ---
     print("=" * 60)
     downloaded_total = sum(1 for r in records if r["downloaded"] == "true")
+    # file_type 別の件数（PDF以外を詳細表示）
+    type_counts: dict[str, int] = {}
+    for r in records:
+        ft = r["file_type"] or "UNKNOWN"
+        type_counts[ft] = type_counts.get(ft, 0) + 1
+
     print(f"完了")
     print(f"  カタログ総件数    : {total}")
-    print(f"  PDF              : {len(pdf_recs)}")
-    print(f"    取得済み        : {downloaded_total}")
-    print(f"    WAFブロック     : {blocked}  ← ブラウザで手動DL後、再実行してください")
-    print(f"  VID/IMG (非対象) : {len(other_recs)}")
+    for ft, cnt in sorted(type_counts.items()):
+        print(f"  {ft:<20}: {cnt} 件")
+    print(f"  PDF取得済み       : {downloaded_total}")
+    print(f"  WAFブロック       : {blocked}  ← ブラウザで手動DL後、再実行してください")
+    print(f"  出力CSV列数       : {len(CSV_FIELDS)}  （metadata v2 列を含む）")
     print("=" * 60)
 
     if blocked > 0:
