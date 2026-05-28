@@ -1,0 +1,8 @@
+# Mac mini ローカルワーカー用 最小依存パッケージ
+# Phase 1: PDF OCR パイプライン（detect / pdf_to_images / run_ocr / fetch）
+# brew install tesseract が別途必要
+
+pymupdf
+pytesseract
+pillow
+requests
