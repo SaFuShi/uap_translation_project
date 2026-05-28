@@ -6,7 +6,13 @@ UAP公開文書 翻訳・要約プロジェクト — WAR.GOV/UFO カタログ�
 目的:
     https://www.war.gov/UFO/ に掲載されている公開ファイル一覧を取得し、
     metadata/files_catalog.csv へ保存する。
-    また、未取得のPDFファイルをダウンロードして raw_pdf/ へ保存する。
+    また、未取得のファイルをダウンロードして各メディアディレクトリへ保存する。
+
+保存先:
+    PDF  → raw_pdf/
+    VID  → raw_media/video/  （DVIDS 経由で CloudFront MP4 を取得）
+    AUD  → raw_media/audio/  （DVIDS 経由。実体はMP4、notes に記録）
+    IMG  → raw_media/image/  （DVIDS ID 有りの場合のみ。無しは metadata_only）
 
 metadata v2 追加列（Release 02 対応）:
     content_category, media_available, ocr_status, article_priority,
@@ -37,6 +43,7 @@ metadata v2 追加列（Release 02 対応）:
 
 import csv
 import io
+import re
 import sys
 import time
 import traceback
@@ -56,10 +63,14 @@ except ImportError:
 # -------------------------------------------------------
 # パス設定
 # -------------------------------------------------------
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-RAW_PDF_DIR  = PROJECT_ROOT / "raw_pdf"
-METADATA_DIR = PROJECT_ROOT / "metadata"
-OUTPUT_CSV   = METADATA_DIR / "files_catalog.csv"
+PROJECT_ROOT  = Path(__file__).resolve().parent.parent
+RAW_PDF_DIR   = PROJECT_ROOT / "raw_pdf"
+RAW_MEDIA_DIR = PROJECT_ROOT / "raw_media"
+RAW_VIDEO_DIR = RAW_MEDIA_DIR / "video"
+RAW_AUDIO_DIR = RAW_MEDIA_DIR / "audio"
+RAW_IMAGE_DIR = RAW_MEDIA_DIR / "image"
+METADATA_DIR  = PROJECT_ROOT / "metadata"
+OUTPUT_CSV    = METADATA_DIR / "files_catalog.csv"
 
 # -------------------------------------------------------
 # WAR.GOV 設定
@@ -106,6 +117,15 @@ PDF_HEADERS = {
     "Accept": "application/pdf,*/*",
 }
 
+# DVIDS（国防省動画配信サービス）経由ダウンロード用ヘッダー
+# VID/AUD は war.gov に直接 URL がないため DVIDS → CloudFront 経由で取得する
+DVIDS_HEADERS = {
+    "User-Agent":      PAGE_HEADERS["User-Agent"],
+    "Accept":          "text/html,*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer":         "https://www.dvidshub.net/",
+}
+
 # リクエスト間の待機秒数（サーバー負荷軽減）
 REQUEST_DELAY = 2.0
 
@@ -123,6 +143,7 @@ SRC_COL = {
     "title":            2,
     "type":             3,
     "description":      6,
+    "dvids_id":         7,   # DVIDS Video ID（VID/AUD のダウンロードキー）
     "agency":           9,
     "incident_date":    10,
     "incident_location": 11,
@@ -142,6 +163,7 @@ CSV_FIELDS = [
     "file_type",
     "source_url",
     "download_url",
+    "dvids_video_id",           # DVIDS Video ID（VID/AUD/IMG のダウンロードに使用）
     "downloaded",
     "downloaded_at",
     "notes",
@@ -162,12 +184,14 @@ CSV_FIELDS = [
 # metadata v2 自動推定
 # -------------------------------------------------------
 
-def infer_metadata_v2(file_type: str) -> dict:
+def infer_metadata_v2(file_type: str, dvids_id: str = "") -> dict:
     """
     file_type 文字列（大文字）から metadata v2 の各列の初期値を返す。
 
     自動判断しすぎないよう保守的な初期値を設定する。
     article_priority / reader_interest / risk_level は人間レビューまで unreviewed のまま。
+
+    dvids_id が指定された場合、VID/AUD の download_scope を candidate に昇格する。
     """
     ft = file_type.upper()
 
@@ -202,11 +226,16 @@ def infer_metadata_v2(file_type: str) -> dict:
     else:
         ocr_status = "unknown"
 
-    # download_scope: PDFと画像はダウンロード候補、動画・音声はメタデータのみ
-    if is_pdf or is_image:
+    # download_scope:
+    #   PDF       → candidate
+    #   VID/AUD   → DVIDS ID あり → candidate（CloudFront経由DL可）
+    #             → DVIDS ID なし → metadata_only
+    #   IMG       → DVIDS ID あり → candidate
+    #             → DVIDS ID なし → metadata_only（war.gov URL は WAF 403）
+    if is_pdf:
         download_scope = "candidate"
-    elif is_video or is_audio:
-        download_scope = "metadata_only"
+    elif is_video or is_audio or is_image:
+        download_scope = "candidate" if dvids_id else "metadata_only"
     else:
         download_scope = "metadata_only"
 
@@ -274,9 +303,200 @@ def filename_from_url(url: str) -> str:
     return Path(path).name
 
 
-def is_already_downloaded(filename: str) -> bool:
-    """raw_pdf/ に同名ファイルが存在するか確認する。"""
-    return (RAW_PDF_DIR / filename).exists()
+def make_safe_filename(title: str, ext: str) -> str:
+    """タイトル文字列からファイルシステムに安全なファイル名を生成する。"""
+    safe = re.sub(r'[^\w\-]', '_', title.strip())
+    safe = re.sub(r'_+', '_', safe).strip('_')[:100]
+    return f"{safe}.{ext.lstrip('.')}"
+
+
+def get_media_dir(file_type: str) -> Path:
+    """file_type に応じた保存ディレクトリを返す。"""
+    ft = file_type.upper()
+    if ft in ("VID", "VIDEO"):
+        return RAW_VIDEO_DIR
+    elif ft in ("AUD", "AUDIO"):
+        return RAW_AUDIO_DIR
+    elif ft in ("IMG", "IMAGE"):
+        return RAW_IMAGE_DIR
+    return RAW_PDF_DIR
+
+
+def is_already_downloaded(filename: str, file_type: str = "PDF") -> bool:
+    """file_type に対応するディレクトリに同名ファイルが存在するか確認する。"""
+    return (get_media_dir(file_type) / filename).exists()
+
+
+# -------------------------------------------------------
+# DVIDS 経由ダウンロード
+# -------------------------------------------------------
+
+def fetch_dvids_cloudfront_url(dvids_id: str) -> str:
+    """
+    DVIDS の動画ページ（/video/{id}）から CloudFront MP4 URL を取得する。
+    VID・AUD 共通。AUD も DVIDS 上では /video/ に格納されている。
+    取得できない場合は空文字を返す。
+    """
+    url = f"https://www.dvidshub.net/video/{dvids_id}"
+    try:
+        time.sleep(REQUEST_DELAY)
+        resp = requests.get(url, headers=DVIDS_HEADERS, timeout=30)
+        resp.raise_for_status()
+        # <source src="https://d34w7g4gy10iej.cloudfront.net/video/.../....mp4" ...>
+        match = re.search(
+            r'<source\s+src="(https://d34w7g4gy10iej\.cloudfront\.net/[^"]+\.mp4)"',
+            resp.text,
+        )
+        return match.group(1) if match else ""
+    except Exception:
+        return ""
+
+
+def fetch_dvids_image_cloudfront_url(dvids_id: str) -> str:
+    """
+    DVIDS の画像ページ（/image/{id}）から CloudFront 高解像度 JPG URL を取得する。
+    2000w → 1000w の順で優先。取得できない場合は空文字を返す。
+    """
+    url = f"https://www.dvidshub.net/image/{dvids_id}"
+    try:
+        time.sleep(REQUEST_DELAY)
+        resp = requests.get(url, headers=DVIDS_HEADERS, timeout=30)
+        resp.raise_for_status()
+        for size in ("2000w", "1000w"):
+            match = re.search(
+                rf'(https://[^"\']+cloudfront\.net[^"\']+/{size}_q95\.jpg)',
+                resp.text,
+            )
+            if match:
+                return match.group(1)
+        return ""
+    except Exception:
+        return ""
+
+
+def _download_to(url: str, dest: Path, headers: dict) -> float:
+    """
+    URL のファイルを dest に保存し、ファイルサイズ（MB）を返す。
+    失敗時は例外を送出する。
+    """
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    time.sleep(REQUEST_DELAY)
+    resp = requests.get(url, headers=headers, timeout=120, stream=True)
+    resp.raise_for_status()
+    with open(dest, "wb") as f:
+        for chunk in resp.iter_content(chunk_size=65536):
+            f.write(chunk)
+    return dest.stat().st_size / 1024 / 1024
+
+
+def try_download_video(record: dict) -> dict:
+    """
+    VID ファイルを DVIDS 経由で raw_media/video/ にダウンロード試行する。
+    DVIDS ID がない場合はスキップ。
+    """
+    dvids_id  = record.get("dvids_video_id", "").strip()
+    file_name = record["file_name"]
+    dest      = RAW_VIDEO_DIR / file_name
+
+    if not dvids_id:
+        append_note(record, "dvids_id_missing; manual_download_required")
+        return record
+
+    if dest.exists():
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        append_note(record, "already exists in raw_media/video")
+        return record
+
+    cf_url = fetch_dvids_cloudfront_url(dvids_id)
+    if not cf_url:
+        append_note(record, f"cloudfront_url_not_found (dvids_id={dvids_id})")
+        return record
+
+    try:
+        size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
+        print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
+    except Exception as e:
+        append_note(record, f"video download error: {e}")
+
+    return record
+
+
+def try_download_audio(record: dict) -> dict:
+    """
+    AUD ファイルを DVIDS 経由で raw_media/audio/ にダウンロード試行する。
+    実体は MP4（音声トラック付き動画コンテナ）のため notes に記録する。
+    DVIDS ID がない場合はスキップ。
+    """
+    dvids_id  = record.get("dvids_video_id", "").strip()
+    file_name = record["file_name"]
+    dest      = RAW_AUDIO_DIR / file_name
+
+    if not dvids_id:
+        append_note(record, "dvids_id_missing; manual_download_required")
+        return record
+
+    if dest.exists():
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        append_note(record, "already exists in raw_media/audio")
+        return record
+
+    cf_url = fetch_dvids_cloudfront_url(dvids_id)
+    if not cf_url:
+        append_note(record, f"cloudfront_url_not_found (dvids_id={dvids_id})")
+        return record
+
+    try:
+        size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        # AUD の実体は MP4 コンテナ。file_type=AUD のまま保存するため notes に明記
+        append_note(record, f"downloaded {size_mb:.1f} MB via dvids; audio_downloaded_as_mp4")
+        print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
+    except Exception as e:
+        append_note(record, f"audio download error: {e}")
+
+    return record
+
+
+def try_download_image(record: dict) -> dict:
+    """
+    IMG ファイルを DVIDS 経由で raw_media/image/ にダウンロード試行する。
+    DVIDS ID がない場合はスキップ（war.gov URL は WAF 403 のため）。
+    """
+    dvids_id  = record.get("dvids_video_id", "").strip()
+    file_name = record["file_name"]
+    dest      = RAW_IMAGE_DIR / file_name
+
+    if not dvids_id:
+        append_note(record, "dvids_id_missing; manual_download_required")
+        return record
+
+    if dest.exists():
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        append_note(record, "already exists in raw_media/image")
+        return record
+
+    cf_url = fetch_dvids_image_cloudfront_url(dvids_id)
+    if not cf_url:
+        append_note(record, f"cloudfront_image_url_not_found (dvids_id={dvids_id})")
+        return record
+
+    try:
+        size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        record["downloaded"]    = "true"
+        record["downloaded_at"] = now_jst()
+        append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
+        print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
+    except Exception as e:
+        append_note(record, f"image download error: {e}")
+
+    return record
 
 
 # -------------------------------------------------------
@@ -339,17 +559,33 @@ def fetch_catalog_csv() -> list[dict]:
         def col(idx: int) -> str:
             return row[idx].strip().replace("\n", " ").replace("\r", "") if len(row) > idx else ""
 
-        raw_type    = col(SRC_COL["type"]).upper()
+        raw_type     = col(SRC_COL["type"]).upper()
         download_url = col(SRC_COL["download_url"]).split("|")[0].strip()
+        dvids_id     = col(SRC_COL["dvids_id"])
 
-        # ファイル名：タイトルからフォールバック → URLから取得
-        file_name = filename_from_url(download_url) if download_url else ""
-        if not file_name:
-            title_raw = col(SRC_COL["title"]).strip()
-            file_name = title_raw + ("." + raw_type.lower() if raw_type else "")
+        # ファイル名を決定する
+        #   VID/AUD: col12 はペアPDFへのリンクであり download_url ではない。
+        #            常にタイトルから .mp4 名を生成する。
+        #   PDF/IMG: URL からファイル名を取得
+        #   IMG with DVIDS but no URL: DVIDS ID ベースのファイル名
+        is_vid = raw_type in ("VID", "VIDEO")
+        is_aud = raw_type in ("AUD", "AUDIO")
+        is_img = raw_type in ("IMG", "IMAGE")
 
-        # metadata v2 列を file_type から自動推定する（断定しすぎない保守的な初期値）
-        meta_v2 = infer_metadata_v2(raw_type)
+        title_raw = col(SRC_COL["title"]).strip()
+        if is_vid or is_aud:
+            # col12 は VID/AUD では PDF ペアリンクなので無視し、タイトルから命名
+            file_name = make_safe_filename(title_raw, "mp4")
+        else:
+            file_name = filename_from_url(download_url) if download_url else ""
+            if not file_name:
+                if is_img and dvids_id:
+                    file_name = f"dvids_{dvids_id}.jpg"
+                else:
+                    file_name = title_raw + ("." + raw_type.lower() if raw_type else "")
+
+        # metadata v2 列（DVIDS ID の有無で download_scope が変わる）
+        meta_v2 = infer_metadata_v2(raw_type, dvids_id)
 
         # release_date を正規化する（生データキャッシュは変更せず、出力CSVのみ適用）
         raw_release_date = col(SRC_COL["release_date"])
@@ -357,7 +593,6 @@ def fetch_catalog_csv() -> list[dict]:
         norm_note = f"release_date_normalized_from:{original_date}" if original_date else ""
 
         records.append({
-            # 既存列（変更なし）
             "file_name":         file_name,
             "agency":            col(SRC_COL["agency"]),
             "release_date":      normalized_date,
@@ -366,8 +601,9 @@ def fetch_catalog_csv() -> list[dict]:
             "file_type":         raw_type,
             "source_url":        REFERER_URL,
             "download_url":      download_url,
-            "downloaded":        "true" if is_already_downloaded(file_name) else "false",
-            "downloaded_at":     now_jst() if is_already_downloaded(file_name) else "",
+            "dvids_video_id":    dvids_id,
+            "downloaded":        "true" if is_already_downloaded(file_name, raw_type) else "false",
+            "downloaded_at":     now_jst() if is_already_downloaded(file_name, raw_type) else "",
             "notes":             norm_note,
             # metadata v2 列
             **meta_v2,
@@ -396,7 +632,6 @@ def try_download_pdf(record: dict) -> dict:
         return record
 
     if dest.exists():
-        # すでに存在：スキップ（上書きしない）
         record["downloaded"]    = "true"
         record["downloaded_at"] = now_jst()
         append_note(record, "already exists in raw_pdf")
@@ -450,12 +685,18 @@ def main():
     print("=" * 60)
     print("WAR.GOV/UFO カタログ取得ツール（UAP_TRANSLATION_PROJECT）")
     print("=" * 60)
-    print(f"  カタログURL : {CATALOG_CSV_URL}")
-    print(f"  PDF保存先  : {RAW_PDF_DIR}")
-    print(f"  出力CSV    : {OUTPUT_CSV}")
+    print(f"  カタログURL    : {CATALOG_CSV_URL}")
+    print(f"  PDF保存先      : {RAW_PDF_DIR}")
+    print(f"  動画保存先     : {RAW_VIDEO_DIR}")
+    print(f"  音声保存先     : {RAW_AUDIO_DIR}")
+    print(f"  画像保存先     : {RAW_IMAGE_DIR}")
+    print(f"  出力CSV        : {OUTPUT_CSV}")
     print()
 
     RAW_PDF_DIR.mkdir(parents=True, exist_ok=True)
+    RAW_VIDEO_DIR.mkdir(parents=True, exist_ok=True)
+    RAW_AUDIO_DIR.mkdir(parents=True, exist_ok=True)
+    RAW_IMAGE_DIR.mkdir(parents=True, exist_ok=True)
     METADATA_DIR.mkdir(parents=True, exist_ok=True)
 
     # --- カタログCSV取得 ---
@@ -469,42 +710,60 @@ def main():
 
     total      = len(records)
     pdf_recs   = [r for r in records if r["file_type"] == "PDF"]
-    other_recs = [r for r in records if r["file_type"] != "PDF"]
+    vid_recs   = [r for r in records if r["file_type"] in ("VID", "VIDEO")]
+    aud_recs   = [r for r in records if r["file_type"] in ("AUD", "AUDIO")]
+    img_recs   = [r for r in records if r["file_type"] in ("IMG", "IMAGE")]
 
-    print(f"  合計: {total} 件（PDF={len(pdf_recs)}, その他={len(other_recs)}）")
+    print(f"  合計: {total} 件（PDF={len(pdf_recs)}, VID={len(vid_recs)}, "
+          f"AUD={len(aud_recs)}, IMG={len(img_recs)}）")
     print()
+
+    def run_download_step(label: str, recs: list, fn) -> tuple[int, int, int]:
+        """指定リストに対してダウンロード関数を実行し (成功, ブロック, エラー) を返す。"""
+        already  = sum(1 for r in recs if r["downloaded"] == "true")
+        to_fetch = [r for r in recs if r["downloaded"] == "false"]
+        print(f"  取得済み: {already} 件  未取得: {len(to_fetch)} 件")
+        s = b = e = 0
+        for i, rec in enumerate(to_fetch, start=1):
+            print(f"  [{i:>3}/{len(to_fetch)}] {rec['file_name'][:70]}")
+            updated = fn(rec)
+            if updated["downloaded"] == "true":
+                s += 1
+            elif "403" in updated.get("notes", ""):
+                b += 1
+            else:
+                e += 1
+            for j, r in enumerate(records):
+                if r["file_name"] == rec["file_name"] and r["file_type"] == rec["file_type"]:
+                    records[j] = updated
+                    break
+        return s, b, e
 
     # --- PDF ダウンロード試行 ---
-    print("[Step 2] PDFダウンロード試行（未取得のみ）")
-    already  = sum(1 for r in pdf_recs if r["downloaded"] == "true")
-    to_fetch = [r for r in pdf_recs if r["downloaded"] == "false"]
-    print(f"  取得済み: {already} 件  未取得: {len(to_fetch)} 件")
+    print("[Step 2a] PDFダウンロード試行（未取得のみ）")
+    pdf_s, pdf_b, pdf_e = run_download_step("PDF", pdf_recs, try_download_pdf)
+    print(f"  成功: {pdf_s}  WAFブロック: {pdf_b}  エラー: {pdf_e}")
     print()
 
-    success = 0
-    blocked = 0
-    errors  = 0
-
-    for i, rec in enumerate(to_fetch, start=1):
-        print(f"  [{i:>3}/{len(to_fetch)}] {rec['file_name']}")
-        updated = try_download_pdf(rec)
-
-        if updated["downloaded"] == "true":
-            success += 1
-        elif "403" in updated["notes"]:
-            blocked += 1
-        else:
-            errors += 1
-
-        # records リスト内の dict を更新
-        for j, r in enumerate(records):
-            if r["file_name"] == rec["file_name"]:
-                records[j] = updated
-                break
-
+    # --- VID ダウンロード試行 ---
+    print("[Step 2b] VIDダウンロード試行（DVIDS経由 → CloudFront MP4）")
+    vid_s, vid_b, vid_e = run_download_step("VID", vid_recs, try_download_video)
+    print(f"  成功: {vid_s}  スキップ/エラー: {vid_e + vid_b}")
     print()
-    print(f"  成功: {success}  WAFブロック: {blocked}  エラー: {errors}")
+
+    # --- AUD ダウンロード試行 ---
+    print("[Step 2c] AUDダウンロード試行（DVIDS経由 → CloudFront MP4）")
+    aud_s, aud_b, aud_e = run_download_step("AUD", aud_recs, try_download_audio)
+    print(f"  成功: {aud_s}  スキップ/エラー: {aud_e + aud_b}")
     print()
+
+    # --- IMG ダウンロード試行 ---
+    print("[Step 2d] IMGダウンロード試行（DVIDS ID あり のみ）")
+    img_s, img_b, img_e = run_download_step("IMG", img_recs, try_download_image)
+    print(f"  成功: {img_s}  スキップ/エラー: {img_e + img_b}")
+    print()
+
+    blocked = pdf_b
 
     # --- CSV書き出し ---
     print("[Step 3] CSV書き出し")
@@ -517,20 +776,19 @@ def main():
 
     # --- サマリ ---
     print("=" * 60)
-    downloaded_total = sum(1 for r in records if r["downloaded"] == "true")
-    # file_type 別の件数（PDF以外を詳細表示）
-    type_counts: dict[str, int] = {}
-    for r in records:
-        ft = r["file_type"] or "UNKNOWN"
-        type_counts[ft] = type_counts.get(ft, 0) + 1
-
     print(f"完了")
     print(f"  カタログ総件数    : {total}")
-    for ft, cnt in sorted(type_counts.items()):
-        print(f"  {ft:<20}: {cnt} 件")
-    print(f"  PDF取得済み       : {downloaded_total}")
-    print(f"  WAFブロック       : {blocked}  ← ブラウザで手動DL後、再実行してください")
+    for label, recs, s in [
+        ("PDF", pdf_recs, pdf_s),
+        ("VID", vid_recs, vid_s),
+        ("AUD", aud_recs, aud_s),
+        ("IMG", img_recs, img_s),
+    ]:
+        total_dl = sum(1 for r in recs if r["downloaded"] == "true")
+        print(f"  {label:<6}: {len(recs):>3} 件  取得済み: {total_dl}")
     print(f"  出力CSV列数       : {len(CSV_FIELDS)}  （metadata v2 列を含む）")
+    if blocked > 0:
+        print(f"  PDF WAFブロック   : {blocked}  ← ブラウザで手動DL後、再実行してください")
     print("=" * 60)
 
     if blocked > 0:
