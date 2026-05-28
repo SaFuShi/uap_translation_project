@@ -313,12 +313,18 @@ def main():
         "--output-dir", type=Path, default=None,
         help="OCR結果出力ディレクトリ（デフォルト: extracted_text/）",
     )
+    parser.add_argument(
+        "--output-file", type=Path, default=None,
+        help="OCR結果CSVのパスを直接指定（--output-dir より優先）",
+    )
     args = parser.parse_args()
 
     classification_csv = args.classification_csv or CLASSIFICATION_CSV
     page_img_dir       = args.input_root         or PAGE_IMG_DIR
-    extracted_dir      = args.output_dir         or EXTRACTED_DIR
-    output_csv         = extracted_dir / "ocr_results.csv"
+    if args.output_file:
+        output_csv = args.output_file
+    else:
+        output_csv = (args.output_dir or EXTRACTED_DIR) / "ocr_results.csv"
 
     print("=" * 60)
     print("OCR実行ツール（UAP_TRANSLATION_PROJECT）")
@@ -360,7 +366,7 @@ def main():
         print(f"  {cls:<35} {cnt:>4} ページ")
     print()
 
-    extracted_dir.mkdir(parents=True, exist_ok=True)
+    output_csv.parent.mkdir(parents=True, exist_ok=True)
 
     # 既存CSVがあれば読み込んで差分スキップ
     done_keys: set[tuple[str, int]] = set()
