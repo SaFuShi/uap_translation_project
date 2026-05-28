@@ -65,7 +65,7 @@ OUTPUT_CSV   = METADATA_DIR / "files_catalog.csv"
 # WAR.GOV 設定
 # -------------------------------------------------------
 BASE_URL       = "https://www.war.gov"
-CATALOG_CSV_PATH = "/Portals/1/Interactive/2026/UFO/uap-csv.csv"
+CATALOG_CSV_PATH = "/Portals/1/Interactive/2026/UFO/uap-data.csv"
 CATALOG_CSV_URL  = BASE_URL + CATALOG_CSV_PATH
 REFERER_URL      = BASE_URL + "/UFO/"
 
@@ -224,6 +224,42 @@ def infer_metadata_v2(file_type: str) -> dict:
 
 
 # -------------------------------------------------------
+# 日付正規化
+# -------------------------------------------------------
+
+def normalize_release_date(raw_date: str) -> tuple[str, str]:
+    """
+    war.gov CSV の release_date 表記を正規化する。
+    生データキャッシュ（uap-csv-cache.csv）は変更せず、
+    files_catalog.csv 生成時のみ適用する。
+
+    Returns:
+        (正規化後の日付文字列, 元の値（変換した場合のみ。変換なしは空文字）)
+
+    対象ケース:
+        "2005/8/26" → "2026-05-08"
+            war.gov 側のデータ誤記。Release 01 の実際の公開日は 2026-05-08。
+        "5/22/26"   → "2026-05-22"
+            Release 02 の公開日を ISO 形式に統一。
+    """
+    d = raw_date.strip()
+    if d == "2005/8/26":
+        return "2026-05-08", d
+    if d == "5/22/26":
+        return "2026-05-22", d
+    return d, ""
+
+
+def append_note(record: dict, note: str) -> None:
+    """
+    record["notes"] に追記する（上書きではなく "; " で連結）。
+    正規化メモなど既存の notes を消さないようにするため。
+    """
+    existing = record.get("notes", "").strip()
+    record["notes"] = f"{existing}; {note}" if existing else note
+
+
+# -------------------------------------------------------
 # ユーティリティ
 # -------------------------------------------------------
 
@@ -315,11 +351,16 @@ def fetch_catalog_csv() -> list[dict]:
         # metadata v2 列を file_type から自動推定する（断定しすぎない保守的な初期値）
         meta_v2 = infer_metadata_v2(raw_type)
 
+        # release_date を正規化する（生データキャッシュは変更せず、出力CSVのみ適用）
+        raw_release_date = col(SRC_COL["release_date"])
+        normalized_date, original_date = normalize_release_date(raw_release_date)
+        norm_note = f"release_date_normalized_from:{original_date}" if original_date else ""
+
         records.append({
             # 既存列（変更なし）
             "file_name":         file_name,
             "agency":            col(SRC_COL["agency"]),
-            "release_date":      col(SRC_COL["release_date"]),
+            "release_date":      normalized_date,
             "incident_date":     col(SRC_COL["incident_date"]),
             "incident_location": col(SRC_COL["incident_location"]),
             "file_type":         raw_type,
@@ -327,7 +368,7 @@ def fetch_catalog_csv() -> list[dict]:
             "download_url":      download_url,
             "downloaded":        "true" if is_already_downloaded(file_name) else "false",
             "downloaded_at":     now_jst() if is_already_downloaded(file_name) else "",
-            "notes":             "",
+            "notes":             norm_note,
             # metadata v2 列
             **meta_v2,
         })
@@ -351,14 +392,14 @@ def try_download_pdf(record: dict) -> dict:
     dest      = RAW_PDF_DIR / file_name
 
     if not url:
-        record["notes"] = "download_url missing in catalog"
+        append_note(record, "download_url missing in catalog")
         return record
 
     if dest.exists():
         # すでに存在：スキップ（上書きしない）
         record["downloaded"]    = "true"
         record["downloaded_at"] = now_jst()
-        record["notes"]         = "already exists in raw_pdf"
+        append_note(record, "already exists in raw_pdf")
         return record
 
     try:
@@ -366,7 +407,7 @@ def try_download_pdf(record: dict) -> dict:
         resp = requests.get(url, headers=PDF_HEADERS, timeout=60, stream=True)
 
         if resp.status_code == 403:
-            record["notes"] = (
+            append_note(record,
                 "WAF 403: programmatic download blocked by Akamai. "
                 f"Manual download required: {url}"
             )
@@ -377,7 +418,7 @@ def try_download_pdf(record: dict) -> dict:
         # PDF 以外のコンテンツが返ってきた場合のガード
         ct = resp.headers.get("content-type", "")
         if "pdf" not in ct.lower() and "octet-stream" not in ct.lower():
-            record["notes"] = f"unexpected content-type: {ct} — not saved"
+            append_note(record, f"unexpected content-type: {ct} — not saved")
             return record
 
         # 保存
@@ -388,15 +429,15 @@ def try_download_pdf(record: dict) -> dict:
         size_mb = dest.stat().st_size / 1024 / 1024
         record["downloaded"]    = "true"
         record["downloaded_at"] = now_jst()
-        record["notes"]         = f"downloaded {size_mb:.1f} MB"
+        append_note(record, f"downloaded {size_mb:.1f} MB")
         print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
 
     except requests.HTTPError as e:
-        record["notes"] = f"HTTP error: {e}"
+        append_note(record, f"HTTP error: {e}")
     except requests.RequestException as e:
-        record["notes"] = f"request error: {e}"
+        append_note(record, f"request error: {e}")
     except Exception as e:
-        record["notes"] = f"unexpected error: {e}"
+        append_note(record, f"unexpected error: {e}")
 
     return record
 
