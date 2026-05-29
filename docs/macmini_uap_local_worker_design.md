@@ -285,6 +285,63 @@ Phase 3: 複数ファイルへ拡張
   - launchd による自動起動は Phase 2 完了後に設計する
 ```
 
+### 7-3. 長時間処理の実行方式
+
+#### 原則
+
+**Claude Code のバックグラウンドタスクハーネスに長時間処理を依存させない。**
+
+Claude Code の背景実行（Background Task）は SSH 経由の接続を保持するが、Claude Code セッション側のコンテキスト切れ・ネットワーク断・ハーネス終了により、Mac mini 側プロセスが途中終了することがある。また SSH クライアントが切断されると tee パイプが SIGPIPE を受け、Python スクリプト自体も強制終了するリスクがある。
+
+#### 推奨実行方式
+
+| 方式 | 適用場面 | コマンド例 |
+|------|---------|----------|
+| **tmux（推奨）** | 全長時間バッチ（OCR / Whisper / ffmpeg） | `tmux new-session -d -s ocr-batch 'python3 scripts/run_ocr.py ... 2>&1 \| tee logs/ocr/ocr_run_YYYYMMDD.log'` |
+| **nohup（代替）** | tmux が使えない環境 | `nohup python3 scripts/run_ocr.py ... > logs/ocr/ocr_run_YYYYMMDD.log 2>&1 &` |
+| **Claude Code background** | 短時間処理のみ（5分以内を目安） | Claude Code の Task 機能。長時間は使わない |
+
+#### tmux を使った起動手順（標準パターン）
+
+```bash
+# 1. Mac mini に SSH ログイン
+ssh agentai
+
+# 2. 既存セッション確認
+tmux ls
+
+# 3. セッション作成して起動（Mac mini 上で実行）
+eval "$(/opt/homebrew/bin/brew shellenv)"
+cd /Volumes/ACASIS_2TB/AI_Data/UAP_TRANSLATION_PROJECT/repo
+source /Volumes/ACASIS_2TB/AI_Data/UAP_TRANSLATION_PROJECT/.venv/bin/activate
+TS=$(date +%Y%m%d_%H%M%S)
+tmux new-session -d -s ocr-batch \
+  "python3 scripts/run_ocr.py \
+    --input-root /Volumes/ACASIS_2TB/AI_Data/UAP_TRANSLATION_PROJECT/page_images/ \
+    --output-file extracted_text/ocr_results_full_${TS}.csv \
+    2>&1 | tee logs/ocr/ocr_run_${TS}.log"
+
+# 4. SSH を切断（tmux セッションは Mac mini 上で継続）
+exit
+```
+
+#### Claude Code の役割（長時間処理時）
+
+| 役割 | 内容 |
+|------|------|
+| 起動指示 | tmux セッション起動コマンドを生成・説明する |
+| 進捗確認 | SSH 経由で `tail -f` / `tmux attach -r` / `ps aux` で確認 |
+| 結果確認 | 処理完了後に出力 CSV・ログ末尾・行数を確認 |
+| **実行主体にならない** | tmux セッション内の処理を直接制御しない |
+
+#### 出力ファイルの命名規則
+
+- ログ: `logs/{処理種別}/run_YYYYMMDD_HHmmss.log`（timestamp 必須）
+- 出力 CSV: `extracted_text/{種別}_YYYYMMDD_HHmmss.csv`（timestamp 必須）
+- timestamp は処理開始時に一度だけ生成し、ログ・CSV で同じ値を使う
+
+---
+
 ### 7-2. 失敗時の停止ルール
 
 以下のいずれかが発生した場合、**自動で次工程へ進まず** `logs/nightly/YYYYMMDD.log` に停止理由を記録して停止する。
@@ -435,6 +492,49 @@ jobs/ に再実行ジョブを投入
 - **失敗したジョブを自動リトライしない**（無限ループ・ストレージ枯渇リスク）
 - リトライは人間が内容を確認してから手動で行う
 
+### 10-4. 成否判定の手順（exit code だけで判断しない）
+
+Claude Code のバックグラウンドタスクが `failed` を返しても、Mac mini 上の処理が成功している場合がある（SSH 断による exit code 255 等）。**成否判定は以下の複数指標で行う。**
+
+#### 確認コマンド一覧
+
+```bash
+# 1. プロセス有無（まだ動いているか / 終了したか）
+ps aux | grep run_ocr | grep -v grep
+
+# 2. ログ末尾（正常完了 or エラーメッセージ）
+tail -30 logs/ocr/ocr_run_YYYYMMDD_HHmmss.log
+
+# 3. 出力ファイルの存在確認
+ls -lh extracted_text/ocr_results_full_YYYYMMDD_HHmmss.csv
+
+# 4. 出力ファイルの行数（Python でカウント・埋め込み改行対応）
+python3 -c "
+import csv
+with open('extracted_text/ocr_results_full_YYYYMMDD_HHmmss.csv') as f:
+    print(sum(1 for _ in csv.DictReader(f)), 'rows')
+"
+
+# 5. エラー件数
+grep -c -i 'error\|exception\|traceback' logs/ocr/ocr_run_YYYYMMDD_HHmmss.log || echo '0'
+
+# 6. 完了メッセージ確認
+grep '完了\|完成\|finished\|done' logs/ocr/ocr_run_YYYYMMDD_HHmmss.log | tail -5
+```
+
+#### 成否判定マトリクス
+
+| プロセス有無 | ログ末尾 | 出力CSV | 判定 |
+|------------|---------|--------|------|
+| 終了（なし） | 完了メッセージあり | 存在・行数一致 | **成功** |
+| 終了（なし） | エラーあり | 存在しない or 0行 | **失敗** → ログで原因確認 |
+| 終了（なし） | 途中で途切れ | 存在・行数一致 | **実質成功**（ログは tee 断の可能性）|
+| 終了（なし） | 途中で途切れ | 存在しない | **不明** → 再実行（resume 方式で重複回避）|
+| 稼働中 | 進捗あり | 未生成（処理中） | **正常処理中** → 待機 |
+| 稼働中 | 更新なし（10分以上） | — | **ハング疑い** → 確認後に Ctrl-C |
+
+**exit code 255 は SSH クライアント断を示すのみ。Mac mini 側プロセスの成否は表さない。**
+
 ---
 
 ## 11. 将来的な単体サービス化可能性
@@ -460,3 +560,4 @@ jobs/ に再実行ジョブを投入
 | バージョン | 日付 | 変更内容 |
 |----------|------|---------|
 | v1 | 2026-05-28 | 初版制定 |
+| v1.1 | 2026-05-30 | Section 7-3「長時間処理の実行方式」追加・Section 10-4「成否判定マトリクス」追加 |

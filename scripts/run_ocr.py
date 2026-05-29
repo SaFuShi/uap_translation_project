@@ -317,6 +317,10 @@ def main():
         "--output-file", type=Path, default=None,
         help="OCR結果CSVのパスを直接指定（--output-dir より優先）",
     )
+    parser.add_argument(
+        "--limit", type=int, default=None, metavar="N",
+        help="OCR対象ページの上限件数（先頭N件）。スキップページはカウントしない。省略時は全件処理。",
+    )
     args = parser.parse_args()
 
     classification_csv = args.classification_csv or CLASSIFICATION_CSV
@@ -332,6 +336,8 @@ def main():
     print(f"  分類CSV   : {classification_csv}")
     print(f"  テキスト検出: {TEXT_LAYER_CSV}")
     print(f"  出力先    : {output_csv}")
+    if args.limit is not None:
+        print(f"  上限件数  : {args.limit} ページ（--limit）")
     print()
 
     for path, label in [(classification_csv, "page_classification.csv"),
@@ -348,6 +354,10 @@ def main():
     if not targets:
         print("[情報] OCR対象ページが0件でした。処理を終了します。")
         sys.exit(0)
+
+    # --limit フィルタ
+    if args.limit is not None:
+        targets = targets[: args.limit]
 
     # スキップ数の表示（非対象分類）
     total_pages = len(cls_rows)

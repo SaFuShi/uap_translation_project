@@ -24,3 +24,6 @@ raw_pdf/
 
 # Raw media（VID/AUD/IMG）
 raw_media/
+
+# war.gov キャッシュ（頻繁に変化・git 管理不要）
+metadata/uap-csv-cache.csv
