@@ -18,6 +18,7 @@ OCR・翻訳・要約は行わない。まずPNG化の安定稼働を優先す�
 作成者: UAP_TRANSLATION_PROJECT
 """
 
+import argparse
 import sys
 import traceback
 from pathlib import Path
@@ -51,7 +52,7 @@ SCALE = DPI / 72.0
 MATRIX = fitz.Matrix(SCALE, SCALE)
 
 
-def pdf_to_images(pdf_path: Path) -> dict:
+def pdf_to_images_impl(pdf_path: Path, page_img_dir: Path = PAGE_IMG_DIR) -> dict:
     """
     1つの PDF をページごとの PNG へ変換する。
 
@@ -60,7 +61,7 @@ def pdf_to_images(pdf_path: Path) -> dict:
     """
     # PDF のファイル名（拡張子なし）をサブフォルダ名に使う
     folder_name = pdf_path.stem
-    output_dir  = PAGE_IMG_DIR / folder_name
+    output_dir  = page_img_dir / folder_name
     output_dir.mkdir(parents=True, exist_ok=True)
 
     try:
@@ -105,28 +106,82 @@ def pdf_to_images(pdf_path: Path) -> dict:
     }
 
 
+def parse_args():
+    parser = argparse.ArgumentParser(
+        description="UAP PDF → PNG 変換ツール",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog="""
+例:
+  python3 scripts/pdf_to_images.py                        # 全件処理（従来動作）
+  python3 scripts/pdf_to_images.py --limit 1              # 先頭1件のみ（テスト用）
+  python3 scripts/pdf_to_images.py --pdf-name 059uap00011 # 特定PDFのみ
+  python3 scripts/pdf_to_images.py --input-dir /path/to/pdfs --output-dir /path/to/out
+        """,
+    )
+    parser.add_argument(
+        "--limit", type=int, default=None, metavar="N",
+        help="処理するPDF件数の上限（先頭N件）。省略時は全件処理。",
+    )
+    parser.add_argument(
+        "--pdf-name", type=str, default=None, metavar="NAME",
+        help="処理対象のPDFファイル名またはstem（拡張子あり・なし両対応）。",
+    )
+    parser.add_argument(
+        "--input-dir", type=Path, default=None, metavar="PATH",
+        help="入力PDFディレクトリ（デフォルト: raw_pdf/）。",
+    )
+    parser.add_argument(
+        "--output-dir", type=Path, default=None, metavar="PATH",
+        help="出力先ディレクトリ（デフォルト: page_images/）。",
+    )
+    return parser.parse_args()
+
+
 def main():
+    args = parse_args()
+
+    raw_pdf_dir  = args.input_dir  or RAW_PDF_DIR
+    page_img_dir = args.output_dir or PAGE_IMG_DIR
+
     print("=" * 60)
     print("PDF → PNG 変換ツール（UAP_TRANSLATION_PROJECT）")
     print("=" * 60)
-    print(f"  読み込み元 : {RAW_PDF_DIR}")
-    print(f"  出力先     : {PAGE_IMG_DIR}")
+    print(f"  読み込み元 : {raw_pdf_dir}")
+    print(f"  出力先     : {page_img_dir}")
     print(f"  解像度     : {DPI} DPI")
+    if args.limit:
+        print(f"  上限件数   : {args.limit} 件")
+    if args.pdf_name:
+        print(f"  対象PDF名  : {args.pdf_name}")
     print()
 
-    # raw_pdf/ が存在するか確認
-    if not RAW_PDF_DIR.exists():
-        print(f"[エラー] フォルダが見つかりません: {RAW_PDF_DIR}")
+    # 入力ディレクトリの存在確認
+    if not raw_pdf_dir.exists():
+        print(f"[エラー] フォルダが見つかりません: {raw_pdf_dir}")
         sys.exit(1)
 
     # PDF ファイル一覧を取得（大文字小文字両方）
     pdf_files = sorted(
-        list(RAW_PDF_DIR.glob("*.pdf")) + list(RAW_PDF_DIR.glob("*.PDF"))
+        list(raw_pdf_dir.glob("*.pdf")) + list(raw_pdf_dir.glob("*.PDF"))
     )
 
     if not pdf_files:
-        print("[情報] raw_pdf/ に PDF ファイルが見つかりませんでした。")
+        print("[情報] 対象ディレクトリに PDF ファイルが見つかりませんでした。")
         sys.exit(0)
+
+    # --pdf-name フィルタ
+    if args.pdf_name:
+        name_filter = args.pdf_name
+        if name_filter.lower().endswith(".pdf"):
+            name_filter = name_filter[:-4]
+        pdf_files = [p for p in pdf_files if p.stem == name_filter]
+        if not pdf_files:
+            print(f"[エラー] --pdf-name '{args.pdf_name}' に一致するPDFが見つかりませんでした。")
+            sys.exit(1)
+
+    # --limit フィルタ
+    if args.limit is not None:
+        pdf_files = pdf_files[: args.limit]
 
     print(f"対象 PDF: {len(pdf_files)} 件")
     print()
@@ -137,7 +192,7 @@ def main():
     for idx, pdf_path in enumerate(pdf_files, start=1):
         print(f"[{idx}/{len(pdf_files)}] {pdf_path.name} を処理中...")
 
-        result = pdf_to_images(pdf_path)
+        result = pdf_to_images_impl(pdf_path, page_img_dir)
 
         if result["success"]:
             print(f"  -> 完了: {result['pages']} ページ保存 ({result['output_dir']})")
