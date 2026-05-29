@@ -20,7 +20,7 @@ extracted_text/*.tmp
 *~
 
 # Raw PDFs
-raw_pdf/
+raw_pdf
 
 # Raw media（VID/AUD/IMG）
 raw_media/
