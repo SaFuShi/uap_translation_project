@@ -1,0 +1,78 @@
+pdf_file,total_pages,avg_conf,median_conf,min_conf,max_conf,zero_char_pages,zero_conf_pages,review_required_count,review_rate_pct,avg_char_count,challenge_pipeline_flag,challenge_reason
+18_100754_ general 1946-7_vol_2,28,78.3,80.1,46.8,90.4,0,0,0,0.0,1050,false,
+18_6369445_general_1948_vol_1,28,75.5,75.0,54.7,91.3,0,0,0,0.0,849,false,
+2024-04-30-composite-sketch,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+255_413270_ufo's_and_defense_what_should_we_prepare_for,94,93.6,95.2,40.7,95.8,1,0,1,1.1,3227,false,
+255_t_763_r1b_transcripts,4,71.7,77.2,37.2,95.0,1,0,3,75.0,584,true,review>75.0%; min_conf=37.2
+331_120752_numeric_files_1944–1945_37153_german_armament_equipment_documents,17,73.3,75.5,42.9,89.4,0,0,0,0.0,988,false,
+341_110448_records_relating_to_the_collection_and_dissemination_of_intelligence_1948-1955-ts_cont_no.2_2-5300-2-5399,7,91.5,93.7,81.5,94.4,0,0,1,14.3,47,false,
+341_110677_numerical_file_5-2500,10,58.8,58.1,17.5,95.0,4,0,10,100.0,44,true,review>100.0%; min_conf=17.5; zero_char>40%
+342_hs1-416511228_box186_319.1-flying-discs-1949,143,79.3,84.8,31.6,95.0,23,1,35,24.5,696,true,review>24.5%; min_conf=31.6
+38_143685_box7_incident_summaries_1-100,209,74.6,75.6,13.3,95.0,24,6,38,18.2,718,true,min_conf=13.3
+38_143685_box7_incident_summaries_101-172,178,81.8,81.8,41.7,95.0,17,3,21,11.8,933,false,
+38_143685_box7_incident_summaries_173-233,144,75.0,78.5,36.0,95.0,5,0,9,6.2,788,true,min_conf=36.0
+59_214434_sp_16_7.18.1963,6,92.6,94.5,87.9,95.4,0,0,0,0.0,2086,false,
+59_214434_sp_16_[7.18.1963],6,92.6,94.5,87.9,95.4,0,0,0,0.0,2086,false,
+65_hs1-101634279_100-de-18221_serial_844,1,89.5,89.5,89.5,89.5,0,0,0,0.0,1333,false,
+65_hs1-101634279_100-de-26505,15,79.9,83.5,53.6,93.9,0,0,1,6.7,648,false,
+65_hs1-834228961_62-hq-83894_section_1,185,78.2,88.3,22.9,95.7,56,1,87,47.0,758,true,review>47.0%; min_conf=22.9; zero_char>30%
+65_hs1-834228961_62-hq-83894_section_10,152,77.8,88.3,22.9,95.0,22,0,148,97.4,1693,true,review>97.4%; min_conf=22.9
+65_hs1-834228961_62-hq-83894_section_2,194,77.1,86.9,15.8,95.5,43,1,75,38.7,685,true,review>38.7%; min_conf=15.8
+65_hs1-834228961_62-hq-83894_section_3,190,83.9,88.9,21.4,95.5,43,1,55,28.9,1079,true,review>28.9%; min_conf=21.4
+65_hs1-834228961_62-hq-83894_section_4,214,76.4,86.7,27.4,95.1,39,0,80,37.4,796,true,review>37.4%; min_conf=27.4
+65_hs1-834228961_62-hq-83894_section_5,209,77.5,86.1,20.6,95.0,59,0,94,45.0,549,true,review>45.0%; min_conf=20.6
+65_hs1-834228961_62-hq-83894_section_6,271,75.5,85.9,24.2,95.0,55,4,91,33.6,910,true,review>33.6%; min_conf=24.2
+65_hs1-834228961_62-hq-83894_section_7,205,75.7,87.2,24.5,95.5,32,0,73,35.6,918,true,review>35.6%; min_conf=24.5
+65_hs1-834228961_62-hq-83894_section_8,217,78.9,87.6,23.3,95.5,44,1,72,33.2,860,true,review>33.2%; min_conf=23.3
+65_hs1-834228961_62-hq-83894_section_9,290,79.2,88.5,23.1,95.4,53,0,89,30.7,750,true,review>30.7%; min_conf=23.1
+65_hs1-834228961_62-hq-83894_serial_130,126,83.2,89.2,23.8,95.0,10,0,18,14.3,1079,true,min_conf=23.8
+65_hs1-834228961_62-hq-83894_serial_153,9,87.6,95.0,39.9,95.0,6,0,7,77.8,119,true,review>77.8%; min_conf=39.9; zero_char>67%
+65_hs1-834228961_62-hq-83894_serial_164,137,93.4,94.0,61.7,95.7,0,0,17,12.4,1099,false,
+65_hs1-834228961_62-hq-83894_serial_220,15,75.2,81.2,35.8,95.1,3,0,6,40.0,883,true,review>40.0%; min_conf=35.8
+65_hs1-834228961_62-hq-83894_serial_403,3,94.6,95.0,93.5,95.4,1,0,1,33.3,1238,true,review>33.3%; zero_char>33%
+65_hs1-834228961_62-hq-83894_serial_438,40,88.5,88.3,48.2,95.8,3,0,3,7.5,1051,false,
+65_hs1-834228961_62-hq-83894_serial_449,18,84.2,90.3,36.2,95.4,0,0,1,5.6,7514,true,min_conf=36.2
+65_hs1-834228961_62-hq-83894_sub_a,124,78.8,81.7,44.8,93.5,0,0,3,2.4,1671,false,
+DOE-UAP-D002_JamesTuck_Correspondence,2,69.4,69.4,43.8,95.0,1,0,2,100.0,6,true,review>100.0%; zero_char>50%
+DOW-UAP-D017_General_Correspondence_Of_Sandia,15,77.0,94.3,37.5,95.7,5,0,15,100.0,80,true,review>100.0%; min_conf=37.5; zero_char>33%
+dow-uap-d3-mission-report-arabian-gulf-2020,1,90.5,90.5,90.5,90.5,0,0,0,0.0,57,false,
+dow-uap-d4-mission-report-arabian-gulf-2020,4,94.2,95.0,92.0,95.0,3,0,4,100.0,2,true,review>100.0%; zero_char>75%
+dow-uap-d5-mission-report-arabian-gulf-2020,4,94.0,93.8,93.3,95.0,1,0,4,100.0,4,true,review>100.0%
+dow-uap-d51-email-correspondence-pacific-time-zone-march-2023,2,95.0,95.0,95.0,95.0,2,1,2,100.0,0,true,review>100.0%; zero_char>100%
+dow-uap-d54-mission-report-mediterranean-sea-na,6,93.3,93.3,93.3,93.3,0,0,6,100.0,6,true,review>100.0%
+dow-uap-d6-mission-report-arabian-gulf-2020,6,93.3,93.3,93.3,93.3,0,0,6,100.0,6,true,review>100.0%
+dow-uap-d60-mission-report-persian-gulf-august-2020,6,80.9,79.9,75.4,89.8,0,0,0,0.0,1088,false,
+dow-uap-d63-mission-report-strait-of-hormuz-october-2020,8,79.6,80.8,73.5,89.1,0,0,0,0.0,1078,false,
+dow-uap-d65-mission-report-persian-gulf-july-2020,8,82.4,82.4,78.4,86.6,0,0,0,0.0,986,false,
+dow-uap-d7-mission-report-arabian-gulf-2020,5,93.3,93.3,93.3,93.3,0,0,5,100.0,6,true,review>100.0%
+dow-uap-d8-mission-report-djibouti-2025,6,93.3,93.3,93.3,93.3,0,0,6,100.0,6,true,review>100.0%
+fbi-photo-b1,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b10,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b11,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b12,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b13,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b14,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b15,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b16,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b17,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b18,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b19,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b2,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b20,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b21,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b22,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b23,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b24,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b3,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b4,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b5,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b6,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b7,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b8,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+fbi-photo-b9,1,95.0,95.0,95.0,95.0,1,0,1,100.0,0,true,review>100.0%; zero_char>100%
+nasa-uap-d4-apollo-11-technical-crew-debriefing-1969,11,91.8,94.1,80.2,95.6,0,0,0,0.0,959,false,
+nasa-uap-d6-apollo-17-technical-crew-debriefing-1973,2,92.0,92.0,89.1,95.0,0,0,0,0.0,893,false,
+nasa-uap-d7-skylab-technical-crew-debriefing-1973,11,94.3,95.2,91.4,95.6,0,0,0,0.0,1054,false,
+serial 5 redacted_redacted,1,77.2,77.2,77.2,77.2,0,0,0,0.0,1832,false,
+serial-3_redacted,2,84.2,84.2,78.6,89.7,0,0,0,0.0,1880,false,
+serial-4-redacted_redacted,1,81.3,81.3,81.3,81.3,0,0,0,0.0,1890,false,
