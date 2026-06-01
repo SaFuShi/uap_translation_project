@@ -12,6 +12,7 @@ thumbnails/
 # 一時ファイル
 *.tmp
 *.log
+review_tmp/
 
 # OCR途中生成
 extracted_text/*.tmp
