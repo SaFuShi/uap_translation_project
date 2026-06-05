@@ -31,3 +31,9 @@ metadata/uap-csv-cache.csv
 
 # OCR全件結果CSV（大容量・git管理外）
 extracted_text/ocr_results_full_*.csv
+
+# PoC: SQLite DB（バイナリ・実行状態依存）
+workflow.db
+
+# PoC: Codex監査依頼中間ファイル（ドラフト本文含む）
+review_requests/

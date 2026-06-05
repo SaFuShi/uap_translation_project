@@ -638,4 +638,76 @@ agmsg が利用できない場合に即座に切り替えられるフェイル�
 
 ---
 
+---
+
+## 12. 実装ファイル一覧（PoC 最小実装）
+
+### 12-1. スクリプト一覧
+
+| ファイル | 役割 | 動作環境 |
+|---------|------|---------|
+| `scripts/init_db.py` | SQLite DB 初期化（全テーブル作成） | Mac Studio / Mac mini |
+| `scripts/codex_request_gen.py` | 依頼パッケージ生成（STEP 2） | Mac Studio |
+| `scripts/codex_flow.py` | agmsg 送信〜結果解析（STEP 3〜5）+ フォールバック | Mac Studio |
+| `scripts/version_monitor.py` | agmsg/Python/SQLite/bash/スキーマ バージョン監視 | Mac Studio / Mac mini |
+| `scripts/notebooklm_log_gen.py` | 公開後 NotebookLM ログ自動生成 | Mac Studio |
+
+### 12-2. 標準フロー（通常モード）
+
+```bash
+# セッション開始時（バージョン確認）
+python3 scripts/version_monitor.py
+
+# 初回のみ: DB 初期化
+python3 scripts/init_db.py
+
+# STEP 2: 依頼パッケージ生成
+python3 scripts/codex_request_gen.py --slug <スラッグ>
+
+# STEP 3〜5: agmsg 経由で送信・結果解析
+python3 scripts/codex_flow.py --slug <スラッグ> \
+    --request-path review_requests/codex_request_YYYYMMDD_<スラッグ>.md
+
+# 公開後: NotebookLM ログ生成
+python3 scripts/notebooklm_log_gen.py --slug <スラッグ> --note-url <URL>
+```
+
+### 12-3. フォールバックフロー（§9 Fallback Plan）
+
+agmsg 故障・未インストール時は STEP 3 のみ手動に切り替え：
+
+```bash
+# STEP 2 は同じ（依頼パッケージを生成）
+python3 scripts/codex_request_gen.py --slug <スラッグ>
+
+# STEP 3（手動）: review_requests/<スラッグ>.md を Codex にペースト
+# → 出力を review_reports/codex_audit_YYYYMMDD_<スラッグ>_manual.md に保存
+
+# STEP 4〜5: 保存済みファイルを解析
+python3 scripts/codex_flow.py --slug <スラッグ> \
+    --fallback \
+    --response-path review_reports/codex_audit_YYYYMMDD_<スラッグ>_manual.md
+```
+
+### 12-4. SQLite 確認クエリ例
+
+```bash
+sqlite3 workflow.db "SELECT slug, current_owner FROM articles a
+  JOIN workflow_owner w ON a.slug = w.article_slug
+  ORDER BY w.updated_at DESC LIMIT 5;"
+
+sqlite3 workflow.db "SELECT slug, SUM(elapsed_minutes) AS total_min
+  FROM workflow_events e JOIN articles a ON e.article_id = a.id
+  GROUP BY slug ORDER BY total_min DESC;"
+```
+
+### 12-5. .gitignore 推奨追加（別途対応）
+
+```
+workflow.db
+review_requests/
+```
+
+---
+
 *このドキュメントは設計のみ。実装・インストール・スクリプト実行は別途承認が必要。*
