@@ -1,9 +1,9 @@
 # Claude Code / Codex 連携 半自動化設計 v1.1
 
 **作成日：** 2026-06-02  
-**更新日：** 2026-06-02（v1.1：Current Owner制御・S_CLASSガードレール・Fallback Plan・PoC時短目標 追加）  
+**更新日：** 2026-06-05（v1.2：PoC完了記録 追加）  
 **対象プロジェクト：** UAP_TRANSLATION_PROJECT  
-**ステータス：** 設計のみ。実装・インストール・スクリプト実行はまだ行わない。
+**ステータス：** PoC完了（Fallback運用 / 2026-06-05）
 
 ---
 
@@ -482,13 +482,13 @@ agmsg のインストール確認から review_reports/ 保存まで。公開・
 
 #### 機能基準
 
-- [ ] agmsg が `review_reports/` にファイルを生成できる
-- [ ] 生成されたファイルを Claude Code が正常に解析できる
-- [ ] BLOCK / WARN / PASS を正確に抽出できる
-- [ ] SQLite に 1 件のセッション記録が保存できる
-- [ ] agmsg タイムアウト時に Claude Code が停止できる
-- [ ] workflow_owner チェックが送信前に動作する（Current Owner 制御）
-- [ ] S_CLASS 判定時にハードストップが発動する（S_CLASS ガードレール）
+- [x] agmsg が `review_reports/` にファイルを生成できる（Fallback：手動ペーストで実施）
+- [x] 生成されたファイルを Claude Code が正常に解析できる
+- [x] BLOCK / WARN / PASS を正確に抽出できる（BLOCK:3 WARN:4 PASS:6 を確認）
+- [x] SQLite に 1 件のセッション記録が保存できる
+- [N/A] agmsg タイムアウト時に Claude Code が停止できる（agmsg 未インストール・Fallback 使用）
+- [x] workflow_owner チェックが送信前に動作する（Current Owner 制御）
+- [N/A] S_CLASS 判定時にハードストップが発動する（test_article は PUBLIC 分類のため未発動）
 
 #### 時短基準（追加）
 
@@ -621,10 +621,10 @@ agmsg が利用できない場合に即座に切り替えられるフェイル�
 
 | フェーズ | 内容 | 前提条件 |
 |---------|------|---------|
-| **フェーズ 0（現在）** | 設計のみ。手動フロー継続 | — |
-| **フェーズ 1** | SQLite DB 作成・review_requests/ 整備・プロンプトテンプレート確定 | 人間による承認 |
-| **フェーズ 2（PoC）** | agmsg インストール・1 記事で動作確認（STEP 3 自動化）| PoC スコープ限定 |
-| **フェーズ 3** | PoC 成功後に本番適用・ログ自動生成の統合 | PoC 成功 + 人間承認 |
+| フェーズ 0 ✓ | 設計のみ。手動フロー継続 | 完了 |
+| フェーズ 1 ✓ | SQLite DB 作成・review_requests/ 整備・プロンプトテンプレート確定 | 完了 |
+| **フェーズ 2（PoC）✓** | Fallback で 1 記事動作確認完了（2026-06-05）。agmsg 本番導入は保留 | 完了（Fallback）|
+| **フェーズ 3** | PoC 成功後に本番適用・ログ自動生成の統合 | 待機中 |
 
 ---
 
@@ -710,4 +710,51 @@ review_requests/
 
 ---
 
-*このドキュメントは設計のみ。実装・インストール・スクリプト実行は別途承認が必要。*
+---
+
+## 13. PoC 実施記録（2026-06-05）
+
+### 13-1. 実施概要
+
+| 項目 | 内容 |
+|------|------|
+| 実施日 | 2026-06-05 |
+| 実施環境 | Mac Studio（メイン）/ Mac mini（ワーカー）|
+| agmsg 状態 | 両環境とも NOT_INSTALLED → §9 Fallback Plan で実施 |
+| 実施スラッグ | test_article_semiauto_poc |
+
+### 13-2. 環境別確認結果
+
+| 確認項目 | Mac Studio | Mac mini |
+|---------|-----------|---------|
+| workflow.db 作成 | ✓ | ✓ |
+| version_monitor.py | ✓ | ✓ |
+| Codex 依頼パッケージ生成 | ✓ | — |
+| 監査結果解析（BLOCK/WARN/PASS）| ✓ | — |
+| NotebookLM ログ生成 | ✓ | — |
+| git pull / git status クリーン | ✓ | ✓ |
+
+### 13-3. PoC 成功基準の達成状況
+
+agmsg に依存しない項目はすべて Fallback 経由で確認済み。
+
+| 基準 | 状態 | 備考 |
+|------|------|------|
+| review_reports/ にファイル生成 | ✓ Fallback | 手動ペーストで実施（agmsg 未使用）|
+| 生成ファイルの正常解析 | ✓ | |
+| BLOCK / WARN / PASS 抽出 | ✓ | BLOCK:3 WARN:4 PASS:6 を確認 |
+| SQLite セッション記録 | ✓ | |
+| agmsg タイムアウト時の停止 | N/A | agmsg 未インストールのため未検証 |
+| workflow_owner チェック | ✓ | |
+| S_CLASS ハードストップ | N/A | test_article は PUBLIC のため未発動 |
+
+### 13-4. 確定した運用方針
+
+- agmsg は現時点で本番導入を保留。§9 Fallback Plan を常時フォールバックとして維持する。
+- workflow.db は Mac Studio のみでマスター管理。Mac mini 側は独立テスト用。両者は同期しない。
+- Python バージョン差異（Mac Studio 3.12.4 / Mac mini 3.9.6）は暫定運用注意として扱い、3.10+ 構文禁止を継続する。
+- フェーズ 3（本番適用）の実施タイミングは agmsg の実装可能性が確認できた時点で判断する。
+
+---
+
+*v1.2 更新（2026-06-05）：PoC 完了記録を追加。フェーズ 2 までの実装は完了。*
