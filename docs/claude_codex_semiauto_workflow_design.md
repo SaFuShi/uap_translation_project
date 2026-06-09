@@ -1,7 +1,7 @@
-# Claude Code / Codex 連携 半自動化設計 v1.6
+# Claude Code / Codex 連携 半自動化設計 v1.7
 
 **作成日：** 2026-06-02  
-**更新日：** 2026-06-09（v1.6：PASS後のnote投稿前Finder確認コマンドを4項目に整理）
+**更新日：** 2026-06-09（v1.7：note公開後の保存版・ログ作成・commit準備表示を半自動化）
 **対象プロジェクト：** UAP_TRANSLATION_PROJECT  
 **ステータス：** フェーズ3移行中（Codex CLI 非対話実行 調査完了 / 2026-06-09）
 
@@ -714,6 +714,7 @@ codex --version  # → codex-cli 0.137.0
 | `scripts/codex_flow.py` | agmsg 送信〜結果解析（STEP 3〜5）+ フォールバック | Mac Studio |
 | `scripts/version_monitor.py` | agmsg/Python/SQLite/bash/スキーマ バージョン監視 | Mac Studio / Mac mini |
 | `scripts/notebooklm_log_gen.py` | 公開後 NotebookLM ログ自動生成 | Mac Studio |
+| `scripts/post_publish_workflow.py` | note公開後の保存版・公開ログ作成とcommit準備表示 | Mac Studio |
 
 ### 12-2. 標準フロー（通常モード）
 
@@ -733,6 +734,13 @@ python3 scripts/codex_flow.py --slug <スラッグ> \
 
 # 公開後: NotebookLM ログ生成
 python3 scripts/notebooklm_log_gen.py --slug <スラッグ> --note-url <URL>
+
+# 公開後: 保存版・ログ作成・commit準備表示（git操作は表示のみ）
+python3 scripts/post_publish_workflow.py \
+    --slug <スラッグ> \
+    --draft note_drafts/ai_summary_<スラッグ>_note_version.md \
+    --note-url <URL> \
+    --audit review_reports/codex_audit_YYYYMMDD_<スラッグ>.md
 ```
 
 ### 12-3. フォールバックフロー（§9 Fallback Plan）
@@ -769,6 +777,50 @@ sqlite3 workflow.db "SELECT slug, SUM(elapsed_minutes) AS total_min
 ```
 workflow.db
 review_requests/
+```
+
+### 12-6. note公開後フロー（post_publish_workflow.py）
+
+`post_publish_workflow.py` は、note記事公開後の定型作業を半自動化する統合支援スクリプトである。
+
+実行例：
+
+```bash
+python3 scripts/post_publish_workflow.py \
+  --slug DOE-UAP-D001_pantex_unidentified_object_incident_report \
+  --draft note_drafts/ai_summary_DOE-UAP-D001_pantex_unidentified_object_incident_report_note_version.md \
+  --note-url https://note.com/deft_ibis3303/n/xxxx \
+  --audit review_reports/codex_audit_20260609_DOE-UAP-D001_pantex_unidentified_object_incident_report_iter2.md
+```
+
+自動作成するファイル：
+
+- `published_articles/ai_summary_<slug>_published_YYYYMMDD.md`
+- `logs/notebooklm/YYYY-MM-DD_<slug>_published_log.md`
+
+表示する情報：
+
+- 作成ファイル一覧
+- `git diff` 対象ファイル一覧
+- commit対象候補
+- commit対象外候補
+- source_registry変更候補（表示のみ）
+- 実行すべきgitコマンド案（表示のみ）
+- Mac mini pullコマンド案（表示のみ）
+
+安全条件：
+
+- `git add` / `git commit` / `git push` は自動実行しない
+- Mac mini pull は自動実行しない
+- `review_logs/source_registry.csv` は自動変更しない
+- `metadata/uap-csv-cache.csv` は触らない
+- `raw_pdf/` / `page_images/` は触らない
+- `workflow.db` は読まない・書かない
+
+Mac mini pullコマンド案：
+
+```bash
+ssh agentai@safinoMac-mini.local 'cd /Volumes/ACASIS_2TB/AI_Data/UAP_TRANSLATION_PROJECT/repo && git pull'
 ```
 
 ---
@@ -909,3 +961,5 @@ Claude Code：
 *v1.5 更新（2026-06-09）：`codex_flow.py` PASS 判定時と `codex_request_gen.py` 手順5に、ドラフト内 `page_images/` 参照を自動抽出して Finder 表示コマンドを出力する `_get_image_info()` / `_print_image_steps()` を追加。Mac Studio 側に画像がない場合は Mac mini 参照メッセージを表示。§9-A に表示例を追記。*
 
 *v1.6 更新（2026-06-09）：`codex_flow.py` PASS 判定時と `codex_request_gen.py` 手順5の表示を、1. ドラフトFinder表示、2. 使用画像Finder表示、3. 画像フォルダFinder表示、4. Mac Studio側に画像がない場合の注意、の4項目に整理。画像が1枚のみでも画像フォルダFinder表示コマンドを出力し、Finderコマンド用のパスをshell quoteするよう更新。*
+
+*v1.7 更新（2026-06-09）：`scripts/post_publish_workflow.py` を追加。note公開後に `published_articles/` 保存版と `logs/notebooklm/` 公開ログを作成し、git diff対象・commit対象候補・commit対象外候補・gitコマンド案・Mac mini pullコマンド案を表示する。git操作、Mac mini pull、source_registry変更、metadata/raw/page_images/workflow.db変更は自動実行しない。*
