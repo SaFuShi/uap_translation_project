@@ -1,7 +1,7 @@
-# Claude Code / Codex 連携 半自動化設計 v1.4
+# Claude Code / Codex 連携 半自動化設計 v1.6
 
 **作成日：** 2026-06-02  
-**更新日：** 2026-06-09（v1.4：PASS後ドラフトFinder表示コマンドを codex_flow.py 出力に追加）  
+**更新日：** 2026-06-09（v1.6：PASS後のnote投稿前Finder確認コマンドを4項目に整理）
 **対象プロジェクト：** UAP_TRANSLATION_PROJECT  
 **ステータス：** フェーズ3移行中（Codex CLI 非対話実行 調査完了 / 2026-06-09）
 
@@ -626,11 +626,20 @@ agmsg が利用できない場合に即座に切り替えられるフェイル�
     --fallback \
     --response-path review_reports/codex_audit_YYYYMMDD_<slug>.md
 
-【PASS 時・codex_flow.py が自動表示するドラフト確認コマンド】
-  Finder でドラフトを表示：
+【PASS時・codex_flow.py が自動表示するnote投稿前Finder確認コマンド】
+  1. ドラフトFinder表示コマンド：
     open -R note_drafts/ai_summary_<slug>_note_version.md
-  直接開く：
-    open note_drafts/ai_summary_<slug>_note_version.md
+
+  2. 使用画像Finder表示コマンド：
+    open -R page_images/<画像フォルダ>/page_0001.png
+    open -R page_images/<画像フォルダ>/page_0002.png
+
+  3. 画像フォルダFinder表示コマンド：
+    open page_images/<画像フォルダ>/
+
+  4. 注意：
+     Mac Studio側に画像がない場合は、Mac Studio側Finderでは直接表示できない旨と、
+     Mac mini側の画像配置確認を促すメッセージを表示する。
 ```
 
 ### 9-B. Codex CLI 非対話実行（STEP 3 自動化候補）
@@ -896,3 +905,7 @@ Claude Code：
 *v1.3 更新（2026-06-09）：§9 に Codex CLI 調査結果と手順自動表示を追加。§10 ロードマップをフェーズ 3〜5 に更新。§13-5 実施記録を追加。*
 
 *v1.4 更新（2026-06-09）：`codex_flow.py` の PASS 判定時に、ドラフト Finder 表示コマンド（`open -R` / `open`）を自動出力するよう変更。`--draft-path` 引数を追加（省略時はスラッグから自動推定）。§9-A にコマンド例を追記。§13-6 に半自動化PoC本番適用第1弾（DOE-UAP-D001）記録を追加。*
+
+*v1.5 更新（2026-06-09）：`codex_flow.py` PASS 判定時と `codex_request_gen.py` 手順5に、ドラフト内 `page_images/` 参照を自動抽出して Finder 表示コマンドを出力する `_get_image_info()` / `_print_image_steps()` を追加。Mac Studio 側に画像がない場合は Mac mini 参照メッセージを表示。§9-A に表示例を追記。*
+
+*v1.6 更新（2026-06-09）：`codex_flow.py` PASS 判定時と `codex_request_gen.py` 手順5の表示を、1. ドラフトFinder表示、2. 使用画像Finder表示、3. 画像フォルダFinder表示、4. Mac Studio側に画像がない場合の注意、の4項目に整理。画像が1枚のみでも画像フォルダFinder表示コマンドを出力し、Finderコマンド用のパスをshell quoteするよう更新。*

@@ -22,12 +22,73 @@ codex_request_gen.py — Codex 監査依頼パッケージ生成スクリプト
 
 import sqlite3
 import argparse
+import re
+import shlex
 import sys
 from pathlib import Path
 from datetime import datetime
 
 CHECKLIST_VER = "v1.11"
 MAX_CODEX_ITERATIONS = 2
+
+
+# ── PASS後 Finder 表示ユーティリティ ───────────────────────────────────────
+
+def _quote_path(path: str) -> str:
+    """Finder表示コマンド用にパスをshell quoteする。"""
+    return shlex.quote(path)
+
+def _get_image_info(draft_path: str) -> dict:
+    """ドラフトファイルから page_images/ 参照を抽出する。
+    フォルダが存在する場合は実ファイルを列挙する（テキスト参照漏れを防ぐ）。"""
+    try:
+        content = Path(draft_path).read_text(encoding="utf-8")
+    except (OSError, IOError):
+        return {}
+    matches = re.findall(r'page_images/([^/\s、。）(（]+)/page_(\d+)\.png', content)
+    if not matches:
+        return {}
+    folder = matches[0][0]
+    folder_path = "page_images/" + folder
+    fp = Path(folder_path)
+    if fp.is_dir():
+        pages = sorted(str(p) for p in fp.glob("page_*.png"))
+    else:
+        nums = sorted(set(num for _, num in matches))
+        pages = [folder_path + "/page_" + n + ".png" for n in nums]
+    return {
+        "folder_path": folder_path,
+        "pages": pages,
+        "exists": fp.is_dir(),
+    }
+
+
+def _print_image_steps(draft_path: str) -> None:
+    """PASS後のnote投稿準備コマンドを表示する。"""
+    info = _get_image_info(draft_path)
+    print()
+    print("【手順 5（PASS後）】note投稿前のFinder確認コマンド：")
+    print("  1. ドラフトFinder表示コマンド：")
+    print(f"    open -R {_quote_path(draft_path)}")
+    if not info:
+        print("  （このドラフトに page_images 参照が見つかりませんでした）")
+        return
+    if info["exists"]:
+        print("  2. 使用画像Finder表示コマンド：")
+        for p in info["pages"]:
+            print(f"    open -R {_quote_path(p)}")
+        print("  3. 画像フォルダFinder表示コマンド：")
+        print(f"    open {_quote_path(info['folder_path'])}/")
+    else:
+        print("  2. 使用画像Finder表示コマンド：")
+        for p in info["pages"]:
+            print(f"    （Mac Studio側に画像なし）open -R {_quote_path(p)}")
+        print("  3. 画像フォルダFinder表示コマンド：")
+        print(f"    （Mac Studio側に画像なし）open {_quote_path(info['folder_path'])}/")
+        print("  4. 注意：Mac Studio側に画像がありません。")
+        print("     Mac Studio側Finderでは直接表示できないため、Mac mini側の画像配置を確認してください。")
+        print(f"  （対象フォルダ: {info['folder_path']}）")
+
 
 PROMPT_TEMPLATE = """\
 # Codex 監査依頼
@@ -173,11 +234,11 @@ def generate_request(slug: str, draft_path: str, db_path: str) -> str:
 
     record_event(db_path, slug, "codex_requested", f"request_path={out_path}")
 
-    _print_next_steps(out_path, response_path, slug)
+    _print_next_steps(out_path, response_path, slug, draft_path)
     return out_path
 
 
-def _print_next_steps(out_path: str, response_path: str, slug: str) -> None:
+def _print_next_steps(out_path: str, response_path: str, slug: str, draft_path: str) -> None:
     """依頼生成後の人間向け手順を表示する"""
     sep = "─" * 60
     print()
@@ -208,6 +269,7 @@ def _print_next_steps(out_path: str, response_path: str, slug: str) -> None:
     print(f"    --slug {slug} \\")
     print(f"    --fallback \\")
     print(f"    --response-path {response_path}")
+    _print_image_steps(draft_path)
     print(sep)
 
 
