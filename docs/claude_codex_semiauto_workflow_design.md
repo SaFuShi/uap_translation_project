@@ -1,9 +1,9 @@
-# Claude Code / Codex 連携 半自動化設計 v1.1
+# Claude Code / Codex 連携 半自動化設計 v1.4
 
 **作成日：** 2026-06-02  
-**更新日：** 2026-06-05（v1.2：PoC完了記録 追加）  
+**更新日：** 2026-06-09（v1.4：PASS後ドラフトFinder表示コマンドを codex_flow.py 出力に追加）  
 **対象プロジェクト：** UAP_TRANSLATION_PROJECT  
-**ステータス：** PoC完了（Fallback運用 / 2026-06-05）
+**ステータス：** フェーズ3移行中（Codex CLI 非対話実行 調査完了 / 2026-06-09）
 
 ---
 
@@ -471,7 +471,7 @@ agmsg のインストール確認から review_reports/ 保存まで。公開・
 [STEP 5] 判定別の処理
   BLOCK  → 停止。人間に BLOCK 内容を提示
   WARN   → WARN 一覧を提示。各項目を人間に確認
-  PASS   → 人間に報告。git / 公開は人間が判断
+  PASS   → 人間に報告。note_drafts の Finder 表示コマンドを自動出力。git / 公開は人間が判断
 
 [停止点]
   → STEP 5 のすべてのケースで人間に報告して停止
@@ -605,13 +605,65 @@ agmsg が利用できない場合に即座に切り替えられるフェイル�
 
 **変更点：** STEP 3 のみ手動に切り替え。他は同一。
 
+### 9-A. 手動 Fallback フロー（Codex Terminal ペースト）
+
+`codex_request_gen.py` 実行後、以下の手順が自動表示される：
+
 ```
-[STEP 3 手動版]
-  1. review_requests/codex_request_YYYYMMDD_<slug>.md を開く
-  2. 全文を Codex（ChatGPT）にペースト
-  3. Codex の出力を review_reports/codex_audit_YYYYMMDD_<slug>.md に保存
-  4. Claude Code に「Codex 監査完了。ファイルを確認してください」と伝える
+【手順 1】Finder でファイルを確認：
+  open -R review_requests/codex_request_YYYYMMDD_<slug>.md
+
+【手順 2】依頼文をクリップボードへコピー：
+  pbcopy < review_requests/codex_request_YYYYMMDD_<slug>.md
+
+【手順 3-A】Codex Terminal に貼り付け（手動 Fallback）
+  ペースト後、Codex が出力した監査結果を以下のファイルへ保存：
+  review_reports/codex_audit_YYYYMMDD_<slug>.md
+
+【手順 4】監査結果の解析（Codex 完了後）：
+  python3 scripts/codex_flow.py \
+    --slug <slug> \
+    --fallback \
+    --response-path review_reports/codex_audit_YYYYMMDD_<slug>.md
+
+【PASS 時・codex_flow.py が自動表示するドラフト確認コマンド】
+  Finder でドラフトを表示：
+    open -R note_drafts/ai_summary_<slug>_note_version.md
+  直接開く：
+    open note_drafts/ai_summary_<slug>_note_version.md
 ```
+
+### 9-B. Codex CLI 非対話実行（STEP 3 自動化候補）
+
+**調査結果（2026-06-09）：Codex CLI v0.137.0 で非対話実行が可能。**
+
+```bash
+# インストール確認
+which codex   # → /opt/homebrew/bin/codex
+codex --version  # → codex-cli 0.137.0
+```
+
+有効な非対話オプション（`codex exec --help` で確認済み）：
+
+| オプション | 内容 |
+|---|---|
+| `codex exec -` | stdin からプロンプトを読み込む（非対話） |
+| `-o <FILE>` | エージェント最終メッセージを指定ファイルへ保存 |
+| `-s read-only` | シェルコマンドを read-only サンドボックスで制限 |
+| `-m <MODEL>` | 使用モデルを指定（例: `o4-mini`） |
+
+安全な実行コマンド例（`codex_request_gen.py` 生成時に自動表示）：
+
+```bash
+【手順 3-B】Codex CLI 非対話実行（自動）：
+  codex exec - \
+    -s read-only \
+    -m o4-mini \
+    -o review_reports/codex_audit_YYYYMMDD_<slug>.md \
+    < review_requests/codex_request_YYYYMMDD_<slug>.md
+```
+
+**注意：** `-s read-only` はエージェントのツール呼び出しを制限するが、`-o` による出力ファイル保存は CLI 自身が行うため矛盾しない。実際の保存動作は次のテスト記事で確認予定（§13-5 参照）。
 
 この方式でも STEP 2（依頼パッケージ生成）と STEP 4〜5（結果解析・SQLite 記録）は自動化済みのため、往復コピペの負担は大幅に軽減される。
 
@@ -619,12 +671,14 @@ agmsg が利用できない場合に即座に切り替えられるフェイル�
 
 ## 10. 導入ロードマップ
 
-| フェーズ | 内容 | 前提条件 |
-|---------|------|---------|
+| フェーズ | 内容 | 状態 |
+|---------|------|------|
 | フェーズ 0 ✓ | 設計のみ。手動フロー継続 | 完了 |
 | フェーズ 1 ✓ | SQLite DB 作成・review_requests/ 整備・プロンプトテンプレート確定 | 完了 |
-| **フェーズ 2（PoC）✓** | Fallback で 1 記事動作確認完了（2026-06-05）。agmsg 本番導入は保留 | 完了（Fallback）|
-| **フェーズ 3** | PoC 成功後に本番適用・ログ自動生成の統合 | 待機中 |
+| フェーズ 2 ✓ | Fallback で 1 記事動作確認（2026-06-05）。agmsg 本番導入は保留 | 完了（Fallback）|
+| **フェーズ 3（現在）** | 依頼生成後の手順自動表示・Codex CLI 非対話実行調査・本番記事への適用 | **進行中（2026-06-09）**|
+| フェーズ 4 | `codex exec` 非対話実行の PoC（テスト記事で保存動作確認） | 待機中 |
+| フェーズ 5 | agmsg または Codex CLI による STEP 3 完全自動化 | 待機中 |
 
 ---
 
@@ -757,4 +811,88 @@ agmsg に依存しない項目はすべて Fallback 経由で確認済み。
 
 ---
 
-*v1.2 更新（2026-06-05）：PoC 完了記録を追加。フェーズ 2 までの実装は完了。*
+---
+
+## 13-5. フェーズ 3 実施記録（2026-06-09）
+
+### 実施内容
+
+| 項目 | 内容 |
+|------|------|
+| 実施日 | 2026-06-09 |
+| 対象記事 | DOE-UAP-D001_pantex_unidentified_object_incident_report |
+| 変更ファイル | scripts/codex_request_gen.py / docs/claude_codex_semiauto_workflow_design.md |
+
+### Codex CLI 調査結果
+
+- `codex` CLI が `/opt/homebrew/bin/codex`（v0.137.0）にインストール済みであることを確認
+- `codex exec` サブコマンドで非対話実行が可能であることを確認（`--help` 参照）
+- stdin 読み込み（`-`）・出力ファイル保存（`-o`）・read-only サンドボックス（`-s read-only`）の組み合わせが使用可能
+- 実際の保存動作（`-o` でファイルが正しく生成されるか）はフェーズ 4 のテスト記事で確認予定
+
+### `codex_request_gen.py` への変更
+
+- PROMPT_TEMPLATE に「出力先ファイル・note_drafts 編集禁止・マーカー必須」を明記
+- 依頼生成後に人間向け手順（`open -R` / `pbcopy` / 3-A 手動 / 3-B CLI / 4 解析）を自動表示する `_print_next_steps()` 関数を追加
+- `response_path` を `generate_request()` 内で確定し、テンプレートと手順表示の両方で一貫して参照するよう変更
+
+### 確定した運用（フェーズ 3）
+
+```
+人間の操作（最小）：
+  1. python3 scripts/codex_request_gen.py --slug <slug>
+     → 手順が自動表示される
+  2. pbcopy < review_requests/<file>.md  （表示されたコマンドをコピペ）
+  3. Codex Terminal に貼り付け → 監査結果を review_reports/ に保存
+
+Claude Code：
+  python3 scripts/codex_flow.py --fallback ...  （自動解析）
+```
+
+---
+
+## 13-6. 半自動化PoC 本番適用第1弾（DOE-UAP-D001）記録（2026-06-09）
+
+### 概要
+
+| 項目 | 内容 |
+|------|------|
+| 実施日 | 2026-06-09 |
+| 対象記事スラッグ | DOE-UAP-D001_pantex_unidentified_object_incident_report |
+| 記事種別 | 限定情報記事 × 画像記事（UCNI指定・2ページのみ公開） |
+| note 公開URL | https://note.com/deft_ibis3303/n/nec7810337531 |
+| 設計書バージョン | v1.3〜v1.4 |
+
+### Codex 監査フロー実績
+
+| iteration | 判定 | BLOCK | WARN | 備考 |
+|-----------|------|-------|------|------|
+| iter1 | BLOCK | 2 | 2 | B-01:source_registry未登録 / B-02:Source URL表記 / W-01:日付ゼロ埋め / W-02:registry照合不完全 |
+| iter2 | PASS | 0 | 0 | B-01/B-02/W-01修正後 / W-02は自動解消 |
+
+### 修正記録
+
+- **B-01:** review_logs/source_registry.csv に #R02-001 エントリを新規追加
+- **B-02:** メタデータの `Source URL` ラベルを `WAR.GOV（公開ページ）` に変更し `Download URL`（直接PDF URL）と分離
+- **W-01:** `Release Date：2026年5月22日` → `2026年05月22日`（月ゼロ埋め）
+
+### 確認できた PoC 効果
+
+- codex_request_gen.py による依頼ファイル生成・next steps 自動表示が本番で機能
+- codex_flow.py --fallback による BLOCK 判定解析・修正提示が本番で機能
+- iter2 PASS 判定後の Finder 表示コマンド出力（v1.4 追加機能）が機能
+- source_registry への #R02-001 登録が Codex 照合チェック（P1-1-FILE）に有効であることを確認
+
+### 関連ファイル
+
+- 依頼（iter1/iter2共通）: review_requests/codex_request_20260609_DOE-UAP-D001_pantex_unidentified_object_incident_report.md
+- 監査レポート iter1: review_reports/codex_audit_20260609_DOE-UAP-D001_pantex_unidentified_object_incident_report.md
+- 監査レポート iter2: review_reports/codex_audit_20260609_DOE-UAP-D001_pantex_unidentified_object_incident_report_iter2.md
+- 公開記事保存版: published_articles/ai_summary_DOE-UAP-D001_pantex_unidentified_object_incident_report_published_20260609.md
+- 公開ログ: logs/notebooklm/2026-06-09_DOE-UAP-D001_pantex_unidentified_object_incident_report_published_log.md
+
+---
+
+*v1.3 更新（2026-06-09）：§9 に Codex CLI 調査結果と手順自動表示を追加。§10 ロードマップをフェーズ 3〜5 に更新。§13-5 実施記録を追加。*
+
+*v1.4 更新（2026-06-09）：`codex_flow.py` の PASS 判定時に、ドラフト Finder 表示コマンド（`open -R` / `open`）を自動出力するよう変更。`--draft-path` 引数を追加（省略時はスラッグから自動推定）。§9-A にコマンド例を追記。§13-6 に半自動化PoC本番適用第1弾（DOE-UAP-D001）記録を追加。*

@@ -38,6 +38,13 @@ PROMPT_TEMPLATE = """\
 - チェックリスト：docs/audit_checklist_v1.md（{checklist_ver}）
 - 依頼日時：{timestamp}
 
+## 出力指示（必須）
+- 監査結果は **{response_path}** に保存してください
+- **note_drafts/ 内のファイルは一切編集しないでください**
+- 作成・変更してよいファイルは review_reports/ のみです
+- 出力は必ず `---CODEX_AUDIT_START---` から `---CODEX_AUDIT_END---` で囲んでください
+- 上記マーカー以外の前置き・後書き・補足説明は出力しないでください
+
 ## 監査指示
 以下の UAP 翻訳記事ドラフトを、docs/audit_checklist_v1.md に従って監査してください。
 
@@ -150,21 +157,58 @@ def generate_request(slug: str, draft_path: str, db_path: str) -> str:
     date_str = datetime.now().strftime("%Y%m%d")
 
     Path("review_requests").mkdir(exist_ok=True)
+    Path("review_reports").mkdir(exist_ok=True)
     out_path = f"review_requests/codex_request_{date_str}_{slug}.md"
+    response_path = f"review_reports/codex_audit_{date_str}_{slug}.md"
 
     content = PROMPT_TEMPLATE.format(
         slug=slug,
         draft_path=draft_path,
         checklist_ver=CHECKLIST_VER,
         timestamp=timestamp,
+        response_path=response_path,
         draft_content=draft_content,
     )
     Path(out_path).write_text(content, encoding="utf-8")
 
     record_event(db_path, slug, "codex_requested", f"request_path={out_path}")
-    print(f"[OK] 依頼パッケージ生成: {out_path}")
-    print(f"     次のステップ: python3 scripts/codex_flow.py --slug {slug} --request-path {out_path}")
+
+    _print_next_steps(out_path, response_path, slug)
     return out_path
+
+
+def _print_next_steps(out_path: str, response_path: str, slug: str) -> None:
+    """依頼生成後の人間向け手順を表示する"""
+    sep = "─" * 60
+    print()
+    print(sep)
+    print(f"[OK] 依頼パッケージ生成: {out_path}")
+    print(f"     出力先（監査結果）: {response_path}")
+    print(sep)
+    print()
+    print("【手順 1】Finder でファイルを確認：")
+    print(f"  open -R {out_path}")
+    print()
+    print("【手順 2】依頼文をクリップボードへコピー：")
+    print(f"  pbcopy < {out_path}")
+    print()
+    print("【手順 3-A】Codex Terminal に貼り付け（手動 Fallback）")
+    print("  ペースト後、Codex が出力した監査結果を以下のファイルへ保存：")
+    print(f"  {response_path}")
+    print()
+    print("【手順 3-B】Codex CLI 非対話実行（自動）：")
+    print(f"  codex exec - \\")
+    print(f"    -s read-only \\")
+    print(f"    -m o4-mini \\")
+    print(f"    -o {response_path} \\")
+    print(f"    < {out_path}")
+    print()
+    print("【手順 4】監査結果の解析（Codex 完了後）：")
+    print(f"  python3 scripts/codex_flow.py \\")
+    print(f"    --slug {slug} \\")
+    print(f"    --fallback \\")
+    print(f"    --response-path {response_path}")
+    print(sep)
 
 
 def main() -> None:
@@ -178,6 +222,7 @@ def main() -> None:
 
     draft_path = args.draft_path or f"note_drafts/ai_summary_{args.slug}_note_version.md"
     generate_request(args.slug, draft_path, args.db_path)
+
 
 
 if __name__ == "__main__":

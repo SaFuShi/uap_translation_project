@@ -201,6 +201,7 @@ def main() -> None:
     parser.add_argument("--slug", required=True, help="記事スラッグ")
     parser.add_argument("--request-path",  help="依頼ファイルパス（通常モード）")
     parser.add_argument("--response-path", help="レスポンスファイルパス（出力先 or フォールバック時の入力）")
+    parser.add_argument("--draft-path",    help="ドラフトファイルパス（省略時: note_drafts/ai_summary_<slug>_note_version.md）")
     parser.add_argument("--db-path", default="workflow.db")
     parser.add_argument("--fallback", action="store_true",
                         help="フォールバックモード: agmsg 不使用・既存レスポンスファイルを解析（§9）")
@@ -208,6 +209,7 @@ def main() -> None:
 
     slug       = args.slug
     db_path    = args.db_path
+    draft_path = args.draft_path or f"note_drafts/ai_summary_{slug}_note_version.md"
     date_str   = datetime.now().strftime("%Y%m%d")
     started_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     start_ts   = datetime.now()
@@ -301,6 +303,12 @@ def main() -> None:
 
     else:
         print("\n[PASS] 監査合格。git / 公開は人間が判断してください。")
+        print()
+        print("【ドラフト最終確認】note投稿前にドラフトを開いて確認してください：")
+        print(f"  Finder でドラフトを表示：")
+        print(f"    open -R {draft_path}")
+        print(f"  直接開く：")
+        print(f"    open {draft_path}")
 
     print(f"{'='*56}")
     print(f"[SQLite] session_id={session_id}  db={db_path}")
