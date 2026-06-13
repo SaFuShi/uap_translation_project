@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "generated_at": "2026-06-13T13:08:25.012158",
+    "draft_file": "note_drafts/ai_summary_DOE-UAP-D002_JamesTuck_Correspondence_note_version.md",
+    "pdf_file": "DOE-UAP-D002_JamesTuck_Correspondence.pdf",
+    "pdf_stem": "DOE-UAP-D002_JamesTuck_Correspondence",
+    "pdf_page_count": 4,
+    "pdf_char_count": 1184,
+    "claims_total": 6,
+    "warning_count": 6,
+    "ok_count": 0,
+    "high_count": 0,
+    "medium_count": 6,
+    "low_count": 0,
+    "article_risk": "MEDIUM"
+  },
+  "claims": [
+    {
+      "type": "proper_noun",
+      "raw_text": "DOE-UAP-D002",
+      "search_term": "DOE-UAP-D002",
+      "context": "# 【概要版#2_006】米エネルギー省 DOE-UAP-D002：ロスアラモス核物理学者タック博士と\"大気渦とコンドン報告書",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "A-83-",
+      "search_term": "A-83-",
+      "context": "立ち合っていたとみられる記述もあります。書簡に文書識別番号「A-83-001_2-1」とみられる記載が確認できます。  p.2は同",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "JLT",
+      "search_term": "JLT",
+      "context": "erely, James L. Tuck」（秘書イニシャル「JLT:gas」付き）の署名で締めくくられています。  【外部背景",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "DOE-UAP-",
+      "search_term": "DOE-UAP-",
+      "context": "es L. Tuck署名・1970年12月16日付）  ▲ DOE-UAP-D002_JamesTuck_Correspondence.",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "FLIGHT AND PROPULSION",
+      "search_term": "FLIGHT AND PROPULSION",
+      "context": "粋（p.4・OCR補正後の要部）】 His chapter FLIGHT AND PROPULSION strengthens my conviction tha",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    },
+    {
+      "type": "proper_noun",
+      "raw_text": "SHA256",
+      "search_term": "SHA256",
+      "context": "〜p.2の内容記述は画像目視読解による（判読不確実性あり）。SHA256：324a9795356cc793ede04a2494fa2",
+      "is_conversion": false,
+      "found": false,
+      "page": null,
+      "excerpt": "",
+      "status": "WARNING",
+      "risk": "MEDIUM"
+    }
+  ]
+}
