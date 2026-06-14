@@ -480,16 +480,26 @@ def try_download_audio(record: dict) -> dict:
 
 def try_download_image(record: dict) -> dict:
     """
-    IMG ファイルを DVIDS 経由で raw_media/image/ にダウンロード試行する。
-    DVIDS ID がない場合はスキップ（war.gov URL は WAF 403 のため）。
-    """
-    dvids_id  = record.get("dvids_video_id", "").strip()
-    file_name = record["file_name"]
-    dest      = RAW_IMAGE_DIR / file_name
+    IMG ファイルをダウンロード試行する。取得ルート優先順位:
 
-    if not dvids_id:
-        append_note(record, "dvids_id_missing; manual_download_required")
-        return record
+    Plan A（優先）: DVIDS ID あり
+        DVIDS /image/{id} ページから CloudFront 高解像度 JPG URL を解決して取得。
+        R01/R02 の IMG 14件はこのルートで取得済み。
+
+    Plan B（フォールバック）: DVIDS ID なし + download_url が画像拡張子
+        war.gov medialink URL を PDF_HEADERS（Sec-Fetch-Mode: cors）で直接 GET。
+        war.gov の Akamai WAF はこのヘッダーセットで画像を配信することを確認済み
+        （R03 IMG 10件、2026-06-14 検証・取得完了）。
+        発動条件: dvids_video_id 空 かつ download_url が .jpg/.jpeg/.png/.gif/.webp で終わる。
+
+    Plan C（手動）: URL なし / DVIDS ID なし / 上記いずれも失敗
+        notes に manual_download_required を記録し終了。
+        raw_media/image/ に手動保存後、スクリプト再実行で downloaded=true に自動更新。
+    """
+    dvids_id     = record.get("dvids_video_id", "").strip()
+    file_name    = record["file_name"]
+    download_url = record.get("download_url", "").strip()
+    dest         = RAW_IMAGE_DIR / file_name
 
     if dest.exists():
         record["downloaded"]       = "true"
@@ -498,24 +508,64 @@ def try_download_image(record: dict) -> dict:
         append_note(record, "already exists in raw_media/image")
         return record
 
-    cf_url = fetch_dvids_image_cloudfront_url(dvids_id)
-    if not cf_url:
-        append_note(record, f"cloudfront_image_url_not_found (dvids_id={dvids_id})")
+    # --- ルート1: DVIDS 経由 ---
+    if dvids_id:
+        cf_url = fetch_dvids_image_cloudfront_url(dvids_id)
+        if not cf_url:
+            append_note(record, f"cloudfront_image_url_not_found (dvids_id={dvids_id})")
+            return record
+        try:
+            size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+            ts = now_jst()
+            record["downloaded"]    = "true"
+            record["downloaded_at"] = ts
+            if not record.get("first_downloaded_at"):
+                record["first_downloaded_at"] = ts
+            record["last_verified_at"] = ts
+            append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
+            print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
+        except Exception as e:
+            append_note(record, f"image download error (dvids): {e}")
         return record
 
-    try:
-        size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
-        ts = now_jst()
-        record["downloaded"]    = "true"
-        record["downloaded_at"] = ts
-        if not record.get("first_downloaded_at"):
-            record["first_downloaded_at"] = ts
-        record["last_verified_at"] = ts
-        append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
-        print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
-    except Exception as e:
-        append_note(record, f"image download error: {e}")
+    # --- ルート2: war.gov 直接 GET (DVIDS IDなし・画像拡張子あり) ---
+    img_exts = (".jpg", ".jpeg", ".png", ".gif", ".webp")
+    if download_url and download_url.lower().endswith(img_exts):
+        try:
+            time.sleep(REQUEST_DELAY)
+            resp = requests.get(download_url, headers=PDF_HEADERS, timeout=60, stream=True)
+            if resp.status_code == 403:
+                append_note(record,
+                    f"WAF 403: direct image download blocked. "
+                    f"Manual download required: {download_url}"
+                )
+                return record
+            resp.raise_for_status()
+            ct = resp.headers.get("content-type", "")
+            if not any(x in ct.lower() for x in ("image", "octet-stream")):
+                append_note(record, f"unexpected content-type: {ct} — not saved")
+                return record
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            with open(dest, "wb") as f:
+                for chunk in resp.iter_content(chunk_size=65536):
+                    f.write(chunk)
+            size_mb = dest.stat().st_size / 1024 / 1024
+            ts = now_jst()
+            record["downloaded"]    = "true"
+            record["downloaded_at"] = ts
+            if not record.get("first_downloaded_at"):
+                record["first_downloaded_at"] = ts
+            record["last_verified_at"] = ts
+            append_note(record, f"downloaded {size_mb:.1f} MB via war.gov direct")
+            print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
+        except requests.HTTPError as e:
+            append_note(record, f"HTTP error (direct): {e}")
+        except Exception as e:
+            append_note(record, f"image download error (direct): {e}")
+        return record
 
+    # --- ルート3: 取得不可 ---
+    append_note(record, "dvids_id_missing; no_image_url; manual_download_required")
     return record
 
 
