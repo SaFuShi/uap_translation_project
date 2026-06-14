@@ -494,9 +494,88 @@ STOP 発生  : なし / あり（理由: ...）
 
 ---
 
+## 11. VID 記事レビュー用フレーム抽出ルール（Claude Code 単記事作業）
+
+本節は Section 3「VID 代表フレーム抽出方針」（バッチパイプライン）とは別の、**Claude Code が個別記事作成時に実施するフレーム抽出**の運用ルールである。
+
+### 11-1. 二つのフレーム抽出ワークフローの区別
+
+| 区分 | 対象 | 実施者 | 保存先 | 命名規則 |
+|------|------|-------|-------|---------|
+| バッチパイプライン（Section 3） | 全78件一括 | Mac mini スクリプト | `frame_extracts/{video_stem}/` | `frame_{timestamp_sec:06d}.png`（6桁） |
+| **記事レビュー用（本節）** | **1記事ごと** | **Claude Code** | **`thumbnails/{media_slug}/`** | **`frame_{seconds:04d}.png`（4桁）** |
+
+### 11-2. 保存先・命名規則（記事レビュー用）
+
+```
+thumbnails/
+└── {media_slug}/           ← catalog_id と一致させる（例: DOW-UAP-PR051）
+    ├── frame_0005.png      ← 00:05 時点のフレーム（PNG, 元解像度）
+    ├── frame_0015.png      ← 00:15 時点
+    └── frame_0270.png      ← 04:30 時点（270秒）
+```
+
+- **ディレクトリ:** `thumbnails/{media_slug}/`（リポジトリルート直下）
+- **形式:** PNG（可逆圧縮・元解像度維持）
+- **命名:** `frame_{秒数:04d}.png`（4桁ゼロ埋め。例：5秒 → `frame_0005.png`、270秒 → `frame_0270.png`）
+- **/tmp 使用禁止:** `/tmp` を最終保存先にしてはならない。Claude Code セッション外からアクセス不可能になるため。
+
+### 11-3. ffmpeg コマンドテンプレート
+
+```bash
+# 特定時刻のフレームを抽出（指定秒数）
+MEDIA_SLUG="DOW-UAP-PR051"
+VIDEO="raw_media/video/${MEDIA_SLUG}_*.mp4"
+mkdir -p "thumbnails/${MEDIA_SLUG}"
+
+# 例：5秒時点と270秒時点を抽出
+ffmpeg -ss 00:00:05 -i $VIDEO -vframes 1 -y "thumbnails/${MEDIA_SLUG}/frame_0005.png"
+ffmpeg -ss 00:04:30 -i $VIDEO -vframes 1 -y "thumbnails/${MEDIA_SLUG}/frame_0270.png"
+```
+
+### 11-4. フレーム選定の考え方
+
+記事レビュー用フレームは以下の目的で抽出する。
+
+| 目的 | 説明 |
+|------|------|
+| 視覚観察記録 | 記事化前の事実確認（物体の位置・形状・映像構成の把握） |
+| note 記事添付画像候補 | 記事に埋め込む画像①②の素材。note に直接アップロードする |
+| Codex 審査用の参考 | 視覚断定の根拠確認（Codex 自体は画像を受け取らないが、記述の根拠となる） |
+
+選定は人間が行う。AI による自動選定は使用しない。
+
+### 11-5. 記事内での参照方法
+
+note 記事ドラフト（`note_drafts/`）内で画像を参照する際は以下の形式を使用する。
+
+```
+【画像①】thumbnails/DOW-UAP-PR051/frame_0005.png
+```
+
+note 投稿時は `thumbnails/{media_slug}/frame_{秒数:04d}.png` をアップロードし、
+記事内に埋め込む（note の画像管理機能を使用）。
+
+### 11-6. 遵守チェック（記事作成開始前に確認）
+
+- [ ] `thumbnails/{media_slug}/` ディレクトリが存在するか確認
+- [ ] フレームが `/tmp` 以下に保存されていないことを確認
+- [ ] ファイル名が `frame_{秒数:04d}.png` 形式であることを確認
+- [ ] PNG 形式であることを確認（JPEG / WebP は使用しない）
+
+### 11-7. 参照実績
+
+| 記事 | media_slug | 抽出フレーム数 | 記事使用フレーム |
+|------|-----------|-------------|--------------|
+| #R02-008 DOW-UAP-PR050 | DOW-UAP-PR050 | 4 | frame_0000.png, frame_0009.png |
+| #R02-009 DOW-UAP-PR051 | DOW-UAP-PR051 | 6 | frame_0005.png, frame_0270.png |
+
+---
+
 ## 改訂履歴
 
 | バージョン | 日付 | 変更内容 |
 |----------|------|---------|
 | v1 | 2026-05-29 | 初版制定（Release 02 音声・映像パイプライン設計）|
 | v1.1 | 2026-05-30 | Section 6-5「長時間処理の実行方式」追加（tmux推奨・exit code 255 誤報対策）|
+| v1.2 | 2026-06-14 | Section 11「VID 記事レビュー用フレーム抽出ルール」追加（/tmp 禁止・thumbnails/ 正式保存先・4桁命名規則）|
