@@ -20,6 +20,11 @@ metadata v2 追加列（Release 02 対応）:
     human_review_required
     → 初期値は保守的な自動推定のみ。article_priority 等の判断は人間レビューが必要。
 
+履歴管理列（metadata v3 追加）:
+    first_downloaded_at — 初回取得日時。一度設定されたら上書きしない。
+    last_verified_at    — 最終確認日時。ファイル存在確認のたびに更新。
+    downloaded_at       — 後方互換のため残存（last_verified_at と同値）。
+
 ページ構造調査結果（2026-05-11）:
     - ページ本体は Akamai WAF で保護。通常の User-Agent では 403。
     - Sec-Fetch-* ヘッダーと Accept-Encoding を含めることで200が返る。
@@ -132,22 +137,20 @@ REQUEST_DELAY = 2.0
 # -------------------------------------------------------
 # ソースCSVの列マッピング
 # -------------------------------------------------------
-# war.gov CSV の列: Redaction(0), Release Date(1), Title(2), Type(3),
-#   Video Pairing(4), PDF Pairing(5), Description Blurb(6),
-#   DVIDS Video ID(7), Video Title(8), Agency(9),
-#   Incident Date(10), Incident Location(11), PDF | Image Link(12),
-#   Modal Image(13)
+# war.gov CSV の列名ベースマッピング（列順変更・列追加に対して安定）
+# Release 03 (6/12/26) より "Featured" 列が先頭に追加されたため、
+# インデックスではなく列名で参照する。
 SRC_COL = {
-    "redaction":        0,
-    "release_date":     1,
-    "title":            2,
-    "type":             3,
-    "description":      6,
-    "dvids_id":         7,   # DVIDS Video ID（VID/AUD のダウンロードキー）
-    "agency":           9,
-    "incident_date":    10,
-    "incident_location": 11,
-    "download_url":     12,
+    "redaction":        "Redaction",
+    "release_date":     "Release Date",
+    "title":            "Title",
+    "type":             "Type",
+    "description":      "Description Blurb",
+    "dvids_id":         "DVIDS Video ID",   # VID/AUD のダウンロードキー
+    "agency":           "Agency",
+    "incident_date":    "Incident Date",
+    "incident_location": "Incident Location",
+    "download_url":     "PDF | Image Link",
 }
 
 # -------------------------------------------------------
@@ -166,6 +169,8 @@ CSV_FIELDS = [
     "dvids_video_id",           # DVIDS Video ID（VID/AUD/IMG のダウンロードに使用）
     "downloaded",
     "downloaded_at",
+    "first_downloaded_at",   # 初回取得日時（一度設定されたら上書きしない）
+    "last_verified_at",      # 最終確認日時（ファイル存在確認のたびに更新）
     "notes",
     # --- metadata v2 追加列（Release 02 対応）---
     "content_category",         # 機密分類（初期値: unclassified）
@@ -403,8 +408,9 @@ def try_download_video(record: dict) -> dict:
         return record
 
     if dest.exists():
-        record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded"]       = "true"
+        record["downloaded_at"]    = now_jst()
+        record["last_verified_at"] = now_jst()
         append_note(record, "already exists in raw_media/video")
         return record
 
@@ -415,8 +421,12 @@ def try_download_video(record: dict) -> dict:
 
     try:
         size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        ts = now_jst()
         record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded_at"] = ts
+        if not record.get("first_downloaded_at"):
+            record["first_downloaded_at"] = ts
+        record["last_verified_at"] = ts
         append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
         print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
     except Exception as e:
@@ -440,8 +450,9 @@ def try_download_audio(record: dict) -> dict:
         return record
 
     if dest.exists():
-        record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded"]       = "true"
+        record["downloaded_at"]    = now_jst()
+        record["last_verified_at"] = now_jst()
         append_note(record, "already exists in raw_media/audio")
         return record
 
@@ -452,8 +463,12 @@ def try_download_audio(record: dict) -> dict:
 
     try:
         size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        ts = now_jst()
         record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded_at"] = ts
+        if not record.get("first_downloaded_at"):
+            record["first_downloaded_at"] = ts
+        record["last_verified_at"] = ts
         # AUD の実体は MP4 コンテナ。file_type=AUD のまま保存するため notes に明記
         append_note(record, f"downloaded {size_mb:.1f} MB via dvids; audio_downloaded_as_mp4")
         print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
@@ -477,8 +492,9 @@ def try_download_image(record: dict) -> dict:
         return record
 
     if dest.exists():
-        record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded"]       = "true"
+        record["downloaded_at"]    = now_jst()
+        record["last_verified_at"] = now_jst()
         append_note(record, "already exists in raw_media/image")
         return record
 
@@ -489,14 +505,35 @@ def try_download_image(record: dict) -> dict:
 
     try:
         size_mb = _download_to(cf_url, dest, DVIDS_HEADERS)
+        ts = now_jst()
         record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded_at"] = ts
+        if not record.get("first_downloaded_at"):
+            record["first_downloaded_at"] = ts
+        record["last_verified_at"] = ts
         append_note(record, f"downloaded {size_mb:.1f} MB via dvids")
         print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
     except Exception as e:
         append_note(record, f"image download error: {e}")
 
     return record
+
+
+# -------------------------------------------------------
+# 既存カタログ読み込み（履歴継承用）
+# -------------------------------------------------------
+
+def load_existing_catalog() -> dict:
+    """
+    既存の files_catalog.csv を読み込み、file_name → record の辞書を返す。
+    first_downloaded_at などの履歴フィールドを再実行時に引き継ぐために使用する。
+    ファイルが存在しない場合は空の辞書を返す。
+    """
+    if not OUTPUT_CSV.exists():
+        return {}
+    with open(OUTPUT_CSV, encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        return {row["file_name"]: dict(row) for row in reader}
 
 
 # -------------------------------------------------------
@@ -540,24 +577,25 @@ def fetch_catalog_csv() -> list[dict]:
     if raw is None:
         raise RuntimeError("CSVデータを取得できませんでした。")
 
-    reader = csv.reader(io.StringIO(raw))
-    reader = csv.reader(io.StringIO(raw))
-    src_rows = list(reader)
+    dict_reader = csv.DictReader(io.StringIO(raw))
+    src_rows = list(dict_reader)
+    fieldnames = dict_reader.fieldnames or []
 
     if not src_rows:
         raise ValueError("CSV が空でした")
 
-    headers = src_rows[0]
-    print(f"  列数: {len(headers)}  データ行数: {len(src_rows)-1}")
+    print(f"  列数: {len(fieldnames)}  データ行数: {len(src_rows)}")
+
+    existing = load_existing_catalog()
 
     records = []
-    for row in src_rows[1:]:
+    for row in src_rows:
         # 空行スキップ
-        if not any(c.strip() for c in row):
+        if not any(v.strip() for v in row.values() if v):
             continue
 
-        def col(idx: int) -> str:
-            return row[idx].strip().replace("\n", " ").replace("\r", "") if len(row) > idx else ""
+        def col(name: str) -> str:
+            return (row.get(name) or "").strip().replace("\n", " ").replace("\r", "")
 
         raw_type     = col(SRC_COL["type"]).upper()
         download_url = col(SRC_COL["download_url"]).split("|")[0].strip()
@@ -574,7 +612,7 @@ def fetch_catalog_csv() -> list[dict]:
 
         title_raw = col(SRC_COL["title"]).strip()
         if is_vid or is_aud:
-            # col12 は VID/AUD では PDF ペアリンクなので無視し、タイトルから命名
+            # "PDF | Image Link" 列は VID/AUD ではペアPDFへのリンク。タイトルから命名する
             file_name = make_safe_filename(title_raw, "mp4")
         else:
             file_name = filename_from_url(download_url) if download_url else ""
@@ -592,19 +630,30 @@ def fetch_catalog_csv() -> list[dict]:
         normalized_date, original_date = normalize_release_date(raw_release_date)
         norm_note = f"release_date_normalized_from:{original_date}" if original_date else ""
 
+        # 履歴フィールドを既存CSVから引き継ぐ
+        on_disk = is_already_downloaded(file_name, raw_type)
+        prev    = existing.get(file_name, {})
+        # first_downloaded_at: 既存値を優先。なければ downloaded_at をフォールバックとして引き継ぐ。
+        # ファイル不在でも歴史値は保持（削除・移動時の記録を残す）。
+        # ダウンロード関数が初回DL時に設定するため、ここでは空のまま渡す。
+        prev_first_dl = prev.get("first_downloaded_at") or prev.get("downloaded_at") or ""
+        first_dl = prev_first_dl  # on_disk=False でも既存値があれば引き継ぐ
+
         records.append({
-            "file_name":         file_name,
-            "agency":            col(SRC_COL["agency"]),
-            "release_date":      normalized_date,
-            "incident_date":     col(SRC_COL["incident_date"]),
-            "incident_location": col(SRC_COL["incident_location"]),
-            "file_type":         raw_type,
-            "source_url":        REFERER_URL,
-            "download_url":      download_url,
-            "dvids_video_id":    dvids_id,
-            "downloaded":        "true" if is_already_downloaded(file_name, raw_type) else "false",
-            "downloaded_at":     now_jst() if is_already_downloaded(file_name, raw_type) else "",
-            "notes":             norm_note,
+            "file_name":            file_name,
+            "agency":               col(SRC_COL["agency"]),
+            "release_date":         normalized_date,
+            "incident_date":        col(SRC_COL["incident_date"]),
+            "incident_location":    col(SRC_COL["incident_location"]),
+            "file_type":            raw_type,
+            "source_url":           REFERER_URL,
+            "download_url":         download_url,
+            "dvids_video_id":       dvids_id,
+            "downloaded":           "true" if on_disk else "false",
+            "downloaded_at":        now_jst() if on_disk else "",
+            "first_downloaded_at":  first_dl,
+            "last_verified_at":     now_jst() if on_disk else "",
+            "notes":                norm_note,
             # metadata v2 列
             **meta_v2,
         })
@@ -632,8 +681,9 @@ def try_download_pdf(record: dict) -> dict:
         return record
 
     if dest.exists():
-        record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded"]       = "true"
+        record["downloaded_at"]    = now_jst()
+        record["last_verified_at"] = now_jst()
         append_note(record, "already exists in raw_pdf")
         return record
 
@@ -661,9 +711,13 @@ def try_download_pdf(record: dict) -> dict:
             for chunk in resp.iter_content(chunk_size=65536):
                 f.write(chunk)
 
+        ts = now_jst()
         size_mb = dest.stat().st_size / 1024 / 1024
         record["downloaded"]    = "true"
-        record["downloaded_at"] = now_jst()
+        record["downloaded_at"] = ts
+        if not record.get("first_downloaded_at"):
+            record["first_downloaded_at"] = ts
+        record["last_verified_at"] = ts
         append_note(record, f"downloaded {size_mb:.1f} MB")
         print(f"    → 保存完了: {file_name} ({size_mb:.1f} MB)")
 
@@ -682,8 +736,12 @@ def try_download_pdf(record: dict) -> dict:
 # -------------------------------------------------------
 
 def main():
+    catalog_only = "--catalog-only" in sys.argv
+
     print("=" * 60)
     print("WAR.GOV/UFO カタログ取得ツール（UAP_TRANSLATION_PROJECT）")
+    if catalog_only:
+        print("  モード: カタログ確認のみ（ダウンロードはスキップ）")
     print("=" * 60)
     print(f"  カタログURL    : {CATALOG_CSV_URL}")
     print(f"  PDF保存先      : {RAW_PDF_DIR}")
@@ -739,29 +797,41 @@ def main():
                     break
         return s, b, e
 
-    # --- PDF ダウンロード試行 ---
-    print("[Step 2a] PDFダウンロード試行（未取得のみ）")
-    pdf_s, pdf_b, pdf_e = run_download_step("PDF", pdf_recs, try_download_pdf)
-    print(f"  成功: {pdf_s}  WAFブロック: {pdf_b}  エラー: {pdf_e}")
-    print()
+    if catalog_only:
+        print("[Step 2] ダウンロードスキップ（--catalog-only モード）")
+        pdf_s = pdf_b = pdf_e = 0
+        vid_s = vid_b = vid_e = 0
+        aud_s = aud_b = aud_e = 0
+        img_s = img_b = img_e = 0
+        for label, recs in [("PDF", pdf_recs), ("VID", vid_recs), ("AUD", aud_recs), ("IMG", img_recs)]:
+            already  = sum(1 for r in recs if r["downloaded"] == "true")
+            to_fetch = [r for r in recs if r["downloaded"] == "false"]
+            print(f"  {label}: 取得済み {already} 件  未取得（追加予定）: {len(to_fetch)} 件")
+        print()
+    else:
+        # --- PDF ダウンロード試行 ---
+        print("[Step 2a] PDFダウンロード試行（未取得のみ）")
+        pdf_s, pdf_b, pdf_e = run_download_step("PDF", pdf_recs, try_download_pdf)
+        print(f"  成功: {pdf_s}  WAFブロック: {pdf_b}  エラー: {pdf_e}")
+        print()
 
-    # --- VID ダウンロード試行 ---
-    print("[Step 2b] VIDダウンロード試行（DVIDS経由 → CloudFront MP4）")
-    vid_s, vid_b, vid_e = run_download_step("VID", vid_recs, try_download_video)
-    print(f"  成功: {vid_s}  スキップ/エラー: {vid_e + vid_b}")
-    print()
+        # --- VID ダウンロード試行 ---
+        print("[Step 2b] VIDダウンロード試行（DVIDS経由 → CloudFront MP4）")
+        vid_s, vid_b, vid_e = run_download_step("VID", vid_recs, try_download_video)
+        print(f"  成功: {vid_s}  スキップ/エラー: {vid_e + vid_b}")
+        print()
 
-    # --- AUD ダウンロード試行 ---
-    print("[Step 2c] AUDダウンロード試行（DVIDS経由 → CloudFront MP4）")
-    aud_s, aud_b, aud_e = run_download_step("AUD", aud_recs, try_download_audio)
-    print(f"  成功: {aud_s}  スキップ/エラー: {aud_e + aud_b}")
-    print()
+        # --- AUD ダウンロード試行 ---
+        print("[Step 2c] AUDダウンロード試行（DVIDS経由 → CloudFront MP4）")
+        aud_s, aud_b, aud_e = run_download_step("AUD", aud_recs, try_download_audio)
+        print(f"  成功: {aud_s}  スキップ/エラー: {aud_e + aud_b}")
+        print()
 
-    # --- IMG ダウンロード試行 ---
-    print("[Step 2d] IMGダウンロード試行（DVIDS ID あり のみ）")
-    img_s, img_b, img_e = run_download_step("IMG", img_recs, try_download_image)
-    print(f"  成功: {img_s}  スキップ/エラー: {img_e + img_b}")
-    print()
+        # --- IMG ダウンロード試行 ---
+        print("[Step 2d] IMGダウンロード試行（DVIDS ID あり のみ）")
+        img_s, img_b, img_e = run_download_step("IMG", img_recs, try_download_image)
+        print(f"  成功: {img_s}  スキップ/エラー: {img_e + img_b}")
+        print()
 
     blocked = pdf_b
 
@@ -786,7 +856,7 @@ def main():
     ]:
         total_dl = sum(1 for r in recs if r["downloaded"] == "true")
         print(f"  {label:<6}: {len(recs):>3} 件  取得済み: {total_dl}")
-    print(f"  出力CSV列数       : {len(CSV_FIELDS)}  （metadata v2 列を含む）")
+    print(f"  出力CSV列数       : {len(CSV_FIELDS)}  （metadata v2・v3 列を含む）")
     if blocked > 0:
         print(f"  PDF WAFブロック   : {blocked}  ← ブラウザで手動DL後、再実行してください")
     print("=" * 60)

@@ -28,6 +28,8 @@ raw_media/
 
 # war.gov キャッシュ（頻繁に変化・git 管理不要）
 metadata/uap-csv-cache.csv
+metadata/uap-data.csv
+uap-data.csv
 
 # OCR全件結果CSV（大容量・git管理外）
 extracted_text/ocr_results_full_*.csv
