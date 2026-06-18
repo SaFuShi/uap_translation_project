@@ -42,3 +42,6 @@ review_requests/
 
 # Article Factory: Review Package 生成物（再生成可能）
 review_packages/
+
+# Article Factory: 在庫レポート生成物（再生成可能）
+review_reports/article_inventory_*.md
