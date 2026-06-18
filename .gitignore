@@ -39,3 +39,6 @@ workflow.db
 
 # PoC: Codex監査依頼中間ファイル（ドラフト本文含む）
 review_requests/
+
+# Article Factory: Review Package 生成物（再生成可能）
+review_packages/
