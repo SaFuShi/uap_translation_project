@@ -2,20 +2,27 @@
 """
 article_inventory_report.py — Article Factory 在庫可視化レポート
 
-v0.1.0 — 読み取り専用 / workflow.db 参照なし / 標準ライブラリのみ
+v0.2.0 — workflow.db v1.2 対応
+  - release_id / series_number / publish_order / ready_to_publish /
+    publish_blocked / publish_block_reason / note_draft_url を DB から読み取り
+  - note_draft_registry.csv との整合性チェック（CONFLICT 警告）
+  - publish_order 昇順ソート対応
+  - data_source バッジ（🗄️ DB / 📄 CSV）
 """
 
 import argparse
 import csv
 import re
+import sqlite3
 import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 JST = timezone(timedelta(hours=9))
 
 BASE          = Path(".")
+DB_PATH       = BASE / "workflow.db"
 REPORTS_DIR   = BASE / "review_reports"
 PACKAGES_DIR  = BASE / "review_packages"
 DRAFTS_DIR    = BASE / "note_drafts"
@@ -90,6 +97,60 @@ def load_source_registry() -> dict:
 def load_note_draft_registry() -> list:
     """note_draft_registry.csv の全行を返す。"""
     return _read_csv(DRAFT_REG_CSV)
+
+
+def load_workflow_db() -> list:
+    """
+    workflow.db v1.2 から release_id が設定されている記事を返す。
+    DB が存在しない / release_id カラムがない場合は空リストを返す。
+    """
+    if not DB_PATH.exists():
+        return []
+    try:
+        con = sqlite3.connect(str(DB_PATH))
+        con.row_factory = sqlite3.Row
+        # release_id カラム存在確認
+        col_names = {r[1] for r in con.execute("PRAGMA table_info(articles)").fetchall()}
+        if "release_id" not in col_names:
+            con.close()
+            return []
+        rows = con.execute("""
+            SELECT slug, status, note_url, draft_path,
+                   release_id, series_number, publish_order,
+                   ready_to_publish, publish_blocked,
+                   publish_block_reason, note_draft_url
+            FROM articles
+            WHERE release_id IS NOT NULL
+            ORDER BY publish_order ASC NULLS LAST
+        """).fetchall()
+        con.close()
+        return [dict(r) for r in rows]
+    except sqlite3.Error:
+        return []
+
+
+def check_db_ndr_conflicts(db_row: dict, ndr_row: dict) -> list:
+    """
+    workflow.db の行と note_draft_registry.csv の行を比較し、
+    値が食い違うフィールドの警告文字列リストを返す。
+    """
+    conflicts = []
+    # ready_to_publish: DB=int(1/0) vs NDR=str("true"/"false")
+    db_rtp  = "true" if db_row.get("ready_to_publish") == 1 else "false"
+    ndr_rtp = ndr_row.get("ready_to_publish", "")
+    if ndr_rtp and db_rtp != ndr_rtp:
+        conflicts.append(f"ready_to_publish: DB={db_rtp} vs NDR={ndr_rtp}")
+    # publish_blocked
+    db_blk  = "true" if db_row.get("publish_blocked") == 1 else "false"
+    ndr_blk = ndr_row.get("publish_blocked", "")
+    if ndr_blk and db_blk != ndr_blk:
+        conflicts.append(f"publish_blocked: DB={db_blk} vs NDR={ndr_blk}")
+    # note_draft_url
+    db_url  = (db_row.get("note_draft_url") or "").strip()
+    ndr_url = (ndr_row.get("note_draft_url") or "").strip()
+    if db_url and ndr_url and db_url != ndr_url:
+        conflicts.append(f"note_draft_url: DB={db_url[:50]} / NDR={ndr_url[:50]}")
+    return conflicts
 
 
 # ---------------------------------------------------------------------------
@@ -217,12 +278,13 @@ def determine_status(rec: dict) -> str:
 # ---------------------------------------------------------------------------
 
 def build_record(
-    article_id: str,
-    file_id:    str,
-    release:    str,
-    reg_row:    dict,
-    ndr_rows:   list,
+    article_id:  str,
+    file_id:     str,
+    release:     str,
+    reg_row:     dict,
+    ndr_rows:    list,
     is_priority: bool = False,
+    db_row:      dict = None,
 ) -> dict:
     # Published state from source_registry
     published = (reg_row.get("status", "") == "published") if reg_row else False
@@ -245,12 +307,30 @@ def build_record(
             ndr = row
             break
 
-    note_status    = ndr.get("note_status", "")
-    note_draft_url = ndr.get("note_draft_url", "")
-    # review_package の値を優先し、なければ note_draft_registry を参照
-    ready_to_pub = pkg_state.get("ready_to_publish") or ndr.get("ready_to_publish", "false")
-    pub_blocked  = pkg_state.get("publish_blocked")  or ndr.get("publish_blocked",  "false")
-    block_reason = pkg_state.get("publish_block_reason") or ndr.get("publish_block_reason", "")
+    note_status = ndr.get("note_status", "")
+
+    if db_row:
+        # ── workflow.db v1.2 由来（優先） ──
+        ready_to_pub   = "true" if db_row.get("ready_to_publish") == 1 else "false"
+        pub_blocked    = "true" if db_row.get("publish_blocked")  == 1 else "false"
+        block_reason   = (db_row.get("publish_block_reason") or "").strip()
+        note_draft_url = (db_row.get("note_draft_url") or "").strip()
+        publish_order  = db_row.get("publish_order")
+        series_number  = db_row.get("series_number")
+        release_id_val = db_row.get("release_id")
+        data_source    = "DB"
+        conflicts      = check_db_ndr_conflicts(db_row, ndr) if ndr else []
+    else:
+        # ── review_package + NDR 由来（フォールバック） ──
+        ready_to_pub   = pkg_state.get("ready_to_publish") or ndr.get("ready_to_publish", "false")
+        pub_blocked    = pkg_state.get("publish_blocked")  or ndr.get("publish_blocked",  "false")
+        block_reason   = pkg_state.get("publish_block_reason") or ndr.get("publish_block_reason", "")
+        note_draft_url = ndr.get("note_draft_url", "")
+        publish_order  = None
+        series_number  = None
+        release_id_val = None
+        data_source    = "CSV"
+        conflicts      = []
 
     rec = {
         "article_id":           article_id,
@@ -269,6 +349,11 @@ def build_record(
         "publish_block_reason": block_reason,
         "note_status":          note_status,
         "is_priority":          is_priority,
+        "publish_order":        publish_order,
+        "series_number":        series_number,
+        "release_id":           release_id_val,
+        "data_source":          data_source,
+        "conflicts":            conflicts,
     }
     rec["status"] = determine_status(rec)
     return rec
@@ -279,15 +364,27 @@ def build_record(
 # ---------------------------------------------------------------------------
 
 def collect_records() -> tuple:
-    """(registered_r02, priority_r02, r03) のタプルを返す。"""
+    """(registered_r02, priority_r02, r03, all_conflicts) のタプルを返す。"""
     reg_data = load_source_registry()
     ndr_rows = load_note_draft_registry()
+    db_rows  = load_workflow_db()
+
+    # DB 行を file_id でインデックス化
+    db_by_file_id = {}
+    for row in db_rows:
+        fid = (
+            extract_file_id(row.get("slug", ""))
+            or extract_file_id(row.get("draft_path", ""))
+        )
+        if fid:
+            db_by_file_id[fid] = row
 
     registered_r02 = []
     priority_r02   = []
     r03            = []
+    all_conflicts  = []
 
-    # R02 登録済み
+    # ── R02 登録済み ──
     for aid in sorted(r for r in reg_data if r.startswith("#R02")):
         row = reg_data[aid]
         draft_path = row.get("draft_path", "")
@@ -295,26 +392,64 @@ def collect_records() -> tuple:
         file_id    = extract_file_id(draft_path) or extract_file_id(pdf_name)
         if not file_id:
             continue
-        rec = build_record(aid, file_id, "R02", row, ndr_rows)
+        db_r = db_by_file_id.get(file_id)
+        rec  = build_record(aid, file_id, "R02", row, ndr_rows, db_row=db_r)
+        if rec["conflicts"]:
+            all_conflicts.extend([f"[{file_id}] {c}" for c in rec["conflicts"]])
         registered_r02.append(rec)
 
-    # R02 優先未登録（#R02-004〜007 相当）
+    # ── R02 優先未登録（#R02-004〜007 相当） ──
     for slug_key in R02_PRIORITY_SLUGS:
-        rec = build_record("#R02-???", slug_key, "R02", {}, ndr_rows, is_priority=True)
+        db_r = db_by_file_id.get(slug_key)
+        rec  = build_record("#R02-???", slug_key, "R02", {}, ndr_rows,
+                            is_priority=True, db_row=db_r)
+        if rec["conflicts"]:
+            all_conflicts.extend([f"[{slug_key}] {c}" for c in rec["conflicts"]])
         priority_r02.append(rec)
 
-    # R03（note_draft_registry から検出）
+    # ── R03: workflow.db 由来を優先 ──
+    r03_file_ids_added = set()
+    for db_r in db_rows:
+        if (db_r.get("release_id") or 0) != 3:
+            continue
+        fid = (
+            extract_file_id(db_r.get("slug", ""))
+            or extract_file_id(db_r.get("draft_path", ""))
+        )
+        if not fid:
+            continue
+        # article_id は NDR から取得（なければ "#R03-???"）
+        ndr_match = next(
+            (r for r in ndr_rows if fid in r.get("slug", "")), {}
+        )
+        aid = ndr_match.get("article_id", "#R03-???")
+        rec = build_record(aid, fid, "R03", reg_data.get(aid, {}),
+                           ndr_rows, db_row=db_r)
+        if rec["conflicts"]:
+            all_conflicts.extend([f"[{fid}] {c}" for c in rec["conflicts"]])
+        r03.append(rec)
+        r03_file_ids_added.add(fid)
+
+    # R03: NDR のみに存在する記事（DB 未登録）
     for row in ndr_rows:
         aid = row.get("article_id", "")
         if not aid.startswith("#R03"):
             continue
         slug    = row.get("slug", "")
         file_id = extract_file_id(slug) or slug
-        reg_row = reg_data.get(aid, {})
-        rec = build_record(aid, file_id, "R03", reg_row, ndr_rows)
+        if file_id in r03_file_ids_added:
+            continue
+        rec = build_record(aid, file_id, "R03", reg_data.get(aid, {}), ndr_rows)
         r03.append(rec)
+        r03_file_ids_added.add(file_id)
 
-    return registered_r02, priority_r02, r03
+    # publish_order 昇順ソート（None は末尾）
+    r03.sort(key=lambda r: (r["publish_order"] is None, r["publish_order"] or 0))
+    registered_r02.sort(
+        key=lambda r: (r["publish_order"] is None, r["publish_order"] or 0)
+    )
+
+    return registered_r02, priority_r02, r03, all_conflicts
 
 
 # ---------------------------------------------------------------------------
@@ -328,19 +463,38 @@ def fmt_codex(rec: dict) -> str:
     return f"Codex iter{rec['codex_iter']}: {rec['codex_verdict']}{old_note}"
 
 
+def fmt_source(rec: dict) -> str:
+    return "🗄️ DB" if rec.get("data_source") == "DB" else "📄 CSV"
+
+
+def fmt_publish_order(rec: dict) -> str:
+    po = rec.get("publish_order")
+    sn = rec.get("series_number")
+    if po is not None:
+        return f"publish_order={po}  series={sn}"
+    return ""
+
+
 # ---------------------------------------------------------------------------
 # ターミナル表示
 # ---------------------------------------------------------------------------
 
-def render_terminal(registered: list, priority: list, r03: list) -> None:
+def render_terminal(
+    registered: list,
+    priority:   list,
+    r03:        list,
+    conflicts:  list,
+) -> None:
     now_str = datetime.now(JST).strftime("%Y-%m-%d %H:%M JST")
+    db_ok   = DB_PATH.exists()
     W    = 80
     line = "─" * W
     dline = "=" * W
 
     print(dline)
     print(f" Article Factory 在庫レポート  {now_str}")
-    print(f" v{VERSION} — 読み取り専用 / workflow.db 参照なし")
+    db_status = f"🗄️ workflow.db v1.2 参照中" if db_ok else "📄 CSV のみ（DB なし）"
+    print(f" v{VERSION} — 読み取り専用 / {db_status}")
     print(dline)
 
     # ── Priority: R02 未登録 ──
@@ -350,7 +504,7 @@ def render_terminal(registered: list, priority: list, r03: list) -> None:
     for rec in priority:
         label  = STATUS_LABEL.get(rec["status"], rec["status"])
         action = NEXT_ACTION.get(rec["status"], "")
-        print(f"  {rec['file_id']:<22}  {label}")
+        print(f"  {rec['file_id']:<22}  {label}  {fmt_source(rec)}")
         print(f"    {fmt_codex(rec)}")
         print(f"    → next: {action}")
     if not priority:
@@ -364,12 +518,18 @@ def render_terminal(registered: list, priority: list, r03: list) -> None:
     for rec in r03:
         label  = STATUS_LABEL.get(rec["status"], rec["status"])
         action = NEXT_ACTION.get(rec["status"], "")
-        print(f"  {rec['file_id']:<22}  {rec['article_id']}  {label}")
+        po_str = fmt_publish_order(rec)
+        print(f"  {rec['file_id']:<22}  {rec['article_id']}  {label}  {fmt_source(rec)}")
+        if po_str:
+            print(f"    {po_str}")
         print(f"    {fmt_codex(rec)}")
         if rec["publish_block_reason"]:
             print(f"    block: {rec['publish_block_reason']}")
         if rec["note_url"]:
             print(f"    note:  {rec['note_url']}")
+        if rec["conflicts"]:
+            for c in rec["conflicts"]:
+                print(f"    ⚠️  CONFLICT: {c}")
         print(f"    → next: {action}")
     if not r03:
         print("  （なし）")
@@ -386,11 +546,21 @@ def render_terminal(registered: list, priority: list, r03: list) -> None:
         if not rec["published"]:
             print(f"    → next: {NEXT_ACTION.get(rec['status'], '')}")
 
+    # ── CONFLICT 一覧 ──
+    if conflicts:
+        print()
+        print(f"[CONFLICT] ⚠️  DB と CSV で値が食い違う項目  {len(conflicts)} 件")
+        print(line)
+        for c in conflicts:
+            print(f"  {c}")
+
     # ── サマリー ──
     print()
     print(line)
     print(f"  Release 02 登録済み: {pub}/{total} 件公開  /  優先未登録: {len(priority)} 件")
     print(f"  Release 03: {r03_pub}/{len(r03)} 件公開")
+    if conflicts:
+        print(f"  ⚠️  CONFLICT: {len(conflicts)} 件（要確認）")
     if priority:
         print(f"  次の優先アクション:")
         for rec in priority:
@@ -403,25 +573,32 @@ def render_terminal(registered: list, priority: list, r03: list) -> None:
 # Markdown 出力
 # ---------------------------------------------------------------------------
 
-def render_markdown(registered: list, priority: list, r03: list) -> str:
+def render_markdown(
+    registered: list,
+    priority:   list,
+    r03:        list,
+    conflicts:  list,
+) -> str:
     now_str  = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     date_str = datetime.now(JST).strftime("%Y%m%d")
     pub_r02  = sum(1 for r in registered if r["published"])
     pub_r03  = sum(1 for r in r03 if r["published"])
+    db_ok    = DB_PATH.exists()
 
     lines = [
         f"# Article Factory 在庫レポート {date_str}",
         "",
         f"- **生成日時**: {now_str}",
         f"- **バージョン**: v{VERSION}",
-        f"- **備考**: 読み取り専用 — workflow.db 参照なし",
+        f"- **DB**: {'workflow.db v1.2 参照' if db_ok else 'なし（CSV のみ）'}",
+        f"- **CONFLICT**: {len(conflicts)} 件",
         "",
         "---",
         "",
         "## サマリー",
         "",
-        f"| Release | 公開済み / 総件数 | 備考 |",
-        f"| ------- | ----------------- | ---- |",
+        "| Release | 公開済み / 総件数 | 備考 |",
+        "| ------- | ----------------- | ---- |",
         f"| Release 02 登録済み | {pub_r02} / {len(registered)} | 残り {len(registered)-pub_r02} 件 |",
         f"| Release 02 優先未登録 | 0 / {len(priority)} | source_registry 未登録・要対応 |",
         f"| Release 03 | {pub_r03} / {len(r03)} | 下書き保存済み（公開ブロック中）|",
@@ -430,51 +607,70 @@ def render_markdown(registered: list, priority: list, r03: list) -> str:
         "",
         "## [PRIORITY] Release 02 未公開 PDF 記事（source_registry 未登録）",
         "",
-        "| file_id | status | codex | next_action |",
-        "| ------- | ------ | ----- | ----------- |",
+        "| file_id | status | codex | source | next_action |",
+        "| ------- | ------ | ----- | ------ | ----------- |",
     ]
 
     for rec in priority:
         label  = STATUS_LABEL.get(rec["status"], rec["status"])
         action = NEXT_ACTION.get(rec["status"], "")
-        lines.append(f"| {rec['file_id']} | {label} | {fmt_codex(rec)} | {action} |")
-
+        lines.append(
+            f"| {rec['file_id']} | {label} | {fmt_codex(rec)} | {fmt_source(rec)} | {action} |"
+        )
     if not priority:
-        lines.append("| （なし） | | | |")
+        lines.append("| （なし） | | | | |")
 
     lines += [
         "",
         "## Release 03",
         "",
-        "| article_id | file_id | status | codex | publish_blocked | next_action |",
-        "| ---------- | ------- | ------ | ----- | --------------- | ----------- |",
+        "| article_id | file_id | publish_order | status | codex | publish_blocked | source | next_action |",
+        "| ---------- | ------- | ------------- | ------ | ----- | --------------- | ------ | ----------- |",
     ]
 
     for rec in r03:
         label      = STATUS_LABEL.get(rec["status"], rec["status"])
         action     = NEXT_ACTION.get(rec["status"], "")
-        blk_reason = rec["publish_block_reason"]
-        blk_col    = f"true — {blk_reason}" if rec["publish_blocked"] == "true" else "false"
+        blk_col    = "true" if rec["publish_blocked"] == "true" else "false"
+        po_col     = str(rec["publish_order"]) if rec["publish_order"] is not None else "—"
+        conflict_mark = " ⚠️" if rec["conflicts"] else ""
         lines.append(
-            f"| {rec['article_id']} | {rec['file_id']} | {label} | {fmt_codex(rec)} | {blk_col} | {action} |"
+            f"| {rec['article_id']} | {rec['file_id']} | {po_col} | {label}{conflict_mark}"
+            f" | {fmt_codex(rec)} | {blk_col} | {fmt_source(rec)} | {action} |"
         )
     if not r03:
-        lines.append("| （なし） | | | | | |")
+        lines.append("| （なし） | | | | | | | |")
 
     lines += [
         "",
         f"## Release 02 登録済み（{pub_r02}/{len(registered)} 件公開済み）",
         "",
-        "| article_id | file_id | status | codex | note_url |",
-        "| ---------- | ------- | ------ | ----- | -------- |",
+        "| article_id | file_id | publish_order | status | codex | note_url |",
+        "| ---------- | ------- | ------------- | ------ | ----- | -------- |",
     ]
 
     for rec in registered:
-        label = STATUS_LABEL.get(rec["status"], rec["status"])
-        url   = rec["note_url"] or "—"
+        label  = STATUS_LABEL.get(rec["status"], rec["status"])
+        url    = rec["note_url"] or "—"
+        po_col = str(rec["publish_order"]) if rec["publish_order"] is not None else "—"
         lines.append(
-            f"| {rec['article_id']} | {rec['file_id']} | {label} | {fmt_codex(rec)} | {url} |"
+            f"| {rec['article_id']} | {rec['file_id']} | {po_col}"
+            f" | {label} | {fmt_codex(rec)} | {url} |"
         )
+
+    if conflicts:
+        lines += [
+            "",
+            "## CONFLICT 一覧",
+            "",
+            "| 記事 | 差異 |",
+            "| ---- | ---- |",
+        ]
+        for c in conflicts:
+            parts = c.split("] ", 1)
+            key   = parts[0].lstrip("[") if len(parts) == 2 else c
+            diff  = parts[1] if len(parts) == 2 else ""
+            lines.append(f"| {key} | {diff} |")
 
     lines += [""]
     return "\n".join(lines)
@@ -499,9 +695,9 @@ def main() -> None:
     )
     args = parser.parse_args()
 
-    registered, priority, r03 = collect_records()
+    registered, priority, r03, conflicts = collect_records()
 
-    render_terminal(registered, priority, r03)
+    render_terminal(registered, priority, r03, conflicts)
 
     date_str = datetime.now(JST).strftime("%Y%m%d")
     out_path = Path(args.output) if args.output else REPORTS_DIR / f"article_inventory_{date_str}.md"
@@ -509,7 +705,7 @@ def main() -> None:
     if args.dry_run:
         print(f"\n[dry-run] Markdown 出力スキップ: {out_path}")
     else:
-        md_content = render_markdown(registered, priority, r03)
+        md_content = render_markdown(registered, priority, r03, conflicts)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(md_content, encoding="utf-8")
         print(f"\nMarkdown 出力: {out_path}")
