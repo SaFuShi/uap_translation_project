@@ -29,7 +29,7 @@ from datetime import datetime
 from pathlib import Path
 
 
-VERSION = "1.1.0"
+VERSION = "1.2.0"
 
 # ── CAT-01: 既知組織名・略称と推奨補足 ───────────────────────────────────────
 
@@ -53,6 +53,7 @@ KNOWN_ORGS: dict[str, str] = {
     "DVIDS":     "国防映像情報配信サービス",
     "DIA":       "国防情報局",
     "NSA":       "国家安全保障局",
+    "FBI":       "連邦捜査局（Federal Bureau of Investigation）",
     "USAF":      "米空軍",
     "USN":       "米海軍",
     "USMC":      "米海兵隊",
