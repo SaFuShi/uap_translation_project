@@ -20,7 +20,8 @@ v1.0.0
   - --execute なしでは workflow.db を変更しない
   - S_CLASS 文字列を含むスラッグは停止
   - 公開済み記事には何もしない（SKIP）
-  - VERDICT=PASS 以外は停止
+  - VERDICT=PASS または content_pass_with_artifact_block 以外は停止
+  - VERDICT=BLOCK でも BLOCK 項目が OUT-* のみかつ件数一致の場合は続行（artifact BLOCK）
   - publish_order が NULL の記事は停止（公開順判定不能）
 """
 
@@ -32,7 +33,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-VERSION       = "1.0.0"
+VERSION       = "1.1.0"
 BASE          = Path(".")
 DB_PATH       = BASE / "workflow.db"
 DRAFTS_DIR    = BASE / "note_drafts"
@@ -41,8 +42,10 @@ PUBLISHED_DIR = BASE / "published_articles"
 GENERATE_SCRIPT  = BASE / "scripts" / "generate_review_package_from_codex.py"
 INVENTORY_SCRIPT = BASE / "scripts" / "article_inventory_report.py"
 
-_S_CLASS_RE = re.compile(r"S[_-]?CLASS", re.IGNORECASE)
-_FILE_ID_RE = re.compile(r"([A-Z]+-UAP-(?:PR\d+|D\d+))")
+_S_CLASS_RE    = re.compile(r"S[_-]?CLASS", re.IGNORECASE)
+_FILE_ID_RE    = re.compile(r"([A-Z]+-UAP-(?:PR\d+|D\d+))")
+_OUT_BLOCK_RE  = re.compile(r"^OUT-\d+\s+BLOCK\b")
+_ITEM_BLOCK_RE = re.compile(r"^\S+\s+BLOCK\b")
 
 
 # ---------------------------------------------------------------------------
@@ -50,18 +53,55 @@ _FILE_ID_RE = re.compile(r"([A-Z]+-UAP-(?:PR\d+|D\d+))")
 # ---------------------------------------------------------------------------
 
 def read_codex_verdict(path: Path) -> tuple:
-    """(verdict: str|None, is_new_fmt: bool) を返す。"""
+    """(verdict, is_new_fmt, artifact_block_only) を返す。
+
+    artifact_block_only:
+      True  — VERDICT=BLOCK かつ ITEMS 内の全 BLOCK が OUT-* パターンで
+              かつヘッダーの BLOCK 件数と実際の BLOCK 件数が一致する場合。
+              Codex read-only サンドボックスによるファイル書き込み失敗が原因で
+              記事本文に対する BLOCK ではないことを示す。
+      False — OUT-* 以外の BLOCK がある、件数不一致、ITEMS 未検出、その他。
+    """
     try:
         content = path.read_text(encoding="utf-8", errors="ignore")
     except OSError:
-        return None, False
+        return None, False, False
+
     is_new_fmt = "---CODEX_AUDIT_START---" in content
     verdict = None
+    header_block_count = None
+    in_items = False
+    total_block_count = 0
+    out_block_count = 0
+    items_found = False
+
     for line in content.splitlines():
         if line.startswith("VERDICT:"):
             verdict = line.split(":", 1)[1].strip()
-            break
-    return verdict, is_new_fmt
+        elif line.startswith("BLOCK:") and header_block_count is None:
+            try:
+                header_block_count = int(line.split(":", 1)[1].strip())
+            except ValueError:
+                pass
+        elif line == "---ITEMS_START---":
+            in_items = True
+            items_found = True
+        elif line == "---ITEMS_END---":
+            in_items = False
+        elif in_items and _ITEM_BLOCK_RE.match(line):
+            total_block_count += 1
+            if _OUT_BLOCK_RE.match(line):
+                out_block_count += 1
+
+    artifact_block_only = (
+        verdict == "BLOCK"
+        and items_found
+        and total_block_count > 0
+        and total_block_count == out_block_count
+        and header_block_count is not None
+        and header_block_count == total_block_count
+    )
+    return verdict, is_new_fmt, artifact_block_only
 
 
 # ---------------------------------------------------------------------------
@@ -286,7 +326,7 @@ def main() -> None:
 
     # ── Step 2: フォーマット / VERDICT 確認 ─────────────────────────────
     print(f"\n[Step 2] VERDICT 確認")
-    verdict, is_new_fmt = read_codex_verdict(codex_path)
+    verdict, is_new_fmt, artifact_block_only = read_codex_verdict(codex_path)
 
     if not is_new_fmt:
         print(f"  ❌ 旧フォーマットです（---CODEX_AUDIT_START--- が見つかりません）")
@@ -301,10 +341,21 @@ def main() -> None:
         print(f"       UNVERIFIABLE: <件数>")
         print(f"       PASS: <件数>")
         sys.exit(1)
-    if verdict != "PASS":
+    if verdict == "BLOCK":
+        if artifact_block_only:
+            print(f"  ⚠️  VERDICT=BLOCK（OUT-* のみ検出）")
+            print(f"      OUT-* は Codex read-only サンドボックスによるファイル書き込み失敗を示す技術的エラーです。")
+            print(f"      記事本文上の BLOCK ではありません。")
+            print(f"  ✅ content_pass_with_artifact_block として続行します")
+        else:
+            print(f"  ❌ VERDICT=BLOCK（OUT-* 以外の BLOCK あり、または件数不一致）")
+            print(f"     記事本文上の問題が残っています。Codex 再監査または人間レビューが必要です。")
+            sys.exit(1)
+    elif verdict != "PASS":
         print(f"  ❌ VERDICT={verdict} — PASS 以外は処理できません（Codex 再監査または人間レビューが必要です）")
         sys.exit(1)
-    print(f"  ✅ VERDICT: PASS（新フォーマット）")
+    else:
+        print(f"  ✅ VERDICT: PASS（新フォーマット）")
 
     # ── Step 3: file_id 推定 ─────────────────────────────────────────────
     print(f"\n[Step 3] file_id 推定")
@@ -387,8 +438,12 @@ def main() -> None:
     # ── Step 9: 実行計画表示 ────────────────────────────────────────────
     print(f"\n[Step 9] 実行計画")
     print(line)
+    verdict_label = (
+        "VERDICT=BLOCK (content_pass_with_artifact_block)" if artifact_block_only
+        else f"VERDICT={verdict}"
+    )
     print(f"  対象:             {file_id}  (#{article_id})")
-    print(f"  Codex:            VERDICT=PASS  ({codex_path.name})")
+    print(f"  Codex:            {verdict_label}  ({codex_path.name})")
     print(f"  draft:            {draft or '（未検出 — Review Package スキップ）'}")
     print(f"  ─ DB 更新 ─")
     print(f"    status           → ready_to_publish")
