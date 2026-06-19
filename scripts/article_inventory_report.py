@@ -18,7 +18,7 @@ import sys
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 JST = timezone(timedelta(hours=9))
 
 BASE          = Path(".")
@@ -26,6 +26,7 @@ DB_PATH       = BASE / "workflow.db"
 REPORTS_DIR   = BASE / "review_reports"
 PACKAGES_DIR  = BASE / "review_packages"
 DRAFTS_DIR    = BASE / "note_drafts"
+PUBLISHED_DIR = BASE / "published_articles"
 REG_CSV       = BASE / "review_logs" / "source_registry.csv"
 DRAFT_REG_CSV = BASE / "review_logs" / "note_draft_registry.csv"
 
@@ -51,7 +52,7 @@ STATUS_LABEL = {
 
 NEXT_ACTION = {
     "published":                "—",
-    "draft_saved_unpublished":  "Release 02 完了後に note 編集画面から公開",
+    "draft_saved_unpublished":  "公開ブロック解除後に note 編集画面から公開",
     "ready_to_publish_blocked": "前 Release 完了後に note 公開",
     "ready_to_publish":         "note 公開 → post_publish_workflow",
     "codex_pass":               "Review Package 生成 → 人間レビュー",
@@ -114,11 +115,13 @@ def load_workflow_db() -> list:
         if "release_id" not in col_names:
             con.close()
             return []
-        rows = con.execute("""
+        article_id_sel = "article_id" if "article_id" in col_names else "NULL AS article_id"
+        rows = con.execute(f"""
             SELECT slug, status, note_url, draft_path,
                    release_id, series_number, publish_order,
                    ready_to_publish, publish_blocked,
-                   publish_block_reason, note_draft_url
+                   publish_block_reason, note_draft_url,
+                   {article_id_sel}
             FROM articles
             WHERE release_id IS NOT NULL
             ORDER BY publish_order ASC NULLS LAST
@@ -216,6 +219,14 @@ def find_note_draft(file_id: str) -> tuple:
     return False, ""
 
 
+def _has_published_file(file_id: str) -> bool:
+    """published_articles/ に file_id を含むファイルがあれば True。"""
+    if not PUBLISHED_DIR.exists():
+        return False
+    key = file_id.lower()
+    return any(key in f.name.lower() for f in PUBLISHED_DIR.glob("*.md"))
+
+
 def get_review_package_state(article_id: str) -> dict:
     """
     review_package から publish 状態を抽出する。
@@ -286,9 +297,15 @@ def build_record(
     is_priority: bool = False,
     db_row:      dict = None,
 ) -> dict:
-    # Published state from source_registry
+    # Published state: source_registry → workflow.db → published_articles/ の優先順で確認
     published = (reg_row.get("status", "") == "published") if reg_row else False
     pub_url   = reg_row.get("note_url", "") if reg_row else ""
+    if not published and db_row and db_row.get("status") == "published":
+        published = True
+    if not published:
+        published = _has_published_file(file_id)
+    if db_row and not pub_url:
+        pub_url = (db_row.get("note_url") or "").strip()
 
     # Note draft existence + title
     draft_exists, title = find_note_draft(file_id)
@@ -398,14 +415,34 @@ def collect_records() -> tuple:
             all_conflicts.extend([f"[{file_id}] {c}" for c in rec["conflicts"]])
         registered_r02.append(rec)
 
-    # ── R02 優先未登録（#R02-004〜007 相当） ──
+    # ── R02 優先未登録（source_registry 未登録・未公開のみ） ──
     for slug_key in R02_PRIORITY_SLUGS:
         db_r = db_by_file_id.get(slug_key)
         rec  = build_record("#R02-???", slug_key, "R02", {}, ndr_rows,
                             is_priority=True, db_row=db_r)
+        if rec["status"] == "published":
+            continue  # 公開済みは PRIORITY から除外
         if rec["conflicts"]:
             all_conflicts.extend([f"[{slug_key}] {c}" for c in rec["conflicts"]])
         priority_r02.append(rec)
+
+    # ── R02: workflow.db 由来を追加（source_registry 未登録・release_id=2） ──
+    registered_r02_fids = {r["file_id"] for r in registered_r02}
+    for db_r in db_rows:
+        if (db_r.get("release_id") or 0) != 2:
+            continue
+        fid = (
+            extract_file_id(db_r.get("slug", ""))
+            or extract_file_id(db_r.get("draft_path", ""))
+        )
+        if not fid or fid in registered_r02_fids:
+            continue
+        aid = db_r.get("article_id") or f"#R02-s{db_r.get('series_number', '?')}"
+        rec = build_record(aid, fid, "R02", {}, ndr_rows, db_row=db_r)
+        if rec["conflicts"]:
+            all_conflicts.extend([f"[{fid}] {c}" for c in rec["conflicts"]])
+        registered_r02.append(rec)
+        registered_r02_fids.add(fid)
 
     # ── R03: workflow.db 由来を優先 ──
     r03_file_ids_added = set()
@@ -422,7 +459,7 @@ def collect_records() -> tuple:
         ndr_match = next(
             (r for r in ndr_rows if fid in r.get("slug", "")), {}
         )
-        aid = ndr_match.get("article_id", "#R03-???")
+        aid = db_r.get("article_id") or ndr_match.get("article_id", "#R03-???")
         rec = build_record(aid, fid, "R03", reg_data.get(aid, {}),
                            ndr_rows, db_row=db_r)
         if rec["conflicts"]:
