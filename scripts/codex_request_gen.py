@@ -117,19 +117,27 @@ PROMPT_TEMPLATE = """\
 - 出力フォーマットは以下の構造に厳密に従ってください
 
 ## 出力フォーマット（必須）
+
+⚠ 以下のヘッダー5行は機械判読用です。`---CODEX_AUDIT_START---` の直後に、この順序・この表記で必ず出力してください。
+VERDICT / BLOCK / WARN / UNVERIFIABLE / PASS の行は省略・並べ替え・日本語化・絵文字付加を禁止します。
+
 ---CODEX_AUDIT_START---
-VERDICT: [PASS|WARN|BLOCK]
-BLOCK_COUNT: [数値]
-WARN_COUNT: [数値]
-PASS_COUNT: [数値]
+VERDICT: PASS
+BLOCK: 0
+WARN: 0
+UNVERIFIABLE: 0
+PASS: 14
 MODEL: [使用モデルID]
 ---ITEMS_START---
-[チェック項目コード] [PASS|WARN|BLOCK] [説明]
+[チェック項目コード] [PASS|WARN|BLOCK|UNVERIFIABLE] [説明]
 ---ITEMS_END---
 ---WARN_DETAILS_START---
 W-01: [セクション名] | [該当文] | [修正案]
 ---WARN_DETAILS_END---
 ---CODEX_AUDIT_END---
+
+- VERDICT は `PASS` / `WARN` / `BLOCK` のいずれか1語のみ（絵文字・日本語・補足語句を含まないこと）
+- BLOCK / WARN / UNVERIFIABLE / PASS は各カテゴリの件数を半角数値で記述すること
 
 ## ドラフト本文
 {draft_content}

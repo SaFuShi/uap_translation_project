@@ -490,6 +490,58 @@ def collect_records() -> tuple:
 
 
 # ---------------------------------------------------------------------------
+# NEXT_DRAFT_TARGET 判定
+# ---------------------------------------------------------------------------
+
+_CANDIDATE_STATUSES = {"no_draft", "draft_ready", "codex_warn", "codex_block"}
+
+
+def compute_next_draft_target(
+    registered: list,
+    priority:   list,
+    r03:        list,
+) -> dict:
+    """
+    次にドラフト作成すべき記事候補を返す。
+
+    戻り値キー:
+      level  : "BLOCK" | "NEXT" | "DONE"
+      target : 表示文字列
+      reason : 補足理由
+      items  : 対象レコードリスト
+    """
+    # Step1: Release 02 に未公開記事があるか？
+    r02_pending = [r for r in priority + registered if not r["published"]]
+    if r02_pending:
+        return {
+            "level":  "BLOCK",
+            "target": "Release 02 cleanup required",
+            "reason": f"Release 02 未公開: {len(r02_pending)} 件",
+            "items":  r02_pending,
+        }
+
+    # Step2: Release 03 で publish_order 昇順の最初の未着手記事
+    # （collect_records() で publish_order 昇順ソート済み）
+    for rec in r03:
+        if rec["status"] in _CANDIDATE_STATUSES:
+            action = NEXT_ACTION.get(rec["status"], "ドラフト作成")
+            return {
+                "level":  "NEXT",
+                "target": f"Release 03 {rec['article_id']} {rec['file_id']}",
+                "reason": action,
+                "items":  [rec],
+            }
+
+    # Step3: 全件対応済み
+    return {
+        "level":  "DONE",
+        "target": "全件対応済み（ドラフト作成不要）",
+        "reason": "Release 02/03 ともに ready_to_publish 以上",
+        "items":  [],
+    }
+
+
+# ---------------------------------------------------------------------------
 # 表示ヘルパー
 # ---------------------------------------------------------------------------
 
@@ -521,6 +573,7 @@ def render_terminal(
     priority:   list,
     r03:        list,
     conflicts:  list,
+    ndt:        dict = None,
 ) -> None:
     now_str = datetime.now(JST).strftime("%Y-%m-%d %H:%M JST")
     db_ok   = DB_PATH.exists()
@@ -591,11 +644,31 @@ def render_terminal(
         for c in conflicts:
             print(f"  {c}")
 
+    # ── NEXT_DRAFT_TARGET ──
+    if ndt:
+        print()
+        _icon = {"BLOCK": "⛔", "NEXT": "🎯", "DONE": "✅"}.get(ndt["level"], "")
+        print(f"[NEXT_DRAFT_TARGET] {_icon}  {ndt['target']}")
+        print(line)
+        if ndt["reason"]:
+            print(f"  {ndt['reason']}")
+        if ndt["level"] == "BLOCK" and ndt["items"]:
+            for r in ndt["items"][:3]:
+                print(f"    ⚠️  {r['file_id']}: {NEXT_ACTION.get(r['status'], '')}")
+        elif ndt["level"] == "NEXT" and ndt["items"]:
+            for r in ndt["items"]:
+                po = r.get("publish_order")
+                if po:
+                    print(f"    publish_order={po}")
+                print(f"    → next: {NEXT_ACTION.get(r['status'], 'ドラフト作成')}")
+
     # ── サマリー ──
     print()
     print(line)
     print(f"  Release 02 登録済み: {pub}/{total} 件公開  /  優先未登録: {len(priority)} 件")
     print(f"  Release 03: {r03_pub}/{len(r03)} 件公開")
+    if ndt:
+        print(f"  NEXT_DRAFT_TARGET: {ndt['target']}")
     if conflicts:
         print(f"  ⚠️  CONFLICT: {len(conflicts)} 件（要確認）")
     if priority:
@@ -615,6 +688,7 @@ def render_markdown(
     priority:   list,
     r03:        list,
     conflicts:  list,
+    ndt:        dict = None,
 ) -> str:
     now_str  = datetime.now(JST).strftime("%Y-%m-%d %H:%M:%S JST")
     date_str = datetime.now(JST).strftime("%Y%m%d")
@@ -642,6 +716,32 @@ def render_markdown(
         "",
         "---",
         "",
+    ]
+
+    # ── NEXT_DRAFT_TARGET ──
+    if ndt:
+        _icon = {"BLOCK": "⛔", "NEXT": "🎯", "DONE": "✅"}.get(ndt["level"], "")
+        lines += [
+            "## NEXT_DRAFT_TARGET",
+            "",
+            f"**{_icon} {ndt['target']}**",
+            "",
+        ]
+        if ndt["reason"]:
+            lines.append(f"- {ndt['reason']}")
+        if ndt["level"] == "BLOCK" and ndt["items"]:
+            for r in ndt["items"][:3]:
+                action = NEXT_ACTION.get(r["status"], "")
+                lines.append(f"- ⚠️ `{r['file_id']}`: {action}")
+        elif ndt["level"] == "NEXT" and ndt["items"]:
+            for r in ndt["items"]:
+                po = r.get("publish_order")
+                if po:
+                    lines.append(f"- publish_order={po}")
+                lines.append(f"- → {NEXT_ACTION.get(r['status'], 'ドラフト作成')}")
+        lines += ["", "---", ""]
+
+    lines += [
         "## [PRIORITY] Release 02 未公開 PDF 記事（source_registry 未登録）",
         "",
         "| file_id | status | codex | source | next_action |",
@@ -733,8 +833,9 @@ def main() -> None:
     args = parser.parse_args()
 
     registered, priority, r03, conflicts = collect_records()
+    ndt = compute_next_draft_target(registered, priority, r03)
 
-    render_terminal(registered, priority, r03, conflicts)
+    render_terminal(registered, priority, r03, conflicts, ndt)
 
     date_str = datetime.now(JST).strftime("%Y%m%d")
     out_path = Path(args.output) if args.output else REPORTS_DIR / f"article_inventory_{date_str}.md"
@@ -742,7 +843,7 @@ def main() -> None:
     if args.dry_run:
         print(f"\n[dry-run] Markdown 出力スキップ: {out_path}")
     else:
-        md_content = render_markdown(registered, priority, r03, conflicts)
+        md_content = render_markdown(registered, priority, r03, conflicts, ndt)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         out_path.write_text(md_content, encoding="utf-8")
         print(f"\nMarkdown 出力: {out_path}")

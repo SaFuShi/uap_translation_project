@@ -291,8 +291,18 @@ def main() -> None:
     if not is_new_fmt:
         print(f"  ❌ 旧フォーマットです（---CODEX_AUDIT_START--- が見つかりません）")
         sys.exit(1)
+    if verdict is None:
+        print(f"  ❌ 監査レポートの機械判読ヘッダーが不足しています")
+        print(f"     VERDICT: 行が見つかりません。")
+        print(f"     ---CODEX_AUDIT_START--- の直後に以下の形式が必要です:")
+        print(f"       VERDICT: PASS|WARN|BLOCK")
+        print(f"       BLOCK: <件数>")
+        print(f"       WARN: <件数>")
+        print(f"       UNVERIFIABLE: <件数>")
+        print(f"       PASS: <件数>")
+        sys.exit(1)
     if verdict != "PASS":
-        print(f"  ❌ VERDICT={verdict or '不明'} — PASS 以外は処理できません")
+        print(f"  ❌ VERDICT={verdict} — PASS 以外は処理できません（Codex 再監査または人間レビューが必要です）")
         sys.exit(1)
     print(f"  ✅ VERDICT: PASS（新フォーマット）")
 
