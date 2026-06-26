@@ -1,0 +1,833 @@
+sample_id,article_id,slug,image_path,frame_name,is_baseline_equivalent,visible_candidate,confidence,location,description,visual_confirmation_only,speculation,response_time_sec,parse_success,raw_response
+R02-044_frame_0000,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0000.png,frame_0000.png,True,True,0.7,中央,不明飛翔体の形をした対象物,True,False,5.34,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の形をした対象物"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0003,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0003.png,frame_0003.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0006,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0006.png,frame_0006.png,False,True,0.7,中央,不明飛翔体,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0009,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0009.png,frame_0009.png,False,False,0.0,中央,船が映っている,True,False,5.24,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0012,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0012.png,frame_0012.png,False,False,0.0,中央,船が映っている。,True,False,5.25,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0015,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0015.png,frame_0015.png,False,False,0.0,中央,船が映っている,True,False,5.24,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0018,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0018.png,frame_0018.png,False,False,0.0,中央,船が映っている。,True,False,5.24,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0021,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0021.png,frame_0021.png,False,False,0.0,中央,船が映っている。,True,False,5.23,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0024,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0024.png,frame_0024.png,False,False,0.0,中央,船が映っている,True,False,5.26,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""船が映っている"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0027,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0027.png,frame_0027.png,False,True,0.8,中央右側,不明飛翔体の形状を示唆する光点,True,False,5.35,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央右側"",
+  ""description"": ""不明飛翔体の形状を示唆する光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0030,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0030.png,frame_0030.png,True,True,0.7,中央上部,不明飛翔体の光点,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央上部"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0033,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0033.png,frame_0033.png,False,True,0.7,中央左側,不明飛翔体の光点,True,False,5.32,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央左側"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0036,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0036.png,frame_0036.png,False,True,0.7,中央,不明飛翔体,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0039,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0039.png,frame_0039.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0042,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0042.png,frame_0042.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0045,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0045.png,frame_0045.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0048,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0048.png,frame_0048.png,False,True,0.7,中央,不明飛翔体,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0051,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0051.png,frame_0051.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0054,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0054.png,frame_0054.png,False,False,0.0,中央,不明飛翔体,True,False,5.25,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0057,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0057.png,frame_0057.png,False,False,0.0,中央,十字型のマークと小さな光点が確認できる。,True,False,5.3,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""十字型のマークと小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0060,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0060.png,frame_0060.png,True,True,0.7,中央,不明飛翔体の疑似像,True,False,5.32,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の疑似像"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0063,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0063.png,frame_0063.png,False,True,0.7,中央,不明飛翔体,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0066,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0066.png,frame_0066.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0069,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0069.png,frame_0069.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0072,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0072.png,frame_0072.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0075,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0075.png,frame_0075.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0078,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0078.png,frame_0078.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.41,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0081,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0081.png,frame_0081.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.36,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0084,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0084.png,frame_0084.png,False,True,0.7,中央,不明飛翔体,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0087,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0087.png,frame_0087.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0090,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0090.png,frame_0090.png,True,True,0.7,中央,小さな光点が確認できる。,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0093,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0093.png,frame_0093.png,False,True,0.7,中央,不明飛翔体,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0096,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0096.png,frame_0096.png,False,True,0.7,中央,小さな光点が確認できる。,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0099,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0099.png,frame_0099.png,False,True,0.7,中央,不明飛翔体,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0102,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0102.png,frame_0102.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0105,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0105.png,frame_0105.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0108,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0108.png,frame_0108.png,False,True,0.7,中央上部,小さな光点が雲の中を動いている。,True,False,5.33,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央上部"",
+  ""description"": ""小さな光点が雲の中を動いている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0111,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0111.png,frame_0111.png,False,True,0.7,中央,不明飛翔体の可能性あり,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の可能性あり"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0114,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0114.png,frame_0114.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0117,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0117.png,frame_0117.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0120,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0120.png,frame_0120.png,True,True,0.7,中央,小さな光点が雲の中にある,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が雲の中にある"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0123,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0123.png,frame_0123.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0126,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0126.png,frame_0126.png,False,True,0.7,中央,小さな光点が雲の中にある。,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が雲の中にある。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0129,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0129.png,frame_0129.png,False,True,0.7,中央上部,小さな光点が雲に隠れている,True,False,5.33,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央上部"",
+  ""description"": ""小さな光点が雲に隠れている"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0132,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0132.png,frame_0132.png,False,True,0.7,中央,不明飛翔体,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0135,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0135.png,frame_0135.png,False,True,0.8,中央,不明飛翔体の光点,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0138,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0138.png,frame_0138.png,False,True,0.7,中央,不明飛翔体の可能性あり,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の可能性あり"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0141,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0141.png,frame_0141.png,False,True,0.7,中央,黒い光点が確認できる。,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0144,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0144.png,frame_0144.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0147,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0147.png,frame_0147.png,False,True,0.7,中央,不明飛翔体,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0150,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0150.png,frame_0150.png,True,True,0.8,中央,小さな光点が確認できる。,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0153,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0153.png,frame_0153.png,False,True,0.7,中央,不明飛翔体,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0156,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0156.png,frame_0156.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0159,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0159.png,frame_0159.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0162,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0162.png,frame_0162.png,False,True,0.7,中央,不明飛翔体の疑似像,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の疑似像"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0165,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0165.png,frame_0165.png,False,True,0.7,中央上部,小さな光点が動いている。,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央上部"",
+  ""description"": ""小さな光点が動いている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0168,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0168.png,frame_0168.png,False,True,0.8,中央,黒い円形の影,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0171,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0171.png,frame_0171.png,False,True,0.7,中央,黒い光点が雲に囲まれている。,True,False,5.33,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が雲に囲まれている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0174,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0174.png,frame_0174.png,False,True,0.8,中央,黒い光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0177,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0177.png,frame_0177.png,False,True,0.8,中央,黒い円形の影,True,False,5.23,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0180,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0180.png,frame_0180.png,True,True,0.7,中央,黒い光点が中心に存在する。,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心に存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0183,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0183.png,frame_0183.png,False,True,0.8,中央,黒い円形の影,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0186,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0186.png,frame_0186.png,False,True,0.8,中央,黒い光点が確認できる。,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0189,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0189.png,frame_0189.png,False,True,0.8,中央,黒い光点が中心に存在する。,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心に存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0192,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0192.png,frame_0192.png,False,True,0.8,中央,黒い光点が中心にあり、周囲は霧のような模様がある。,True,False,5.46,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心にあり、周囲は霧のような模様がある。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0195,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0195.png,frame_0195.png,False,True,0.8,中央,黒い光点が中心に存在する。,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心に存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0198,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0198.png,frame_0198.png,False,True,0.8,中央,黒い光点が中心にあり、周囲は薄暗い。,True,False,5.37,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心にあり、周囲は薄暗い。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0201,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0201.png,frame_0201.png,False,True,0.7,中央,黒い光点が中心にあり、周囲は雲のような模様,True,False,5.42,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心にあり、周囲は雲のような模様"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0204,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0204.png,frame_0204.png,False,True,0.8,中央,不明飛翔体,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0207,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0207.png,frame_0207.png,False,True,0.8,中央,不明飛翔体,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0210,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0210.png,frame_0210.png,True,True,0.7,中央,黒い円形の対象物,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の対象物"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0213,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0213.png,frame_0213.png,False,True,0.8,中央,黒い円形の影に光点が存在する。,True,False,5.35,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影に光点が存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0216,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0216.png,frame_0216.png,False,True,0.8,中央右側,小さな光点が確認できる。,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央右側"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0219,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0219.png,frame_0219.png,False,True,0.7,中央,不明飛翔体の可能性あり,True,False,5.31,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の可能性あり"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0222,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0222.png,frame_0222.png,False,True,0.8,中央,黒い円形の対象物,True,False,5.34,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の対象物"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0225,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0225.png,frame_0225.png,False,True,0.8,中央,黒い円形の影に光点が存在する,True,False,5.38,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影に光点が存在する"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0228,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0228.png,frame_0228.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0231,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0231.png,frame_0231.png,False,True,0.8,中央,小さな光点が確認できる。,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0234,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0234.png,frame_0234.png,False,True,0.8,中央,小さな光点が確認できる。,True,False,5.21,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""小さな光点が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0237,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0237.png,frame_0237.png,False,True,0.8,中央,不明飛翔体,True,False,5.22,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0240,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0240.png,frame_0240.png,True,True,0.7,中央,黒い円形の対象物が確認できる。,True,False,5.33,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の対象物が確認できる。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0243,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0243.png,frame_0243.png,False,True,0.8,中央下部,小さな光点が不明飛翔体の可能性あり。,True,False,5.35,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央下部"",
+  ""description"": ""小さな光点が不明飛翔体の可能性あり。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0246,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0246.png,frame_0246.png,False,True,0.7,中央,不明飛翔体,True,False,5.21,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0249,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0249.png,frame_0249.png,False,True,0.7,中央,不明飛翔体,True,False,5.22,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0252,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0252.png,frame_0252.png,False,True,0.7,中央,不明飛翔体,True,False,5.19,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0255,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0255.png,frame_0255.png,False,True,0.7,中央,不明飛翔体の影,True,False,5.25,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0258,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0258.png,frame_0258.png,False,True,0.7,中央,不明飛翔体,True,False,5.23,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0261,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0261.png,frame_0261.png,False,True,0.8,中央,黒い円形の影,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い円形の影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0264,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0264.png,frame_0264.png,False,True,0.7,中央,不明飛翔体,True,False,5.24,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0267,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0267.png,frame_0267.png,False,True,0.7,中央,不明飛翔体の黒い影,True,False,5.34,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の黒い影"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0270,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0270.png,frame_0270.png,True,True,0.7,中央,不明飛翔体,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0273,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0273.png,frame_0273.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0276,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0276.png,frame_0276.png,False,True,0.7,中央,不明飛翔体,True,False,5.23,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0279,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0279.png,frame_0279.png,False,True,0.7,中央,黒い光点が中心に存在する。,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心に存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0282,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0282.png,frame_0282.png,False,True,0.8,中央,黒い光点が中心に存在する。,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""黒い光点が中心に存在する。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0285,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0285.png,frame_0285.png,False,True,0.7,中央,不明飛翔体,True,False,5.23,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0288,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0288.png,frame_0288.png,False,True,0.8,中央,不明飛翔体,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0291,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0291.png,frame_0291.png,False,True,0.7,中央,不明飛翔体,True,False,5.29,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0294,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0294.png,frame_0294.png,False,True,0.8,中央,不明飛翔体の疑似像,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.8,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の疑似像"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0297,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0297.png,frame_0297.png,False,True,0.7,中央,不明飛翔体の疑似像,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の疑似像"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0300,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0300.png,frame_0300.png,True,True,0.7,中央上部,不明飛翔体の光点,True,False,5.27,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央上部"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0303,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0303.png,frame_0303.png,False,False,0.0,中央,不明飛翔体の兆候なし,True,False,5.47,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の兆候なし"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0306,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0306.png,frame_0306.png,False,False,0.0,中央,不明飛翔体,True,False,5.45,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-044_frame_0309,R02-044,DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020,data/adaptive_frames/20260626/DOW-UAP-PR044_Unresolved_UAP_Report_Middle_East_2020/frame_0309.png,frame_0309.png,False,False,0.0,中央,不明飛翔体の兆候なし,True,False,5.53,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の兆候なし"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"

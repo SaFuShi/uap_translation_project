@@ -1,0 +1,49 @@
+sample_id,article_id,slug,image_path,frame_name,is_baseline_equivalent,visible_candidate,confidence,location,description,visual_confirmation_only,speculation,response_time_sec,parse_success,raw_response
+R02-043_frame_0000,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0000.png,frame_0000.png,True,False,0.0,中央,不明飛翔体の兆候なし,True,False,5.69,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の兆候なし"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-043_frame_0002,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0002.png,frame_0002.png,False,False,0.0,中央,十字型のフレームが中心に表示されている。,True,False,5.34,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""十字型のフレームが中心に表示されている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-043_frame_0004,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0004.png,frame_0004.png,True,False,0.0,中央,光点や不明飛翔体は確認されない。,True,False,5.38,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""光点や不明飛翔体は確認されない。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-043_frame_0006,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0006.png,frame_0006.png,False,False,0.0,中央,光点や不明飛翔体は確認されない。,True,False,5.35,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""光点や不明飛翔体は確認されない。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-043_frame_0008,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0008.png,frame_0008.png,False,False,0.0,中央,地上に配置された十字型のマーカー,True,False,5.35,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""地上に配置された十字型のマーカー"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-043_frame_0010,R02-043,DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025,data/adaptive_frames/20260626/DOW-UAP-PR043_Unresolved_UAP_Report_Africa_2025/frame_0010.png,frame_0010.png,True,False,0.0,中央,十字型のフレームが中心に表示されている。,True,False,5.37,True,"{
+  ""visible_candidate"": false,
+  ""confidence"": 0.0,
+  ""location"": ""中央"",
+  ""description"": ""十字型のフレームが中心に表示されている。"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"

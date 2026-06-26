@@ -1,0 +1,41 @@
+sample_id,article_id,slug,image_path,frame_name,is_baseline_equivalent,visible_candidate,confidence,location,description,visual_confirmation_only,speculation,response_time_sec,parse_success,raw_response
+R02-046_frame_0000,R02-046,DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024,data/adaptive_frames/20260626/DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024/frame_0000.png,frame_0000.png,True,True,0.7,中央,不明飛翔体の光点,True,False,5.24,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-046_frame_0002,R02-046,DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024,data/adaptive_frames/20260626/DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024/frame_0002.png,frame_0002.png,False,True,0.7,中央,不明飛翔体の光点,True,False,5.26,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-046_frame_0004,R02-046,DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024,data/adaptive_frames/20260626/DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024/frame_0004.png,frame_0004.png,True,True,0.7,中央,不明飛翔体の光点,True,False,5.28,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-046_frame_0006,R02-046,DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024,data/adaptive_frames/20260626/DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024/frame_0006.png,frame_0006.png,False,True,0.7,中央,不明飛翔体,True,False,5.24,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
+R02-046_frame_0008,R02-046,DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024,data/adaptive_frames/20260626/DOW-UAP-PR046_Unresolved_UAP_Report_INDOPACOM_2024/frame_0008.png,frame_0008.png,False,True,0.7,中央,不明飛翔体の形をした光点,True,False,5.3,True,"{
+  ""visible_candidate"": true,
+  ""confidence"": 0.7,
+  ""location"": ""中央"",
+  ""description"": ""不明飛翔体の形をした光点"",
+  ""visual_confirmation_only"": true,
+  ""speculation"": false
+}"
