@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.7,
+  "location": "中央",
+  "description": "不明瞭な形状の暗い物体、背景との明確な区別は困難。",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

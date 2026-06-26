@@ -1,0 +1,9 @@
+model,run_id,scope,category,mode,n,tp,fp,tn,fn,precision,recall,f1
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,overall,all,gold,7,6,1,0,0,0.8571,1.0000,0.9231
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,C_no_visible_target,gold,6,5,1,0,0,0.8333,1.0000,0.9091
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,D_sensor_ui_background,gold,1,1,0,0,0,1.0000,1.0000,1.0000
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,overall,all,proxy,30,12,7,11,0,0.6316,1.0000,0.7742
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,A_clear_candidate,proxy,11,11,0,0,0,1.0000,1.0000,1.0000
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,C_no_visible_target,proxy,15,0,6,9,0,0.0000,0.0000,0.0000
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,D_sensor_ui_background,proxy,3,0,1,2,0,0.0000,0.0000,0.0000
+qwen2.5-vl-7b-instruct,phase3_full50_20260626,category,E_known_miss_case,proxy,1,1,0,0,0,1.0000,1.0000,1.0000

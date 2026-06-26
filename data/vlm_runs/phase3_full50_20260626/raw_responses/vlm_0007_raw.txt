@@ -1,0 +1,8 @@
+{
+  "visible_candidate": false,
+  "confidence": 0.1,
+  "location": "中央やや上部",
+  "description": "不明瞭な形状、雲のような背景と区別困難。",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

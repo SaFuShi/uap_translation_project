@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.8,
+  "location": "右上",
+  "description": "黄色い球体、背景に星が見える",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

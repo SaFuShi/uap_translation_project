@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.75,
+  "location": "中央",
+  "description": "不明瞭な輝点、周囲に放射状のパターン",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

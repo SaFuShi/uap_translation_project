@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.7,
+  "location": "中央やや上",
+  "description": "赤い光点、周囲は完全に暗闇",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

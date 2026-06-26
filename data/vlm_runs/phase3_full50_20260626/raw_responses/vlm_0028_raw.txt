@@ -1,0 +1,8 @@
+{
+  "visible_candidate": false,
+  "confidence": 0.1,
+  "location": "中央",
+  "description": "赤い円形の対象物",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

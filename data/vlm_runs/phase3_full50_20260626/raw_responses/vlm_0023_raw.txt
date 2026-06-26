@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.8,
+  "location": "中央上部",
+  "description": "紫色の光と黒い矩形の組み合わせ",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

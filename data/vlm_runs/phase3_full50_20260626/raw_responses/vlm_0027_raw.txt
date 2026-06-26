@@ -1,0 +1,8 @@
+{
+  "visible_candidate": false,
+  "confidence": 0.1,
+  "location": "中央",
+  "description": "不明瞭な円形の影",
+  "visual_confirmation_only": true,
+  "speculation": false
+}

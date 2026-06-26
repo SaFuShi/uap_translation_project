@@ -1,0 +1,8 @@
+{
+  "visible_candidate": true,
+  "confidence": 0.7,
+  "location": "中央上部",
+  "description": "赤い線状の光、背景との明確な区別あり。",
+  "visual_confirmation_only": true,
+  "speculation": false
+}
