@@ -1,8 +1,18 @@
-# Release 03 Work Cache Layer 設計書 v1
+# Release 03 Work Cache Layer 設計書 v3
 
 - 制定日: 2026-06-28
-- ステータス: 設計承認待ち（実移行未実施）
-- 関連: `review_reports/release03_work_cache_migration_plan_20260628.md`
+- 改訂日: 2026-06-28（v3: 正式運用開始確定）
+- ステータス: **正式運用中**（移行完了 2026-06-28）
+
+> **この文書が三層アーキテクチャの正式仕様書です。**
+> 日常運用の参照先はこのファイルと `README.md` の2つのみです。
+> `review_reports/release03_*` は移行作業の証跡であり、運用上の参照は不要です。
+
+**恒久仕様の集約方針:**
+作業環境・rsync ルール・Git 運用・日常チェックリスト・セキュリティ方針はこのファイルに追記して管理する。
+新しい運用上の決定事項が生まれた場合も、まずこのファイルへの追記で対応できるか検討すること。
+
+- 関連（証跡）: `review_reports/release03_work_cache_migration_plan_20260628.md`
 
 ---
 
@@ -19,7 +29,7 @@
 ```
 ┌────────────────────────────────────────────────────────┐
 │ Layer 1: Mac Studio 内蔵SSD 作業領域（Work Cache）       │
-│   ~/AI_Work/UAP_TRANSLATION_PROJECT/                   │
+│   ~/AI_Work/active/UAP_TRANSLATION_PROJECT/            │
 │   ← Claude Code / Codex / Git 操作は全てここで          │
 │   ← git-tracked ファイル + 作業中の data/ が常駐        │
 │   ← raw_pdf / raw_media はシンボリックリンクで参照       │
@@ -51,7 +61,7 @@
 
 ### 2.1 Layer 1: Mac Studio 内蔵SSD 作業領域
 
-**ベースパス:** `~/AI_Work/UAP_TRANSLATION_PROJECT/`
+**ベースパス:** `~/AI_Work/active/UAP_TRANSLATION_PROJECT/`
 
 | ディレクトリ / ファイル | 内容 | 管理方法 |
 |----------------------|------|---------|
@@ -124,7 +134,7 @@ rsync -av --dry-run \
   --exclude='__pycache__/' \
   --exclude='*.pyc' \
   --exclude='*.tmp' \
-  ~/AI_Work/UAP_TRANSLATION_PROJECT/ \
+  ~/AI_Work/active/UAP_TRANSLATION_PROJECT/ \
   /Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT/
 
 # 確認後に --dry-run を外して実行
@@ -182,7 +192,7 @@ rsync -av --dry-run \
 
 | 操作 | 実行場所 | 禁止場所 |
 |------|---------|---------|
-| `git add` | `~/AI_Work/UAP_TRANSLATION_PROJECT/` のみ | 外付けSSD / Mac mini |
+| `git add` | `~/AI_Work/active/UAP_TRANSLATION_PROJECT/` のみ | 外付けSSD / Mac mini |
 | `git commit` | `~/AI_Work/` のみ | 外付けSSD / Mac mini |
 | `git push` | `~/AI_Work/` のみ | 外付けSSD / Mac mini |
 | `git pull` | `~/AI_Work/`（Mac Studio）または Mac mini repo/ | — |
@@ -215,11 +225,11 @@ git pull
 ```bash
 # 移行作業時に一度だけ実行（まだ実行しない）
 ln -s /Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT/raw_pdf \
-       ~/AI_Work/UAP_TRANSLATION_PROJECT/raw_pdf
+       ~/AI_Work/active/UAP_TRANSLATION_PROJECT/raw_pdf
 ln -s /Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT/raw_media \
-       ~/AI_Work/UAP_TRANSLATION_PROJECT/raw_media
+       ~/AI_Work/active/UAP_TRANSLATION_PROJECT/raw_media
 ln -s /Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT/page_images \
-       ~/AI_Work/UAP_TRANSLATION_PROJECT/page_images
+       ~/AI_Work/active/UAP_TRANSLATION_PROJECT/page_images
 ```
 
 ---
@@ -228,7 +238,7 @@ ln -s /Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT/page_image
 
 | 変更項目 | 現在 | 移行後 |
 |---------|------|--------|
-| Primary working directory | `/Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT` | `~/AI_Work/UAP_TRANSLATION_PROJECT` |
+| Primary working directory | `/Volumes/ACASIS_samsung2TB/AIprj/active/UAP_TRANSLATION_PROJECT` | `~/AI_Work/active/UAP_TRANSLATION_PROJECT` |
 | dangerouslyDisableSandbox | 禁止（変更なし）| 禁止（変更なし）|
 | Git リモート | GitHub（変更なし）| GitHub（変更なし）|
 
@@ -240,7 +250,7 @@ Claude Code の設定ファイル（`.claude/settings.json` 等）はプロジ�
 
 ```
 【作業開始】
-  1. Mac Studio で ~/AI_Work/UAP_TRANSLATION_PROJECT/ を開く
+  1. Mac Studio で ~/AI_Work/active/UAP_TRANSLATION_PROJECT/ を開く
   2. Claude Code を ~/AI_Work/ で起動
   3. 外付けSSDがマウントされていることを確認（symlink が機能するため）
   4. git pull で最新状態を取得
@@ -287,12 +297,40 @@ Claude Code の設定ファイル（`.claude/settings.json` 等）はプロジ�
 
 ---
 
-## 10. 次のステップ
+## 10. 正式運用確認済み項目（2026-06-28）
 
-1. **設計承認**: このドキュメントのレビューと承認
-2. **移行作業**: `review_reports/release03_work_cache_migration_plan_20260628.md` の手順に従い実施
-3. **既存ドキュメント更新**: migration plan に記載の更新すべきdoc一覧に従い改訂
-4. **Claude Code 再起動**: `~/AI_Work/UAP_TRANSLATION_PROJECT/` で新セッション開始
+| 確認項目 | 結果 |
+|---------|------|
+| git clone → 内蔵SSD | ✅ 完了（HEAD: a51a63c）|
+| symlink（raw_pdf / raw_media / page_images）| ✅ 動作確認済み |
+| .gitignore 修正（symlink除外）| ✅ 完了 |
+| data/ rsync（adaptive_frames 除く）| ✅ 30MB / 185件 |
+| workflow.db コピー | ✅ 124KB |
+| source_registry.csv 同期（R02-010〜043）| ✅ commit/push 済み |
+| Python スクリプト動作確認 | ✅ py_compile PASS |
+| raw_media/video/ アクセス（symlink経由）| ✅ MP4一覧取得成功 |
+| **Claude Code 再起動** | ⏳ Phase 7（次回セッションで実施）|
+
+---
+
+## 11. 日常運用チェックリスト
+
+作業開始時:
+- [ ] 外付けSSD マウント確認（`ls /Volumes/ACASIS_samsung2TB/`）
+- [ ] `~/AI_Work/active/UAP_TRANSLATION_PROJECT/` で Claude Code を開く
+- [ ] `git pull` で最新状態を取得
+
+作業終了時:
+- [ ] `git add / commit / push` 実行
+- [ ] Sync A: `rsync` で内蔵SSD → 外付けSSD（workflow.db は別途 cp）
+
+---
+
+## 12. 次のステップ
+
+1. **Phase 7**: Claude Code を `~/AI_Work/active/UAP_TRANSLATION_PROJECT/` で開き直す（次回セッション）
+2. **既存ドキュメント更新**: macmini_uap_local_worker_design.md 等のパス記載を更新
+3. **note_drafts 別途 commit**: untracked 70件超を別コミットで整理
 
 ---
 
@@ -301,3 +339,5 @@ Claude Code の設定ファイル（`.claude/settings.json` 等）はプロジ�
 | バージョン | 日付 | 変更内容 |
 |----------|------|---------|
 | v1 | 2026-06-28 | 初版制定（フルディスクアクセス権限問題対応）|
+| v2 | 2026-06-28 | ~/AI_Work/active/ サブディレクトリ構成に変更 |
+| v3 | 2026-06-28 | 正式運用開始確定・移行完了記録追加 |
