@@ -3,11 +3,17 @@
 publish_done.py — note公開後の一括後処理
 
 使い方:
-  # 確認のみ（変更なし）
+  # URLを直接指定（確認のみ）
   python3 scripts/publish_done.py --note-url https://note.com/deft_ibis3303/n/xxxx --dry-run
 
-  # 実際に実行
+  # URLを直接指定（実行）
   python3 scripts/publish_done.py --note-url https://note.com/deft_ibis3303/n/xxxx --execute
+
+  # クリップボードからURL取得（確認のみ）
+  python3 scripts/publish_done.py --clipboard --dry-run
+
+  # クリップボードからURL取得（実行）
+  python3 scripts/publish_done.py --clipboard --execute
 
 動作:
   1. 次の未公開記事を自動判定（workflow.db の published 済み publish_order を除外した最小番号）
@@ -23,6 +29,7 @@ publish_done.py — note公開後の一括後処理
   - normalize_url() でURL二重化を防止
   - 既に published の記事には実行しない
   - HOLD / SKIP 除外（workflow.db publish_blocked=1 は対象外）
+  - --note-url と --clipboard の同時指定はエラー
 """
 
 from __future__ import annotations
@@ -314,16 +321,55 @@ def run(args: argparse.Namespace) -> None:
     print(f"{'='*60}\n")
 
 
+def get_clipboard_url() -> str:
+    """macOS クリップボードから note URL を取得して返す（生文字列）。"""
+    try:
+        result = subprocess.run(
+            ["pbpaste"], capture_output=True, text=True, check=True
+        )
+    except FileNotFoundError:
+        sys.exit("[ERROR] pbpaste が見つかりません（macOS 専用です）")
+    except subprocess.CalledProcessError as e:
+        sys.exit(f"[ERROR] pbpaste 失敗: {e}")
+
+    raw = result.stdout.strip()
+    if not raw:
+        sys.exit("[ERROR] クリップボードが空です")
+
+    # URL形式なのに note.com でない場合はエラー
+    if raw.startswith("http") and "note.com" not in raw:
+        sys.exit(
+            f"[ERROR] クリップボードのURLがnote.comではありません: {raw!r}\n"
+            "       note公開後のURLをコピーしてから再実行してください。"
+        )
+
+    print(f"  [CLIPBOARD] 取得値: {raw!r}")
+    return raw
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="note公開後の一括後処理")
-    parser.add_argument(
-        "--note-url", required=True,
+
+    url_src = parser.add_mutually_exclusive_group(required=True)
+    url_src.add_argument(
+        "--note-url",
         help="公開済みnote URL（フルURLも末尾IDのみも可）",
     )
+    url_src.add_argument(
+        "--clipboard", action="store_true",
+        help="macOS クリップボードから note URL を取得（pbpaste）",
+    )
+
     mode = parser.add_mutually_exclusive_group(required=True)
     mode.add_argument("--dry-run", action="store_true", help="確認のみ（変更なし）")
     mode.add_argument("--execute", action="store_true", help="実際に実行")
+
     args = parser.parse_args()
+
+    # クリップボードモード: URL を解決して args.note_url に格納
+    if args.clipboard:
+        args.note_url = get_clipboard_url()
+
     run(args)
 
 
