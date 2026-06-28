@@ -6,6 +6,7 @@ __pycache__/
 *.pyc
 
 # OCR・生成物
+page_images
 page_images/
 thumbnails/
 
@@ -24,6 +25,7 @@ extracted_text/*.tmp
 raw_pdf
 
 # Raw media（VID/AUD/IMG）
+raw_media
 raw_media/
 
 # war.gov キャッシュ（頻繁に変化・git 管理不要）
