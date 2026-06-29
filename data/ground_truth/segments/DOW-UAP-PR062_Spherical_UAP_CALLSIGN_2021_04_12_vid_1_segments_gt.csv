@@ -1,0 +1,7 @@
+seg_id,timecode_s,timecode_mmss,track_id,track_type,ai_verdict,human_verdict,confirmed_date,background_type,ai_background_misread,object_detection_quality,motion_direction_ai_reliable,human_direction_override,note_draft_ready,requires_observation_report_revision,human_note
+Seg-1,6-12s,00:06-00:12,track_1,SHORT_TRACK,UNKNOWN,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,対象物候補はクロスヘア中央付近やや右上に視認できる可能性あり。背景は荒涼とした山脈地帯の地表面。AIの雲面認識は誤り。
+Seg-2,21-57s,00:21-00:57,track_2,LINEAR_MOTION,RIGHT,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,対象物候補とみられる暗色の点状変化が画面上で位置変化している可能性あり。球形状に見える。AIの右方向判定は誤り（人間確認では左方向）。52s付近でZoom画角切替。背景は山脈地帯の地表面。
+Seg-3,69-138s,01:09-02:18,track_3,ERRATIC_MOTION,LEFT,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,以前セグメントと同一対象物候補の継続追跡とみられる。69-72sはCUTではなく地表陰影変化。AIのERRATIC/新物体判定は誤り。02:04付近でZoom画角切替。105-108sで対象物候補を地表背景で捕捉。
+Seg-4,147-174s,02:27-02:54,track_4,ERRATIC_MOTION,CENTER,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,同一対象物候補とみられる継続。背景は山脈地帯。AIのERRATIC/雲背景判定は誤り。画面上で位置変化継続。
+Seg-5,198-216s,03:18-03:36,track_6,LINEAR_MOTION,RIGHT,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,対象物候補とみられる点状変化が画面左半面で確認できる可能性あり。時々フレームアウト。AIの右方向/雲背景判定は誤り。カメラが対象物捕捉のため移動あり。
+Seg-6,225-279s,03:45-04:39,track_7,LINEAR_MOTION,LEFT,PARTIAL,2026-06-28,ground_surface,cloud_surface,low,false,true,false,true,背景は山脈地帯。225-235sはマスキング外に現れるだけ（新出現ではない）。04:09で望遠→ワイド切替。04:16でブラック/ホワイトアウト→よりワイドな画角。画面上で位置変化継続（左方向は人間確認による）。

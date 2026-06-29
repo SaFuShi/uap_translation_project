@@ -1,0 +1,20 @@
+{
+  "version": "scene_analyzer_v1",
+  "run_date": "2026-06-28",
+  "source_id": "DOW-UAP-PR062_Spherical_UAP_CALLSIGN_2021_04_12_vid_1",
+  "article_id": "R02-054",
+  "sensor_mode_override": "auto",
+  "n_frames": 97,
+  "scene_majority": "ground_surface",
+  "scene_counts": {
+    "ground_surface": 61,
+    "unknown": 28,
+    "cloud": 8
+  },
+  "sensor_mode_majority": "color",
+  "sensor_mode_counts": {
+    "color": 97
+  },
+  "classification_provisional": false,
+  "sensor_mode_notes": "可視光カラー映像。輝度による地表/雲識別が有効（可視光の雲は白い）。現在の分類ロジックを最大信頼度で使用する。"
+}

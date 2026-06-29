@@ -1,0 +1,169 @@
+{
+  "version": "camera_analyzer_v1",
+  "run_date": "2026-06-28",
+  "source_id": "DOW-UAP-PR062_Spherical_UAP_CALLSIGN_2021_04_12_vid_1",
+  "article_id": "R02-054",
+  "n_frames": 97,
+  "n_pairs": 96,
+  "event_counts": {
+    "STATIC": 72,
+    "FOV_IN": 15,
+    "PAN": 2,
+    "FOV_OUT": 6,
+    "EDGE_SURGE": 1
+  },
+  "blackout_detected": false,
+  "whiteout_detected": false,
+  "fov_in_count": 15,
+  "fov_out_count": 6,
+  "edge_surge_count": 1,
+  "pan_mean_dx": 0.8,
+  "pan_mean_dy": 1.7,
+  "notable_events": [
+    {
+      "timestamp_s": 9,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.085,
+      "ed_ratio": 0.968
+    },
+    {
+      "timestamp_s": 33,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.638,
+      "ed_ratio": 0.667
+    },
+    {
+      "timestamp_s": 54,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.854,
+      "ed_ratio": 0.586
+    },
+    {
+      "timestamp_s": 81,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.394,
+      "ed_ratio": 0.539
+    },
+    {
+      "timestamp_s": 126,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.029,
+      "ed_ratio": 0.326
+    },
+    {
+      "timestamp_s": 147,
+      "camera_event": "PAN",
+      "hf_ratio": 0.904,
+      "ed_ratio": 0.982
+    },
+    {
+      "timestamp_s": 150,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.02,
+      "ed_ratio": 0.933
+    },
+    {
+      "timestamp_s": 156,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.443,
+      "ed_ratio": 0.667
+    },
+    {
+      "timestamp_s": 162,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.024,
+      "ed_ratio": 0.926
+    },
+    {
+      "timestamp_s": 168,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.314,
+      "ed_ratio": 1.304
+    },
+    {
+      "timestamp_s": 183,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.336,
+      "ed_ratio": 1.23
+    },
+    {
+      "timestamp_s": 186,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.12,
+      "ed_ratio": 1.474
+    },
+    {
+      "timestamp_s": 189,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.379,
+      "ed_ratio": 0.736
+    },
+    {
+      "timestamp_s": 195,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.49,
+      "ed_ratio": 1.227
+    },
+    {
+      "timestamp_s": 198,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.581,
+      "ed_ratio": 1.003
+    },
+    {
+      "timestamp_s": 201,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.173,
+      "ed_ratio": 1.233
+    },
+    {
+      "timestamp_s": 204,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.725,
+      "ed_ratio": 0.572
+    },
+    {
+      "timestamp_s": 213,
+      "camera_event": "PAN",
+      "hf_ratio": 1.016,
+      "ed_ratio": 1.011
+    },
+    {
+      "timestamp_s": 231,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.326,
+      "ed_ratio": 1.316
+    },
+    {
+      "timestamp_s": 234,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.733,
+      "ed_ratio": 0.923
+    },
+    {
+      "timestamp_s": 243,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.319,
+      "ed_ratio": 0.774
+    },
+    {
+      "timestamp_s": 246,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.536,
+      "ed_ratio": 1.105
+    },
+    {
+      "timestamp_s": 258,
+      "camera_event": "EDGE_SURGE",
+      "hf_ratio": 0.835,
+      "ed_ratio": 4.534
+    },
+    {
+      "timestamp_s": 288,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.252,
+      "ed_ratio": 1.089
+    }
+  ],
+  "detection_limits": "3秒サンプリング時の検出限界: ブラックアウト/ホワイトアウトが3秒未満の場合、サンプルフレームに現れず直接検出不能。FOV切替は空間周波数比の変化で検出するが、地形テクスチャの自然変化と混同する場合がある。"
+}

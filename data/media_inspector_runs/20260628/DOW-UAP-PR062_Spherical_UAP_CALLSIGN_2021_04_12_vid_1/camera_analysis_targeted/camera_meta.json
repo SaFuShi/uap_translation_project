@@ -1,0 +1,291 @@
+{
+  "version": "camera_analyzer_v1",
+  "run_date": "2026-06-29",
+  "source_id": "DOW-UAP-PR062_Spherical_UAP_CALLSIGN_2021_04_12_vid_1",
+  "article_id": "R02-054",
+  "n_frames": 153,
+  "n_pairs": 152,
+  "event_counts": {
+    "STATIC": 108,
+    "FOV_IN": 10,
+    "FOV_OUT": 7,
+    "PAN": 24,
+    "TILT": 1,
+    "EDGE_SURGE": 1,
+    "COMBINED": 1
+  },
+  "blackout_detected": false,
+  "whiteout_detected": false,
+  "fov_in_count": 10,
+  "fov_out_count": 7,
+  "edge_surge_count": 1,
+  "pan_mean_dx": -7.9,
+  "pan_mean_dy": -3.7,
+  "notable_events": [
+    {
+      "timestamp_s": 22.5,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.217,
+      "ed_ratio": 0.905
+    },
+    {
+      "timestamp_s": 22.8,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.372,
+      "ed_ratio": 0.953
+    },
+    {
+      "timestamp_s": 24.5,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.157,
+      "ed_ratio": 0.995
+    },
+    {
+      "timestamp_s": 49.0,
+      "camera_event": "PAN",
+      "hf_ratio": 1.479,
+      "ed_ratio": 0.854
+    },
+    {
+      "timestamp_s": 52.5,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.336,
+      "ed_ratio": 1.002
+    },
+    {
+      "timestamp_s": 53.2,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.27,
+      "ed_ratio": 0.961
+    },
+    {
+      "timestamp_s": 53.8,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.907,
+      "ed_ratio": 1.108
+    },
+    {
+      "timestamp_s": 54.2,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.398,
+      "ed_ratio": 1.134
+    },
+    {
+      "timestamp_s": 55.2,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.368,
+      "ed_ratio": 1.082
+    },
+    {
+      "timestamp_s": 55.5,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.541,
+      "ed_ratio": 1.084
+    },
+    {
+      "timestamp_s": 121.0,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.376,
+      "ed_ratio": 2.202
+    },
+    {
+      "timestamp_s": 124.8,
+      "camera_event": "PAN",
+      "hf_ratio": 1.321,
+      "ed_ratio": 0.958
+    },
+    {
+      "timestamp_s": 125.0,
+      "camera_event": "PAN",
+      "hf_ratio": 0.402,
+      "ed_ratio": 0.899
+    },
+    {
+      "timestamp_s": 126.2,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.338,
+      "ed_ratio": 0.622
+    },
+    {
+      "timestamp_s": 126.5,
+      "camera_event": "PAN",
+      "hf_ratio": 0.716,
+      "ed_ratio": 1.472
+    },
+    {
+      "timestamp_s": 126.8,
+      "camera_event": "TILT",
+      "hf_ratio": 0.616,
+      "ed_ratio": 1.27
+    },
+    {
+      "timestamp_s": 127.5,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 3.373,
+      "ed_ratio": 0.988
+    },
+    {
+      "timestamp_s": 246.8,
+      "camera_event": "PAN",
+      "hf_ratio": 0.948,
+      "ed_ratio": 0.914
+    },
+    {
+      "timestamp_s": 247.0,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.561,
+      "ed_ratio": 0.976
+    },
+    {
+      "timestamp_s": 247.2,
+      "camera_event": "PAN",
+      "hf_ratio": 1.827,
+      "ed_ratio": 0.89
+    },
+    {
+      "timestamp_s": 247.8,
+      "camera_event": "PAN",
+      "hf_ratio": 1.078,
+      "ed_ratio": 0.917
+    },
+    {
+      "timestamp_s": 250.8,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.194,
+      "ed_ratio": 1.022
+    },
+    {
+      "timestamp_s": 251.5,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.334,
+      "ed_ratio": 1.047
+    },
+    {
+      "timestamp_s": 252.8,
+      "camera_event": "FOV_OUT",
+      "hf_ratio": 0.201,
+      "ed_ratio": 0.955
+    },
+    {
+      "timestamp_s": 253.8,
+      "camera_event": "FOV_IN",
+      "hf_ratio": 2.166,
+      "ed_ratio": 1.023
+    },
+    {
+      "timestamp_s": 255.5,
+      "camera_event": "EDGE_SURGE",
+      "hf_ratio": 0.0,
+      "ed_ratio": 22.649
+    },
+    {
+      "timestamp_s": 256.0,
+      "camera_event": "COMBINED",
+      "hf_ratio": 0.267,
+      "ed_ratio": 3.31
+    },
+    {
+      "timestamp_s": 256.2,
+      "camera_event": "PAN",
+      "hf_ratio": 1.04,
+      "ed_ratio": 1.07
+    },
+    {
+      "timestamp_s": 256.8,
+      "camera_event": "PAN",
+      "hf_ratio": 1.061,
+      "ed_ratio": 1.371
+    },
+    {
+      "timestamp_s": 257.2,
+      "camera_event": "PAN",
+      "hf_ratio": 1.159,
+      "ed_ratio": 1.146
+    },
+    {
+      "timestamp_s": 257.5,
+      "camera_event": "PAN",
+      "hf_ratio": 1.076,
+      "ed_ratio": 1.05
+    },
+    {
+      "timestamp_s": 258.2,
+      "camera_event": "PAN",
+      "hf_ratio": 1.171,
+      "ed_ratio": 1.049
+    },
+    {
+      "timestamp_s": 258.8,
+      "camera_event": "PAN",
+      "hf_ratio": 0.789,
+      "ed_ratio": 0.873
+    },
+    {
+      "timestamp_s": 259.0,
+      "camera_event": "PAN",
+      "hf_ratio": 0.983,
+      "ed_ratio": 1.068
+    },
+    {
+      "timestamp_s": 259.2,
+      "camera_event": "PAN",
+      "hf_ratio": 1.104,
+      "ed_ratio": 1.055
+    },
+    {
+      "timestamp_s": 259.5,
+      "camera_event": "PAN",
+      "hf_ratio": 1.087,
+      "ed_ratio": 1.03
+    },
+    {
+      "timestamp_s": 259.8,
+      "camera_event": "PAN",
+      "hf_ratio": 1.128,
+      "ed_ratio": 1.019
+    },
+    {
+      "timestamp_s": 260.0,
+      "camera_event": "PAN",
+      "hf_ratio": 0.973,
+      "ed_ratio": 0.958
+    },
+    {
+      "timestamp_s": 260.2,
+      "camera_event": "PAN",
+      "hf_ratio": 0.998,
+      "ed_ratio": 0.969
+    },
+    {
+      "timestamp_s": 260.5,
+      "camera_event": "PAN",
+      "hf_ratio": 0.734,
+      "ed_ratio": 0.732
+    },
+    {
+      "timestamp_s": 260.8,
+      "camera_event": "PAN",
+      "hf_ratio": 0.959,
+      "ed_ratio": 1.124
+    },
+    {
+      "timestamp_s": 261.5,
+      "camera_event": "PAN",
+      "hf_ratio": 1.073,
+      "ed_ratio": 1.037
+    },
+    {
+      "timestamp_s": 261.8,
+      "camera_event": "PAN",
+      "hf_ratio": 1.07,
+      "ed_ratio": 1.025
+    },
+    {
+      "timestamp_s": 262.5,
+      "camera_event": "PAN",
+      "hf_ratio": 0.971,
+      "ed_ratio": 1.031
+    }
+  ],
+  "detection_limits": "3秒サンプリング時の検出限界: ブラックアウト/ホワイトアウトが3秒未満の場合、サンプルフレームに現れず直接検出不能。FOV切替は空間周波数比の変化で検出するが、地形テクスチャの自然変化と混同する場合がある。"
+}
