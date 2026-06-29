@@ -215,9 +215,83 @@ data/ground_truth/
 
 ---
 
-## 11. バージョン履歴
+## 11. v3 フロー（Motion Intelligence v3 主軸）
+
+**制定日: 2026-06-28**
+
+### v2 からの変更点
+
+| 要素 | v2（旧） | v3（新） |
+|------|---------|---------|
+| 主役 | Adaptive Frame Extraction | Motion Intelligence v3 |
+| 重要区間の特定 | Frame Delta Analysis（CUT/APPEAR等） | Motion Intelligence v3（track検出・sticky追跡） |
+| Adaptive の役割 | 主役（映像索引） | 補助（前処理フレーム供給） |
+| Targeted の役割 | Delta イベントを起点に補完 | MI v3 重要区間（track）を補強 |
+| 人間確認の起点 | Frame Delta summary → ガイド作成 | MI v3 summary → AI Observation Report |
+
+### v3 正式フロー
+
+```
+動画
+↓
+[1] Adaptive Frame Extraction（3秒間隔・全体索引）
+     scripts/extract_frames_adaptive.py --interval 3 --execute
+     出力: data/adaptive_frames/<date>/<slug>/
+↓
+[2] Motion Intelligence v3（重要区間抽出・主役）
+     scripts/motion_intelligence_v3.py --mode adaptive --execute
+     出力: data/motion_intelligence_runs/<date>/<slug>/v3/
+       motion_events.csv  — ペア単位イベント
+       track_events.csv   — トラック単位サマリー
+       summary.md         — 重要区間・トラック一覧
+↓
+[3] Targeted Frame Extraction（MI v3 track 区間を1秒間隔補強）
+     ffmpeg または extract_frames_targeted.py
+     出力: data/motion_intelligence_runs/<date>/<slug>/targeted_frames/
+     優先区間: LINEAR_MOTION（高 drift / 高 R²）+ ERRATIC_MOTION + trail_detected
+↓
+[4] AI Observation Report 生成（AIが映像観察を整理）
+     出力: review_reports/<slug>_ai_observation_report_v3_<date>.md
+     形式: 5〜8 セグメント・秒数（mm:ss）併記
+↓
+[5] 人間査読（ソース映像を確認しながら）
+     各セグメントに OK / PARTIAL / WRONG / UNKNOWN を返す
+↓
+[6] Ground Truth 記録
+     data/ground_truth/segments/<slug>_segments_gt.csv
+↓
+[7] note_draft 修正
+```
+
+### v3 での Targeted 抽出対象の優先度
+
+| 優先度 | MI v3 イベント | 理由 |
+|--------|--------------|------|
+| **最高** | LINEAR_MOTION（drift≥10px/s・R²≥0.45） | 高信頼度の追跡対象 |
+| **高** | ERRATIC_MOTION（n_pairs≥7） | 不規則運動 = UAP候補の可能性 |
+| **高** | trail_detected=True | 細長いクラスタ（軌跡・引き波の痕跡） |
+| 中 | POSSIBLE_TARGET_APPEAR（conf≥0.5） | 出現イベント・追跡開始点 |
+| 低 | SINGLE_APPEARANCE（conf<0.3） | 確認用のみ・優先度低 |
+
+### v3 Targeted 抽出パラメータ
+
+- 抽出間隔: 1秒（通常）/ 0.1秒（trail付近・高速移動疑い区間）
+- バッファ: track 開始3s前〜終了3s後
+- ツール: ffmpeg `-ss <start> -to <end> -vf "fps=1"`
+- 出力先: `data/motion_intelligence_runs/<date>/<slug>/targeted_frames/`（内蔵SSD）
+
+### v3 初適用事例
+
+| 事例 | 対象 | 日付 | 結果 |
+|------|------|------|------|
+| PR062 | DOW-UAP-PR062_Spherical_UAP_CALLSIGN_2021_04_12_vid_1 | 2026-06-28 | track×8・LINEAR×3・ERRATIC×2・trail×1 |
+
+---
+
+## 12. バージョン履歴
 
 | バージョン | 日付 | 主な変更 |
 |-----------|------|---------|
 | v1 | 2026-06-26 | Media Inspector 初版。VLM評価とGround Truth設計 |
 | v2 | 2026-06-27 | Human Q&A型 → AI Observation Report型へ移行。source-video-first確立 |
+| v3 | 2026-06-28 | Motion Intelligence v3 を主役に昇格。Adaptive/Targeted を補助に再定義 |
